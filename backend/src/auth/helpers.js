@@ -1,4 +1,3 @@
-
 // @desc Used to return user data without sensitive fields
 const sanitizeUser = (userInfo) => ({
     id: userInfo._id,
@@ -8,7 +7,6 @@ const sanitizeUser = (userInfo) => ({
     role: userInfo.role,
     isActive: userInfo.isActive,
 });
-
 
 // @desc Compute login fraudScore and suspiciousActivity if ip and userAgent change
 const getFraudAnalysis = (user, info) => {

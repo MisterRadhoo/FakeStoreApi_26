@@ -1,4 +1,3 @@
-
 // Vanilla JS custom slugify function: string: "Ana are mere" => "ana-are-mere"
 const slugify = (input, { maxLen = 90 } = {}) => {
   if (input == null) return "";   // only for null and undefined catching value
