@@ -1,0 +1,287 @@
+[
+      {
+            "title": "Nike SB Dunk Low x Futura Laboratories",
+            "slug": "nike-sb-dunk-low-x-futura-laboratories",
+            "price": 10329.99,
+            "currency": "USD",
+            "stock": 4,
+            "description": "Aceasta editie Nike SB, este o colaborare intre brandul de produse comerciale si studioul de design, Futura Laboratories si divizia de skateboarding Nike.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/futura-nike-sb-dunk-low.png",
+            "images": [],
+            "colors": [
+                  "Bleached Aqua",
+                  "Geode Teal",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.8,
+            "ratingsQuantity": 12
+      },
+      {
+            "title": "Nike SB Dunk Low x Limousine Skateboards",
+            "slug": "nike-sb-dunk-low-x-limousine-skateboards",
+            "price": 799.99,
+            "currency": "USD",
+            "stock": 6,
+            "description": "Literal si ireverentios in acelasi timp, acest model Nike SB, se inspira dintr-un element de baza al adidasilor sport si transforma silueta modelului dunk, intr-un omagiu adus fotbalului american si pastrarea confortului.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-x-limousine-skateboard.png",
+            "images": [],
+            "colors": [
+                  "Brown",
+                  "Black",
+                  "Chrome"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.6,
+            "ratingsQuantity": 6
+      },
+      {
+            "title": "Nike SB Dunk Low Chameleon",
+            "slug": "nike-sb-dunk-low-chameleon",
+            "price": 859.99,
+            "currency": "USD",
+            "stock": 12,
+            "description": "Aducand la scara larga un concept si povesti pentru publicul larg, Nike SB Dunk Low Pro Chameleon, conceput de Alexis Sablone, adapteaza un model iconic pentru un anotimp calduros.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-chameleon.png",
+            "images": [],
+            "colors": [
+                  "Oil Green",
+                  "Desert Moss",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.2,
+            "ratingsQuantity": 3
+      },
+      {
+            "title": "Nike SB Dunk Low x Hayley-Wilson",
+            "slug": "nike-sb-dunk-low-x-hayley-wilson",
+            "price": 1989.88,
+            "currency": "USD",
+            "stock": 9,
+            "description": "Modelul Hayley Dunks prezinta un fir reactiv la UV care isi schimba culoarea la soare in jurul swoosh-ului.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/hayley-wilson-nike-sb-dunk-low.png",
+            "images": [],
+            "colors": [
+                  "Court Purple",
+                  "Black",
+                  "White",
+                  "Lagoon Pulse"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.6,
+            "ratingsQuantity": 2
+      },
+      {
+            "title": "Nike SB Dunk Low Big Money Savings",
+            "slug": "nike-sb-dunk-low-big-money-savings",
+            "price": 4320.99,
+            "currency": "USD",
+            "stock": 5,
+            "description": "Pentru cumparatorii priceputi carora le place sa caute afacearea vietii, acest Nike SB dunk, aduce etosul discount profund adidasului tau de skate preferat.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-big-money-savings.png",
+            "images": [],
+            "colors": [
+                  "Baroque Brown",
+                  "Summit White-Sanddrift-Dark Smoke Grey",
+                  "Paradise Aqua"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.9,
+            "ratingsQuantity": 18
+      },
+      {
+            "title": "Nike SB Dunk Low Chicago J-pack",
+            "slug": "nike-sb-dunk-low-chicago-j-pack",
+            "price": 2220.99,
+            "currency": "USD",
+            "stock": 7,
+            "description": "Celebrul pattern al echipei de baschet Chicago Bulls, disponibil acum si pe un model de skateboarding.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-chicago.png",
+            "images": [],
+            "colors": [
+                  "University Red",
+                  "Black",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.9,
+            "ratingsQuantity": 37
+      },
+      {
+            "title": "Nike SB Dunk Low Court Purple J-pack",
+            "slug": "nike-sb-dunk-low-court-purple-j-pack",
+            "price": 1299.99,
+            "currency": "USD",
+            "stock": 7,
+            "description": "Modelul Nike SB court purple, aduce accente discrete constructiei sale clasice de skateboarding.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-court-purple.png",
+            "images": [],
+            "colors": [
+                  "Court Purple",
+                  "Black",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.4,
+            "ratingsQuantity": 11
+      },
+      {
+            "title": "Nike SB Dunk Low White Gum",
+            "slug": "nike-sb-dunk-low-white-gum",
+            "price": 1199.99,
+            "currency": "USD",
+            "stock": 7,
+            "description": "Model clasic de la Nike SB, fabricat din materiale premium, trecand mereu testul timpului in materie de trend",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-pro-white-gum.png",
+            "images": [],
+            "colors": [
+                  "Gum Light Brown",
+                  "Black",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.5,
+            "ratingsQuantity": 56
+      },
+      {
+            "title": "Nike SB Dunk Low Safari",
+            "slug": "nike-sb-dunk-low-safari",
+            "price": 529.99,
+            "currency": "USD",
+            "stock": 21,
+            "description": "Model Nike SB lansat in vara anului 2024, reprezentand tematica jocurilor olimpice de la Paris/Franta.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-safari.png",
+            "images": [],
+            "colors": [
+                  "Phantom",
+                  "Black",
+                  "Monarch",
+                  "Summit White",
+                  "Chlorine Blue"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.1,
+            "ratingsQuantity": 4
+      },
+      {
+            "title": "Nike SB Dunk Low x Riot Skateshop",
+            "slug": "nike-sb-dunk-low-x-riot-skateshop",
+            "price": 1749.99,
+            "currency": "USD",
+            "stock": 11,
+            "description": "Timpul este totul si in arta plastica a vinificarii, varsta conteaza. Din 2004, Riot Skateshop din Bordeaux, Franta a cultivat legatura dintre mestesugurile din lumea veche si cultura skateboarding-ului.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/Riot-Skateshop-Nike-SB-Dunk-Low.png",
+            "images": [],
+            "colors": [
+                  "Mahogany",
+                  "Dark Beetroot",
+                  "Team Red",
+                  "Sail",
+                  "Night Maroon"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.7,
+            "ratingsQuantity": 9
+      },
+      {
+            "title": "Nike SB Dunk Low Asparagus",
+            "slug": "nike-sb-dunk-low-asparagus",
+            "price": 2649.99,
+            "currency": "USD",
+            "stock": 3,
+            "description": "Starul in ascensiune al skateboarding-ului Yuto Horigome continua sa-si lase amprenta asupra modei, streetwear, odată cu lansarea celui de-al 2-lea Nike SB Dunk Low, numit Asparagus.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/Yuto-Horigome-Nike-SB-Dunk-Low.png",
+            "images": [],
+            "colors": [
+                  "Asparagus",
+                  "Legion Green",
+                  "Light Khaki",
+                  "Dark Loden",
+                  "Sesame",
+                  "Burnt Sienna"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.9,
+            "ratingsQuantity": 22
+      },
+      {
+            "title": "Nike SB Dunk Low x Dashawn Jordan Copperhead",
+            "slug": "nike-sb-dunk-low-x-dashawn-jordan-copperhead",
+            "price": 1599.99,
+            "currency": "USD",
+            "stock": 6,
+            "description": "Dashawn Jordan x Nike SB Dunk Low este inspirat de uniformele mov și turcoaz ale echipei Arizona Diamondbacks din timpul titlului lor de la World Series din 2001.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-x-dashawn-jordan.png",
+            "images": [],
+            "colors": [
+                  "String Black",
+                  "Bright Spruce",
+                  "Fierce Purple",
+                  "Dark Russet"
+            ],
+            "sold": 4,
+            "ratingsAverage": 4.87,
+            "ratingsQuantity": 7
+      }
+]

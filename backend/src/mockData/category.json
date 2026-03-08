@@ -1,0 +1,21 @@
+[
+    {
+        "_id": "6980755adb563b32c2d55fb6",
+        "name": "Sneakers",
+        "slug": "sneakers",
+        "image": "http://localhost:7800/static/img/category-sneakers.png"
+    },
+    {
+        "_id": "699770dca04e80c6606e6085",
+        "name": "Clothing",
+        "slug": "clothing",
+        "image": "http://localhost:7800/static/img/tags-clothing.png"
+    },
+    {
+        
+        "_id": "699770f0a04e80c6606e6088",
+        "name": "Accessories",
+        "slug": "accessories",
+        "image": "http://localhost:7800/static/img/accessories-1.png"
+    }
+]

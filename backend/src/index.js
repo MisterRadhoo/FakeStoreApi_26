@@ -1,0 +1,93 @@
+require("dotenv").config(); // accessing enviroment variables
+const path = require("path");
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const passport = require("passport");
+require("./config/passport");  // importing passport strategy
+
+// error middlewares
+const {
+    jwtErrorHandler,
+    zodErrorHandler,
+    dbErrorHandler,
+    globalErrorHandler
+} = require("./middlewares/error/index");
+
+
+const ipLogger = require("./middlewares/ipLogger");
+const setRateLimiter = require("./middlewares/limiter/rateLimiter");
+const connectDB = require("./config/database");
+const CustomApiError = require("./utils/ApiError");
+
+const app = express();
+const PORT = process.env.PORT || 1337;
+
+//Routes
+const {
+    productsRouter,
+    reviewRouter,
+    categoryRouter,
+    subCategoryRouter,
+    brandRouter
+} = require("./routers/index");
+const authRouter = require("./auth/authRouter");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(passport.initialize());
+
+// ipLogger middleware
+app.use(ipLogger);
+app.use("/static", express.static("src/public"));
+app.use(express.static(path.join(__dirname, "src/uploads")));
+app.set("query parser", "extended");  // when nested object are returned, they are parsed (legacy code);
+
+// limiter
+app.use(setRateLimiter({ windowMs: 10 * 60 * 1000, limit: 90, message: "Too many requests! Try again later" }));
+
+
+
+
+
+
+app.get("/", (req, res) => {
+    res.json({ message: "FakeStoreAPI backend is succesfully running!" });
+});
+
+
+//Routes middleware
+app.use("/api/auth", authRouter);
+app.use("/api/products", productsRouter);
+app.use("/api/reviews", reviewRouter);
+app.use("/api/categories", categoryRouter);
+app.use("/api/subcategories", subCategoryRouter);
+app.use("/api/brands", brandRouter);
+
+// Guard url
+app.use("/*splat", (req, res, next) => {
+    return next(CustomApiError.notFound(req.originalUrl, "path"));
+});
+
+
+
+app.use(jwtErrorHandler);
+app.use(zodErrorHandler);
+app.use(dbErrorHandler);
+// Global error handler
+app.use(globalErrorHandler);
+
+// Connect to database
+(async () => {
+    await connectDB();
+    app.listen(PORT, "0.0.0.0", () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
+})().catch((err) => {
+    console.error("Server disconnected...", err);
+    process.exit(1);
+});
+
+
+
+

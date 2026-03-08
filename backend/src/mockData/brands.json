@@ -1,0 +1,10 @@
+[
+    {
+        "_id": "69a320dcccd444547f8a0ea4",
+        "name": "Nike SB",
+        "description": "Just Do It",
+        "image": "http://localhost:7800/static/img/nike-sb-logo.png",
+        "createdAt": "2026-02-28T17:07:40.948Z",
+        "updatedAt": "2026-02-28T17:07:40.948Z"
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "_id": "699b7838fbe26d029d8a7706",
+        "name": "Sneakers Low",
+        "slug": "sneakers-low",
+        "categoryId": "6980755adb563b32c2d55fb6"
+    },
+    {
+        "_id": "699b7b1a4d98458b986216bb",
+        "name": "Sneakers High",
+        "slug": "sneakers-high",
+        "categoryId": "6980755adb563b32c2d55fb6",
+        "createdAt": "2026-02-22T21:54:34.783Z",
+        "updatedAt": "2026-02-22T21:54:34.783Z"
+    }
+]
