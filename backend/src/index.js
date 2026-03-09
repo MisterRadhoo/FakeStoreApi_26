@@ -40,7 +40,6 @@ app.use(passport.initialize());
 // ipLogger middleware
 app.use(ipLogger);
 app.use("/static", express.static("src/public"));
-app.use(express.static(path.join(__dirname, "src/uploads")));
 app.set("query parser", "extended");  // when nested object are returned, they are parsed (legacy code);
 
 // limiter

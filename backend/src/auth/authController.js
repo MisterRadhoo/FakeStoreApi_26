@@ -25,8 +25,25 @@ const login = async (req, res) => {
     });
 };
 
+// @desc logout User
+const logout = async (req, res) => {
+    const cookieSettings = getCookieSettings();
+
+    res.clearCookie(getCookieName(), {
+        httpOnly: true,
+        secure: cookieSettings.secure,
+        sameSite: cookieSettings.sameSite,
+        path: cookieSettings.path
+    });
+
+    return res.status(200).json({
+        status: "Logged out successfully!"
+    });
+};
+
 
 module.exports = {
     register,
-    login
+    login,
+    logout
 };

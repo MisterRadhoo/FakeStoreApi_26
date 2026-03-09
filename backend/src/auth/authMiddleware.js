@@ -3,7 +3,7 @@ const CustomApiError = require("../utils/ApiError");
 
 // @desc Make sure the user is logged in
 const requireLogIn = (req, res, next) =>
-    passport.authenticate("jwt", { session: false }, (err, info, currentUser) => {
+    passport.authenticate("jwt", { session: false }, (err, currentUser, info) => {
         if (err) return next(err);
 
         if (info) return next(info);
