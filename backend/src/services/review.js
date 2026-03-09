@@ -1,6 +1,6 @@
 const { Review } = require("../models/index");
 
-// @desc Find list Reviews service
+// @desc Find Reviews in db
 const findReviews = async (filter, limit, page, sort) => {
     // pagination
     const limitPage = limit ? Number(limit) : 10;

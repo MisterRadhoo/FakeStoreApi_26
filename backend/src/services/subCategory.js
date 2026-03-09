@@ -1,6 +1,6 @@
 const { SubCategory } = require("../models/index");
 
-// @desc Find List of Subcategories service
+// @desc Find Subcategories in db
 const findSubCategories = async (categoryId, limit, page, sort) => {
     //pagination
     const limitPage = limit ? Number(limit) : 5;
