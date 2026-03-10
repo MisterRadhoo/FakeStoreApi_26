@@ -1,6 +1,7 @@
 const { z } = require("zod");
 const zObjectId = require("../zObjectId");
 
+// @desc Create Product zod schema validator
 const zCreateProductSchema = z.object({
     title: z.string("Title is required").trim().min(3, "At least 3 characters").max(80, "At most 80 characters"),
     price: z.coerce.number().min(0, "Price must be >=0"),
