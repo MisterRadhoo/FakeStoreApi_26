@@ -2,15 +2,15 @@ const { z } = require("zod");
 const zObjectId = require("../zObjectId");
 
 const zCreateProductSchema = z.object({
-    title: z.string().trim().min(3, "Title must have at least 3 characters").max(80, "Title must have at most 80 characters"),
+    title: z.string("Title is required").trim().min(3, "At least 3 characters").max(80, "At most 80 characters"),
     price: z.coerce.number().min(0, "Price must be >=0"),
     currency: z.enum(["USD", "EUR", "RON"]).optional(),
     stock: z.coerce.number().min(0, "Stock must be >=0"),
-    description: z.string().trim().min(8),
+    description: z.string("Description is required").trim().min(8),
     categoryId: zObjectId,
     subcategoriesIds: z.array(zObjectId).optional(),
     brandId: zObjectId.optional(),
-    imageCover: z.string().trim().min(5),
+    imageCover: z.string("imageCover is required").trim().min(5),
     images: z.array(z.string().trim()).optional(),
     colors: z.array(z.string().trim()).optional(),
     sold: z.coerce.number().int().min(0).optional(),
