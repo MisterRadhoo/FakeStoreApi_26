@@ -9,7 +9,7 @@ const createFilterObj = (req, res, next) => {
 
 
 // Middleware for routes where you create Review/s for Product
-const setProductIdAndUserIdToBody = async (req, res, next) => {
+const setProductIdAndUserIdToBody = (req, res, next) => {
     if (!req.body.productId) {
         req.body.productId = req.params.productId;
     }
