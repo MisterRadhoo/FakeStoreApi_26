@@ -5,7 +5,7 @@ const router = express.Router({ mergeParams: true });
 const slugifyProduct = require("../middlewares/product/slugifyMiddleware");
 const productBySlug = require("../middlewares/product/productBySlug");
 const productById = require("../middlewares/product/paramByIdMiddleware");
-const checkRefsProduct = require("../middlewares/product/referencesMiddleware");
+const checkProductRefs = require("../middlewares/product/referencesMiddleware");
 const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 const zParamsValidator = require("../middlewares/zodValidators/zParams");
 const zBodyValidator = require("../middlewares/zodValidators/zBody");
@@ -55,7 +55,7 @@ router.get("/:id", zParamsValidator(idProductSchema), getProduct);
 
 // @desc Create Product
 // @access Private/Admin
-router.post("/", zBodyValidator(zCreateProductSchema), checkRefsProduct, slugifyProduct, createProduct);
+router.post("/", zBodyValidator(zCreateProductSchema), checkProductRefs, slugifyProduct, createProduct);
 
 // @desc Update specific Product
 // @access Private/Admin

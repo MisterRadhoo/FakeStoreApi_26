@@ -56,7 +56,7 @@ const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sor
     };
 };
 
-// @desc Assert references of Product 
+// @desc Assert Product references in db
 const assertProductRefs = async (categoryId, subcategoriesIds, brandId) => {
     if (!categoryId) {
         throw CustomApiError.badRequest(`CategoryId: ${categoryId} invalid request!`, "categoryId");
