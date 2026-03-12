@@ -2,6 +2,8 @@ require("dotenv").config(); // accessing enviroment variables
 const path = require("path");
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const connectDB = require("./config/database");
+const CustomApiError = require("./utils/ApiError");
 const passport = require("passport");
 require("./config/passport");  // importing passport strategy
 
@@ -13,14 +15,13 @@ const {
     globalErrorHandler
 } = require("./middlewares/error/index");
 
-
+// other middlewares
 const ipLogger = require("./middlewares/ipLogger");
 const setRateLimiter = require("./middlewares/limiter/rateLimiter");
-const connectDB = require("./config/database");
-const CustomApiError = require("./utils/ApiError");
 
 const app = express();
 const PORT = process.env.PORT || 1337;
+
 
 //Routes
 const {

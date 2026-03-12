@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
 
-const zQueryValidator = require("../middlewares/zodValidators/zQuery");
+// Review middlewares
+const checkReviewRefs = require("../middlewares/review/checkRefsMiddleware");
 const { createFilterObj, setProductIdAndUserIdToBody } = require("../middlewares/review/utilityMiddleware");
 
-
+// Review controller functions
 const {
     createReview,
     getReview,
@@ -14,8 +15,16 @@ const {
     getListReviews
 } = require("../controllers/reviewController");
 
+// zod validation middlewares
+const zQueryValidator = require("../middlewares/zodValidators/zQuery");
+const zBodyValidator = require("../middlewares/zodValidators/zBody");
+
 // validators
 const zPaginationSchema = require("../validators/zPagination");
+const zCreateReviewSchema = require("../validators/review/createReviewSchema");
+
+// permissions
+const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // @desc Get all Reviews
 // @access Public
@@ -31,7 +40,7 @@ router.get("/:id", getReview);
 
 // @desc Create Review
 // @access Private/Protected
-router.post("/", /*setProductIdAndUserIdToBody,*/ createReview);
+router.post("/", [requireLogIn, allowedTo("user")], setProductIdAndUserIdToBody, zBodyValidator(zCreateReviewSchema), checkReviewRefs, createReview);
 
 // @desc Update Review
 // @access Private/Protected

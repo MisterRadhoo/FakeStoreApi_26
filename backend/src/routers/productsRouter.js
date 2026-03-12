@@ -2,15 +2,14 @@ const express = require("express");
 // Allow to access parameters on other routers
 const router = express.Router({ mergeParams: true });
 
+// Product middlewares
 const slugifyProduct = require("../middlewares/product/slugifyMiddleware");
 const productBySlug = require("../middlewares/product/productBySlug");
 const productById = require("../middlewares/product/paramByIdMiddleware");
 const checkProductRefs = require("../middlewares/product/referencesMiddleware");
-const zQueryValidator = require("../middlewares/zodValidators/zQuery");
-const zParamsValidator = require("../middlewares/zodValidators/zParams");
-const zBodyValidator = require("../middlewares/zodValidators/zBody");
 
 
+// Product controller functions
 const {
     createProduct,
     updateProduct,
@@ -22,11 +21,17 @@ const {
     searchProduct
 } = require("../controllers/productController");
 
+//zod validation middlewares
+const zQueryValidator = require("../middlewares/zodValidators/zQuery");
+const zParamsValidator = require("../middlewares/zodValidators/zParams");
+const zBodyValidator = require("../middlewares/zodValidators/zBody");
+
 // validators
 const idProductSchema = require("../validators/product/idProduct");
 const zCreateProductSchema = require("../validators/product/createProductSchema");
 const zPaginationSchema = require("../validators/zPagination");
 
+//permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // nested router

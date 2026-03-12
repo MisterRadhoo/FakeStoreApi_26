@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
+
+// SubCategory middlewares
 const slugifySubCategory = require("../middlewares/subCategory/slugifySubCategory");
-const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 
 // middleware between URL param and body request
 const setCategoryToBody = (req, res, next) => {
@@ -11,7 +12,7 @@ const setCategoryToBody = (req, res, next) => {
     next();
 };
 
-
+// SubCategory controller functions
 const {
     createSubCategory,
     getSubCategory,
@@ -20,6 +21,9 @@ const {
     getAllSubCategories,
     getListSubCategories
 } = require("../controllers/subCategoryController");
+
+// zod validation middlewares
+const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 
 // validators
 const zPaginationSchema = require("../validators/zPagination");
