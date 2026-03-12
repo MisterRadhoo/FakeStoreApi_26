@@ -35,7 +35,7 @@ const zPaginationSchema = require("../validators/zPagination");
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // nested router
-// @desc Get all Reviews on specifique Products
+// @desc Get all Reviews on specific Product
 const reviewsRouter = require("./reviewRouter");
 router.use("/:productId/reviews", reviewsRouter);
 
@@ -50,7 +50,7 @@ router.get("/slug/:slug", productBySlug, getSlugProduct);
 // @access Public
 router.get("/", getAllProducts);
 
-// @desc Get related Product base in productId
+// @desc Get related Products base in productId
 // @access Public
 router.get("/related/:productId", [requireLogIn, allowedTo("admin")], zQueryValidator(zPaginationSchema), getListRelated);
 

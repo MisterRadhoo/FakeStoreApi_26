@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 
 // Review middlewares
-const checkReviewRefs = require("../middlewares/review/checkRefsMiddleware");
-const { createFilterObj, setProductIdAndUserIdToBody } = require("../middlewares/review/utilityMiddleware");
+const {
+    createFilterObj,
+    setProductIdAndUserIdToBody,
+    checkReviewRefs
+} = require("../middlewares/review/utilityMiddleware");
 
 // Review controller functions
 const {
@@ -18,9 +21,11 @@ const {
 // zod validation middlewares
 const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 const zBodyValidator = require("../middlewares/zodValidators/zBody");
+const zParamValidator = require("../middlewares/zodValidators/zParams");
 
 // validators
 const zPaginationSchema = require("../validators/zPagination");
+const idReviewSchema = require("../validators/review/idReview");
 const zCreateReviewSchema = require("../validators/review/createReviewSchema");
 
 // permissions
@@ -36,18 +41,23 @@ router.get("/list", zQueryValidator(zPaginationSchema), createFilterObj, getList
 
 // @desc Get specific Review
 // @access Public
-router.get("/:id", getReview);
+router.get("/:id", zParamValidator(idReviewSchema), getReview);
 
 // @desc Create Review
 // @access Private/Protected
-router.post("/", [requireLogIn, allowedTo("user")], setProductIdAndUserIdToBody, zBodyValidator(zCreateReviewSchema), checkReviewRefs, createReview);
+router.post("/",
+    [requireLogIn, allowedTo("user")],
+    setProductIdAndUserIdToBody,
+    zBodyValidator(zCreateReviewSchema),
+    checkReviewRefs,
+    createReview);
 
 // @desc Update Review
 // @access Private/Protected
-router.put("/:id", updateReview);
+router.put("/:id", zParamValidator(idReviewSchema), updateReview);
 
 // @desc Delete Review
 // @access Private/Protect/Admin
-router.delete("/:id", removeReview);
+router.delete("/:id", zParamValidator(idReviewSchema), removeReview);
 
 module.exports = router;

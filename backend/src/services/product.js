@@ -34,7 +34,7 @@ const findProducts = async (filters, sortBy, order, limit, skip) => {
 // @desc Find related Products based by same categoryId
 const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sort) => {
     // pagination
-    const limitPage = limit ? Number(limit) : 12;
+    const limitPage = limit ? Number(limit) : 10;
     const pageNumber = page * 1 || 1;
     const skip = (pageNumber - 1) * limitPage;
     const sortBy = sort ? String(sort).split(",").join(" ") : "-createdAt";
@@ -59,7 +59,7 @@ const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sor
 // @desc Assert Product references in db
 const assertProductRefs = async (categoryId, subcategoriesIds, brandId) => {
     if (!categoryId) {
-        throw CustomApiError.badRequest(`CategoryId: ${categoryId} invalid request!`, "categoryId");
+        throw CustomApiError.badRequest("CategoryId is required!", "categoryId");
     }
     await checkExists(Category, categoryId, "categoryId");
     await checkExists(SubCategory, subcategoriesIds, "subcategoriesIds");

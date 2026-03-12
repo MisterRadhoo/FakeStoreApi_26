@@ -29,14 +29,13 @@ const findReviews = async (filter, limit, page, sort) => {
 // @desc Assert Review references in db
 const assertReviewRefs = async (userId, productId) => {
   if (!productId) {
-    throw CustomApiError.badRequest(`ProductId: ${productId} is required!`, "productId");
+    throw CustomApiError.badRequest(`ProductId is required!`, "productId");
   }
   await checkExists(Product, productId, "productId");
 
   const review = await Review.exists({
     userId: userId,
     productId: productId,
-
   });
 
   if (review) {

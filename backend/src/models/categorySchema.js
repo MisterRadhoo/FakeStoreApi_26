@@ -9,7 +9,7 @@ const categorySchema = new mongoose.Schema(
             minlength: [4, "Name of category must be at least 4 characters"],
             maxlength: [64, "Name of category must be less than 64 characters"],
             trim: true,
-            index: true
+            unique: true
         },
         slug: {
             type: String,

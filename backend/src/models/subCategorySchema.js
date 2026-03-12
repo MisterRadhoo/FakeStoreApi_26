@@ -9,14 +9,14 @@ const subCategorySchema = new mongoose.Schema(
             minlength: [4, "Subcategory name must be at least 4 characters"],
             maxlength: [64, "Subcategory name must be less than 64 characters"],
             trim: true,
-            index: true
+            unique: true
         },
         slug: {
             type: String,
-            trim: true,
             required: [true, "Subcategory slug is required"],
             minlength: [4, "Subcategory slug must be at least 4 characters"],
             maxlength: [64, "Subcategory slug must be less than 64 characters"],
+            trim: true,
             lowercase: true,
             unique: true
         },

@@ -1,6 +1,8 @@
+const { assertReviewRefs } = require("../../services/review");
+
 
 // Middleware for nested route
-// GET /api/products/:productId/reviews
+// GET /api/products/:productId/reviews/list
 const createFilterObj = (req, res, next) => {
     req.filterObj = req.params.productId ?
         { productId: req.params.productId } : {};
@@ -14,9 +16,17 @@ const setProductIdAndUserIdToBody = (req, res, next) => {
         req.body.productId = req.params.productId;
     }
     if (!req.body.userId) {
-        req.body.userId = req.crUser._id;  // user must be logged
+        req.body.userId = req.crUser._id.toString();  // user must be logged
     }
     next();
 };
 
-module.exports = { createFilterObj, setProductIdAndUserIdToBody };
+
+// Middleware to check Review references from ReviewSchema
+const checkReviewRefs = async (req, res, next) => {
+    await assertReviewRefs(req.crUser._id, req.body.productId);
+    return next();
+};
+
+
+module.exports = { createFilterObj, setProductIdAndUserIdToBody, checkReviewRefs };

@@ -38,7 +38,7 @@ const allowedTo = (...roles) => (req, res, next) => {
     // access roles
     // access registered user role from req.crUser
     if (!roles.includes(req.crUser.role)) {
-        return next(CustomApiError.forbidden("You are not allowed to access this route! Admin only"));
+        return next(CustomApiError.forbidden("You are not allowed to access this route!"));
     }
 
     next();

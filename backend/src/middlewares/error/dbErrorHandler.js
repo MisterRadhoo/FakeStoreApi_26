@@ -13,7 +13,7 @@ const dbErrorMiddleware = (err, req, res, next) => {
         const keyValue = err.keyValue || {};
         let key = Object.keys(keyValue)[0] || Object.keys(err.keyPattern || {})[0] || null;
         const value = key && keyValue ? keyValue[key] : null;
-        return next(CustomApiError.conflict(key ? `Value ${value} for field ${key} already exists.` : "Duplicate value", key));
+        return next(CustomApiError.conflict(key ? `Value ${value} for field ${key} already exists` : "Duplicate value", key));
     }
 
     // MongoDB _id, ObjectId invalid error sanitizer
