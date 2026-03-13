@@ -1,4 +1,3 @@
-
 const { assertProductRefs } = require("../../services/product");
 
 // Middleware to check Product references from productSchema

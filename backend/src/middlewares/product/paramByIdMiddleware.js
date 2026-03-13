@@ -1,7 +1,6 @@
 const CustomApiError = require("../../utils/ApiError");
 const { Product } = require("../../models/index");
 
-
 // Middleware Param productId for request object (Nested Route)
 const productById = async (req, res, next, id) => {
     const product = await Product.findById(id);

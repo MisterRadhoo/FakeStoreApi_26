@@ -1,6 +1,5 @@
 const { assertReviewRefs } = require("../../services/review");
 
-
 // Middleware for nested route
 // GET /api/products/:productId/reviews/list
 const createFilterObj = (req, res, next) => {
