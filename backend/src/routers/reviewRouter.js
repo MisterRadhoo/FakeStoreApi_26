@@ -44,7 +44,7 @@ router.get("/list", zQueryValidator(zPaginationSchema), createFilterObj, getList
 router.get("/:id", zParamValidator(idReviewSchema), getReview);
 
 // @desc Create Review
-// @access Private/Protected
+// @access Private/Protected/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
     setProductIdAndUserIdToBody,
@@ -52,12 +52,18 @@ router.post("/",
     checkReviewRefs,
     createReview);
 
-// @desc Update Review
+// @desc Update specific Review
 // @access Private/Protected
-router.put("/:id", zParamValidator(idReviewSchema), updateReview);
+router.put("/:id",
+    [requireLogIn, allowedTo("user")],
+    zParamValidator(idReviewSchema),
+    updateReview);
 
-// @desc Delete Review
+// @desc Delete specific Review
 // @access Private/Protect/Admin
-router.delete("/:id", zParamValidator(idReviewSchema), removeReview);
+router.delete("/:id",
+    [requireLogIn, allowedTo("user", "admin")],
+    zParamValidator(idReviewSchema),
+    removeReview);
 
 module.exports = router;

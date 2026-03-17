@@ -1,0 +1,22 @@
+[
+    {
+        "name": "OFF20",
+        "expire": "2026/09/10",
+        "discount": 20
+    },
+    {
+        "name": "OFF15",
+        "expire": "2026/10/10",
+        "discount": 15
+    },
+    {
+        "name": "OFF10",
+        "expire": "2026/11/10",
+        "discount": 10
+    },
+    {
+        "name": "OFF30",
+        "expire": "2027/11/10",
+        "discount": 30
+    }
+]

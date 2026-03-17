@@ -6,5 +6,13 @@
         "image": "http://localhost:7800/static/img/nike-sb-logo.png",
         "createdAt": "2026-02-28T17:07:40.948Z",
         "updatedAt": "2026-02-28T17:07:40.948Z"
+    },
+    {
+        "_id": "69b95dd7e8acb4ae28af811b",
+        "name": "Air Jordan",
+        "description": "On the Run",
+        "image": "http://localhost:7800/static/img/air-jordan.png",
+        "createdAt": "2026-02-28T17:07:40.948Z",
+        "updatedAt": "2026-02-28T17:07:40.948Z"
     }
 ]

@@ -9,6 +9,9 @@ const {
     getAllBrands,
 } = require("../controllers/brandController");
 
+//permissions
+const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
+
 // @desc Get all Brands
 // @access Public
 router.get("/", getAllBrands);
@@ -19,15 +22,15 @@ router.get("/:id", getBrand);
 
 // @desc Add new Brand
 // @access Private/Admin
-router.post("/", createBrand);
+router.post("/", [requireLogIn, allowedTo("admin")], createBrand);
 
 // @desc Update specific Brand
 // @access Private/Admin
-router.put("/:id", updateBrand);
+router.put("/:id", [requireLogIn, allowedTo("admin")], updateBrand);
 
 // @desc Delete specific Brand
 // @access Private/Admin
-router.delete("/:id", removeBrand);
+router.delete("/:id", [requireLogIn, allowedTo("admin")], removeBrand);
 
 
 module.exports = router;

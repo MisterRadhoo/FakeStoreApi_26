@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
 const fs = require("fs");
-const { Product, Category, SubCategory, Brand } = require("../models/index");
+const { Product, Category, SubCategory, Brand, Coupon } = require("../models/index");
 require("colors");
 
 dotenv.config({ path: "../../.env" });
@@ -11,6 +11,7 @@ const products = JSON.parse(fs.readFileSync("./products.json"), "utf-8");
 const category = JSON.parse(fs.readFileSync("./category.json"), "utf-8");
 const subCategory = JSON.parse(fs.readFileSync("./subcategory.json"), "utf-8");
 const brand = JSON.parse(fs.readFileSync("./brands.json"), "utf-8");
+const coupon = JSON.parse(fs.readFileSync("./coupon.json"), "utf-8");
 
 // Insert data in DB
 const insertData = async () => {
@@ -20,10 +21,12 @@ const insertData = async () => {
         await Category.syncIndexes();
         await SubCategory.syncIndexes();
         await Brand.syncIndexes();
+        await Coupon.syncIndexes();
         await Product.create(products);
         await Category.create(category);
         await SubCategory.create(subCategory);
         await Brand.create(brand);
+        await Coupon.create(coupon);
         console.log("Data Inserted".green.cyan);
         process.exit(0);
     } catch (err) {
@@ -40,6 +43,7 @@ const removeData = async () => {
         await Category.deleteMany();
         await SubCategory.deleteMany();
         await Brand.deleteMany();
+        await Coupon.deleteMany();
         console.log("Data Removed".red.cyan);
         process.exit(0);
     } catch (err) {

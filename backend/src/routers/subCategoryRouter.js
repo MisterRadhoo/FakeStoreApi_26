@@ -28,10 +28,16 @@ const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 // validators
 const zPaginationSchema = require("../validators/zPagination");
 
+// permissions
+const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // @desc Create Subcategory
 // @access Private/Admin
-router.post("/", setCategoryToBody, slugifySubCategory, createSubCategory);
+router.post("/",
+    [requireLogIn, allowedTo("admin")],
+    setCategoryToBody,
+    slugifySubCategory,
+    createSubCategory);
 
 
 // @desc Get list of Subcategories
@@ -50,11 +56,11 @@ router.get("/:id", getSubCategory)
 
 // @desc Update specific Subcategory
 // @access Private/Admin
-router.put("/:id", slugifySubCategory, updateSubCategory);
+router.put("/:id", [requireLogIn, allowedTo("admin")], slugifySubCategory, updateSubCategory);
 
 // @desc Delete specific Subcategory
 // @access Private/Admin
-router.delete("/:id", removeSubCategory);
+router.delete("/:id", [requireLogIn, allowedTo("admin")], removeSubCategory);
 
 
 module.exports = router;

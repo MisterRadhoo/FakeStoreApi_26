@@ -12,5 +12,13 @@
         "categoryId": "6980755adb563b32c2d55fb6",
         "createdAt": "2026-02-22T21:54:34.783Z",
         "updatedAt": "2026-02-22T21:54:34.783Z"
+    },
+    {
+        "_id": "69b95b9b504cf3ab16270f4d",
+        "name": "Sneakers Low Woman",
+        "slug": "sneakers-low-woman",
+        "categoryId": "6980755adb563b32c2d55fb6",
+        "createdAt": "2026-03-17T13:48:11.268+00:00",
+        "updatedAt": "2026-03-17T13:48:11.268+00:00"
     }
 ]

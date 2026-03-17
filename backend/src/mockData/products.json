@@ -283,5 +283,28 @@
             "sold": 4,
             "ratingsAverage": 4.87,
             "ratingsQuantity": 7
+      },
+      {
+            "title": "Air Jordan 1 Low OG Floral Swoosh",
+            "slug": "air-jordan-1-low-og-floral-swoosh",
+            "price": 249.99,
+            "currency": "USD",
+            "stock": 17,
+            "description": "Jordan brand is planting the seeds for highly sought-after drop with the AJ1 Low OG Floral Swoosh.This upcoming realese is a fresh, springtime interpretation of the original low-cut silhouette, a classic heritage.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69b95dd7e8acb4ae28af811b",
+            "imageCover": "http://localhost:7800/static/img/air-jordan-low-og-fs.png",
+            "images": [],
+            "colors": [
+                  "Sail",
+                  "Off White",
+                  "Coconut Milk"
+            ],
+            "sold": 1,
+            "ratingsAverage": 4.24,
+            "ratingsQuantity": 3
       }
 ]

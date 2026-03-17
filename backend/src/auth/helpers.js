@@ -6,6 +6,8 @@ const sanitizeUser = (userInfo) => ({
     fullName: userInfo.fullName,
     role: userInfo.role,
     isActive: userInfo.isActive,
+    wishlist: userInfo.wishlist,
+    addresses: userInfo.addresses
 });
 
 // @desc Compute login fraudScore and suspiciousActivity if ip and userAgent change

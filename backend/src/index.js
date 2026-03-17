@@ -29,9 +29,11 @@ const {
     reviewRouter,
     categoryRouter,
     subCategoryRouter,
-    brandRouter
+    brandRouter,
+    couponRouter
 } = require("./routers/index");
 const authRouter = require("./auth/authRouter");
+const cartRouter = require("./cart/cartRouter");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -58,11 +60,14 @@ app.get("/", (req, res) => {
 
 //Routes middleware
 app.use("/api/auth", authRouter);
+app.use("/api/cart", cartRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/reviews", reviewRouter);
 app.use("/api/categories", categoryRouter);
 app.use("/api/subcategories", subCategoryRouter);
 app.use("/api/brands", brandRouter);
+app.use("/api/coupons", couponRouter);
+
 
 // Guard url
 app.use("/*splat", (req, res, next) => {

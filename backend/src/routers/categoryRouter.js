@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
+
+// Category middlewares
 const categoryById = require("../middlewares/category/paramByIdMiddleware");
 const slugifyCategory = require("../middlewares/category/slugifyCategory");
 
@@ -7,6 +9,7 @@ const slugifyCategory = require("../middlewares/category/slugifyCategory");
 const subCategoryRouter = require("./subCategoryRouter");
 const productsRouter = require("./productsRouter");
 
+// Category controller functions
 const {
     createCategory,
     getCategory,
@@ -14,6 +17,12 @@ const {
     removeCategory,
     getAllCategories
 } = require("../controllers/categoryController");
+
+// validators
+
+
+// permissions
+const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // Param for Nested Route
 router.param("categoryId", categoryById);
@@ -35,15 +44,15 @@ router.get("/:id", getCategory);
 
 // @desc Create a Category
 // @access Private/Admin
-router.post("/", slugifyCategory, createCategory);
+router.post("/", [requireLogIn, allowedTo("admin")], slugifyCategory, createCategory);
 
 // @desc Update specific Category
 // @access Private/Admin
-router.put("/:id", slugifyCategory, updateCategory);
+router.put("/:id", [requireLogIn, allowedTo("admin")], slugifyCategory, updateCategory);
 
 // @desc Delete specific Category
 // @access Private/Admin
-router.delete("/:id", removeCategory);
+router.delete("/:id", [requireLogIn, allowedTo("admin")], removeCategory);
 
 
 module.exports = router;

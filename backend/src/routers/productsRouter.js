@@ -52,7 +52,7 @@ router.get("/", getAllProducts);
 
 // @desc Get related Products base in productId
 // @access Public
-router.get("/related/:productId", [requireLogIn, allowedTo("admin")], zQueryValidator(zPaginationSchema), getListRelated);
+router.get("/related/:productId", zQueryValidator(zPaginationSchema), getListRelated);
 
 // @desc Get specific Product
 // @access Public
@@ -60,15 +60,27 @@ router.get("/:id", zParamsValidator(idProductSchema), getProduct);
 
 // @desc Create Product
 // @access Private/Admin
-router.post("/", zBodyValidator(zCreateProductSchema), checkProductRefs, slugifyProduct, createProduct);
+router.post("/",
+    [requireLogIn, allowedTo("admin")],
+    zBodyValidator(zCreateProductSchema),
+    checkProductRefs,
+    slugifyProduct,
+    createProduct);
 
 // @desc Update specific Product
 // @access Private/Admin
-router.patch("/:id", zParamsValidator(idProductSchema), slugifyProduct, updateProduct);
+router.patch("/:id",
+    [requireLogIn, allowedTo("admin")],
+    zParamsValidator(idProductSchema),
+    slugifyProduct,
+    updateProduct);
 
 // @desc Delete specific Product
 // @access Private/Admin
-router.delete("/:id", zParamsValidator(idProductSchema), removeProduct);
+router.delete("/:id",
+    [requireLogIn, allowedTo("admin")],
+    zParamsValidator(idProductSchema),
+    removeProduct);
 
 // @desc Product Search
 // @access Public
