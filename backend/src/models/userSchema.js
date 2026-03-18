@@ -99,10 +99,6 @@ const userSchema = new mongoose.Schema(
 );
 
 
-// compound index for text search in userName and fullName fields
-userSchema.index({ userName: "text", fullName: "text" });
-
-
 // create User model from userSchema
 const User = mongoose.model("User", userSchema);
 module.exports = User;

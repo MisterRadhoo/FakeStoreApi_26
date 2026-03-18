@@ -48,7 +48,7 @@ const cartSchema = new mongoose.Schema(
     currency: {
       type: String,
       enum: ["USD", "EUR", "RON"],
-      default: "RON",
+      default: "USD",
     },
     status: {
       type: String,
@@ -69,7 +69,6 @@ const cartSchema = new mongoose.Schema(
 cartSchema.index({ userId: 1, status: 1 }, { unique: true, partialFilterExpression: { status: "active" } });
 cartSchema.index({ userId: 1, createdAt: -1 }); // query recent carts for user
 cartSchema.index({ status: 1, lastActionAt: -1 }); // query carts by status and recent activity
-//cartSchema.index({ lastActionAt: 1 }, { expireAfterSeconds: 2592000 });
 
 // create Cart Model from cartSchema
 const Cart = mongoose.model("Cart", cartSchema);

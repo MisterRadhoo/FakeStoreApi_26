@@ -2,11 +2,23 @@ const express = require("express");
 const router = express.Router();
 
 // Cart controller functions 
-const { addProductToCart, getLoggedUserCart, applyCouponToCart } = require("./cartController");
+const {
+    addProductToCart,
+    getLoggedUserCart,
+    updateCartItemQuantity,
+    removeSpecificCartItem,
+    applyCouponToCart,
+    clearCart
+} = require("./cartController");
+
+// zod validation middlewares
+const zBodyValidator = require("../middlewares/zodValidators/zBody");
+
+// validators
+const zCartUpdateQtySchema = require("./cartValidatorSchema");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
-
 
 // @desc Add Product to Cart
 // @access Private/User
@@ -16,18 +28,23 @@ router.post("/", [requireLogIn, allowedTo("user"), addProductToCart]);
 // @access Private/User
 router.get("/", [requireLogIn, allowedTo("user")], getLoggedUserCart);
 
+// @desc Clear logged User Cart
+// @access Private/User
+router.delete("/", [requireLogIn, allowedTo("user")], clearCart);
 
 // @desc Apply Coupon on Shopping Cart
 // @access Private/User
 router.put("/apply-coupon", [requireLogIn, allowedTo("user")], applyCouponToCart);
 
+// @desc Update specific Cart item quantity
+// @access Private/User
+router.patch("/:itemId",
+    [requireLogIn, allowedTo("user")],
+    zBodyValidator(zCartUpdateQtySchema),
+    updateCartItemQuantity);
 
-
-
-
-
-
-
-
+// @desc Remove specific Cart item
+// @access Private/User
+router.delete("/:itemId", [requireLogIn, allowedTo("user")], removeSpecificCartItem);
 
 module.exports = router;

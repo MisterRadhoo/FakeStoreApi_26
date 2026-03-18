@@ -1,4 +1,4 @@
-const { addProduct, findCart, applyCoupon } = require("./cart");
+const { addProduct, findCart, updateItem, removeItem, applyCoupon, clearContent } = require("./cart");
 
 // @desc Add Product to Cart
 const addProductToCart = async (req, res) => {
@@ -25,6 +25,35 @@ const getLoggedUserCart = async (req, res) => {
     });
 };
 
+// @desc Update specific item quantity from cartItems
+const updateCartItemQuantity = async (req, res) => {
+    const cart = await updateItem(
+        req.crUser._id,
+        req.params.itemId,
+        req.body.quantity
+    );
+
+    return res.status(200).json({
+        message: "Cart item quantity updated successfully!",
+        numberOfCartItems: cart.cartItems.length,
+        data: cart
+    });
+};
+
+// @desc Remove specific item from cartItems
+const removeSpecificCartItem = async (req, res) => {
+    const cart = await removeItem(
+        req.crUser._id,
+        req.params.itemId
+    );
+
+    return res.status(200).json({
+        message: "Cart item removed successfully!",
+        numberOfCartItems: cart.cartItems.length,
+        data: cart
+    });
+};
+
 // @desc Apply Coupon on logged User Cart
 const applyCouponToCart = async (req, res) => {
     const cart = await applyCoupon(
@@ -39,9 +68,21 @@ const applyCouponToCart = async (req, res) => {
     });
 };
 
+// @desc Clear logged User Cart
+const clearCart = async (req, res) => {
+    await clearContent(req.crUser._id);
+    return res.status(200).json({
+        message: "No content! Cart cleared!",
+        data: null
+    });
+};
 
 
-
-
-
-module.exports = { addProductToCart, getLoggedUserCart, applyCouponToCart };
+module.exports = {
+    addProductToCart,
+    getLoggedUserCart,
+    updateCartItemQuantity,
+    removeSpecificCartItem,
+    applyCouponToCart,
+    clearCart
+};

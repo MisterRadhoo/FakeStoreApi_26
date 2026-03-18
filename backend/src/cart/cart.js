@@ -6,7 +6,7 @@ const { computeTotalCartPrice, recomputeCart } = require("./helpers");
 const addProduct = async (userId, productId) => {
     const product = await Product.findById(productId);
     if (!product) {
-        throw CustomApiError.notFound(`Product id: ${productId}!`, "productId");
+        throw CustomApiError.notFound(`Product id: ${productId}`, "productId");
     }
 
     let cart = await Cart.findOne({ userId: userId, status: "active" });
@@ -44,15 +44,56 @@ const findCart = async (userId) => {
     const cart = await Cart.findOne({
         userId: userId,
         status: "active"
-    }).populate({ path: "couponId" }).populate({
-        path: "cartItems.productId",
-        select: "title imageCover colors price stock"
-    });
+    }).populate("couponId");
 
     if (!cart) {
         throw CustomApiError.notFound(`Cart for user id: ${userId}`, "userId");
     }
 
+    return cart;
+};
+
+// @desc Update item from Cart
+const updateItem = async (userId, itemId, quantity) => {
+    const cart = await findCart(userId);
+    const itemIndex = cart.cartItems.findIndex((item) =>
+        item._id.toString() === itemId.toString());
+
+    if (itemIndex > -1) {
+        const cartItem = cart.cartItems[itemIndex];
+        cartItem.quantity = quantity;
+        cart.cartItems[itemIndex] = cartItem;
+    } else {
+        throw CustomApiError.notFound(`Cart item id: ${itemId}`, "itemId");
+    }
+
+    await recomputeCart(cart);
+    await cart.save();
+    return cart;
+};
+
+// @desc Remove item from Cart 
+const removeItem = async (userId, itemId) => {
+    const cart = await Cart.findOne({
+        userId: userId,
+        status: "active"
+    });
+
+    if (!cart) {
+        throw CustomApiError.notFound(`Cart for user id: ${userId}!`, "userId");
+    }
+
+    const cartItemIndex = cart.cartItems.findIndex((item) =>
+        item._id.toString() === itemId.toString());
+
+    if (cartItemIndex === -1) {
+        throw CustomApiError.notFound(`Cart item id: ${itemId}!`, "itemId");
+    }
+
+    cart.cartItems.splice(cartItemIndex, 1);
+
+    await recomputeCart(cart);  // modify document Cart
+    await cart.save();
     return cart;
 };
 
@@ -67,7 +108,7 @@ const applyCoupon = async (userId, couponName) => {
     if (!coupon) {
         throw CustomApiError.badRequest("Coupon is invalid or expired!", "coupon");
     }
-    
+
     // Get logged user cart to get totalPriceCart
     const cart = await Cart.findOne({
         userId: userId,
@@ -75,7 +116,7 @@ const applyCoupon = async (userId, couponName) => {
     });
 
     if (!cart) {
-        throw CustomApiError.notFound(`Cart active for user id: ${userId}!`, "cart");
+        throw CustomApiError.notFound(`Cart for user id: ${userId}!`, "cart");
     }
 
     const totalPrice = cart.totalCartPrice;
@@ -91,7 +132,25 @@ const applyCoupon = async (userId, couponName) => {
     return cart;
 };
 
+// @desc Clear content of logged User Cart
+const clearContent = async (userId) => {
+    const cart = await Cart.findOneAndDelete({
+        userId: userId,
+        status: "active"
+    });
+
+    if (!cart) {
+        throw CustomApiError.notFound(`Cart for user id: ${userId}!`, "userId");
+    }
+    return cart;
+};
 
 
-
-module.exports = { addProduct, findCart, applyCoupon };
+module.exports = {
+    addProduct,
+    findCart,
+    updateItem,
+    removeItem,
+    applyCoupon,
+    clearContent
+};
