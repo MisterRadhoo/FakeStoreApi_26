@@ -22,13 +22,13 @@ const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // @desc Add Product to Cart
 // @access Private/User
-router.post("/", [requireLogIn, allowedTo("user"), addProductToCart]);
+router.post("/", [requireLogIn, allowedTo("user")], addProductToCart);
 
-// @desc Get Logged User Cart
+// @desc Get Logged user Cart
 // @access Private/User
 router.get("/", [requireLogIn, allowedTo("user")], getLoggedUserCart);
 
-// @desc Clear logged User Cart
+// @desc Clear logged user Cart
 // @access Private/User
 router.delete("/", [requireLogIn, allowedTo("user")], clearCart);
 

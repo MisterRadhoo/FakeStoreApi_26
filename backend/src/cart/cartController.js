@@ -14,7 +14,7 @@ const addProductToCart = async (req, res) => {
     });
 };
 
-// @desc Get Logged User Cart
+// @desc Get Logged user Cart
 const getLoggedUserCart = async (req, res) => {
     const cart = await findCart(req.crUser._id);
 
@@ -54,7 +54,7 @@ const removeSpecificCartItem = async (req, res) => {
     });
 };
 
-// @desc Apply Coupon on logged User Cart
+// @desc Apply Coupon on logged user Cart
 const applyCouponToCart = async (req, res) => {
     const cart = await applyCoupon(
         req.crUser._id,
@@ -68,7 +68,7 @@ const applyCouponToCart = async (req, res) => {
     });
 };
 
-// @desc Clear logged User Cart
+// @desc Clear logged user Cart
 const clearCart = async (req, res) => {
     await clearContent(req.crUser._id);
     return res.status(200).json({

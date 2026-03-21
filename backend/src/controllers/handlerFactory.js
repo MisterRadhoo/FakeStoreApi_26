@@ -47,9 +47,7 @@ const getOne = (Model, populationOpt, name = "document") => async (req, res) => 
     return res.status(200).json({ message: `Query document ${name} retrieved!`, data: document });
 };
 
-// to implement...
-// To make an class ApiFeature for utils,from there
-// come here, link with function getAll to make connection
+// @desc Get All documents by Model
 const getAll = (Model) => async (req, res) => {
     // Filtering (price, ratingsAverage)
     const queryStringObject = { ...req.query };

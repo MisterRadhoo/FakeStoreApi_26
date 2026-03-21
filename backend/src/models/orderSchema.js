@@ -26,21 +26,12 @@ const orderSchema = new mongoose.Schema(
           required: true,
           min: 1
         },
-        color: {
-          type: String,
-          trim: true,
-        },
         price: {
           type: Number,
           required: true,
           min: 0
         },
-        total: {
-          type: Number,
-          required: true,
-          min: 0
-        },
-      },
+      }
     ],
     taxPrice: {
       type: Number,
@@ -96,7 +87,7 @@ const orderSchema = new mongoose.Schema(
     currency: {
       type: String,
       enum: ["USD", "EUR", "RON"],
-      default: "RON",
+      default: "USD",
     },
     status: {
       type: String,
@@ -125,7 +116,7 @@ const orderSchema = new mongoose.Schema(
 // indexes for optimizing queries
 orderSchema.index({ userId: 1, createdAt: -1 });
 orderSchema.index({ status: 1, createdAt: -1 });
-orderSchema.index({ cartId: 1 }); // order asociat unui Cart
+orderSchema.index({ cartId: 1 }); // associated with a Cart
 
 
 // create Order model from orderSchema

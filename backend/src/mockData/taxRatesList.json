@@ -1,0 +1,86 @@
+[
+    {
+        "country": "Albania",
+        "acronymCode": "ALB",
+        "vatRate": 0.20,
+        "shippingTaxRate": 8.99
+    },
+    {
+        "country": "Andorra",
+        "acronymCode": "AND",
+        "vatRate": 0.045,
+        "shippingTaxRate": 12.99
+    },
+    {
+        "country": "Argentina",
+        "acronymCode": "ARG",
+        "vatRate": 0.21,
+        "shippingTaxRate": 16.99
+    },
+    {
+        "country": "Antigua and Barbuda",
+        "acronymCode": "ATG",
+        "vatRate": 0.15,
+        "shippingTaxRate": 28.99
+    },
+    {
+        "country": "Armenia",
+        "acronymCode": "ARM",
+        "vatRate": 0.20,
+        "shippingTaxRate": 12.99
+    },
+    {
+        "country": "Australia",
+        "acronymCode": "AUS",
+        "vatRate": 0.10,
+        "shippingTaxRate": 40.99
+    },
+    {
+        "country": "Austria",
+        "acronymCode": "AUT",
+        "vatRate": 0.20,
+        "shippingTaxRate": 9.99
+    },
+    {
+        "country": "Aruba",
+        "acronymCode": "ABW",
+        "vatRate": 0.10,
+        "shippingTaxRate": 29.99
+    },
+    {
+        "country": "Burundi",
+        "acronymCode": "BDI",
+        "vatRate": 0.18,
+        "shippingTaxRate": 20.99
+    },
+    {
+        "country": "Bahamas",
+        "acronymCode": "BHS",
+        "vatRate": 0.10,
+        "shippingTaxRate": 38.99
+    },
+    {
+        "country": "Bosnia and Herzegovina",
+        "acronymCode": "BIH",
+        "vatRate": 0.17,
+        "shippingTaxRate": 7.99
+    },
+    {
+        "country": "Brazil",
+        "acronymCode": "BRA",
+        "vatRate": 0.20,
+        "shippingTaxRate": 27.99
+    },
+    {
+        "country": "Belize",
+        "acronymCode": "BLZ",
+        "vatRate": 0.13,
+        "shippingTaxRate": 67.99
+    },
+    {
+        "country": "Belgium",
+        "acronymCode": "BEL",
+        "vatRate": 0.21,
+        "shippingTaxRate": 10.99
+    }
+]

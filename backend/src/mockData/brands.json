@@ -14,5 +14,13 @@
         "image": "http://localhost:7800/static/img/air-jordan.png",
         "createdAt": "2026-02-28T17:07:40.948Z",
         "updatedAt": "2026-02-28T17:07:40.948Z"
+    },
+    {
+        "_id": "69be7af76f6540230bd94474",
+        "name": "Nike",
+        "description": "Just Do It",
+        "image": "http://localhost:7800/static/img/nike-logo-icon.png",
+        "createdAt": "2026-03-21T17:09:40.948Z",
+        "updatedAt": "2026-03-21T17:09:40.948Z"
     }
 ]

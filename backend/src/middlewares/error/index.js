@@ -5,7 +5,6 @@ const globalErrorHandler = require("./globalErrorHandler");
 
 
 module.exports = {
-    
     jwtErrorHandler,
     zodErrorHandler,
     dbErrorHandler,

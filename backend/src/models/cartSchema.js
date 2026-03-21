@@ -53,7 +53,7 @@ const cartSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ["active", "inactive", "completed"],
-      default: "active",
+      default: "active"
     },
     lastActionAt: {
       type: Date,

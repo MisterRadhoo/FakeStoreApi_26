@@ -1,5 +1,6 @@
 require("dotenv").config(); // accessing enviroment variables
 const path = require("path");
+const cors = require("cors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./config/database");
@@ -35,6 +36,7 @@ const {
 const authRouter = require("./auth/authRouter");
 const cartRouter = require("./cart/cartRouter");
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
