@@ -1,0 +1,32 @@
+[
+    {
+        "userName": "radhoo",
+        "email": "radhoo@emailfaker.com",
+        "password": "$2b$12$BhgpoRW/CnczwKKgVvP1HusVowiC9b.cmtsxRbsN8ChEJq1FWkNSO",
+        "fullName": "Radu_Radu",
+        "role": "user",
+        "isActive": true,
+        "loginCount": 6,
+        "suspiciousActivity": false,
+        "fraudScore": 0.2,
+        "userAgent": null,
+        "wishlist": [],
+        "addresses": [],
+        "lastIp": "0.0.0.0"
+    },
+    {
+        "userName": "Ana_rose",
+        "email": "ana_rose@emailfaker.com",
+        "password": "$2b$12$BhgpoRW/CnczwKKgVvP1HusVowiC9b.cmtsxRbsN8ChEJq1FWkNSO",
+        "fullName": "Ana_Ana",
+        "role": "admin",
+        "isActive": true,
+        "loginCount": 0,
+        "suspiciousActivity": false,
+        "fraudScore": 0.0,
+        "userAgent": null,
+        "wishlist": [],
+        "addresses": [],
+        "lastIp": "0.0.0.0"
+    }
+]

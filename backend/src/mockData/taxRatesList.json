@@ -82,5 +82,11 @@
         "acronymCode": "BEL",
         "vatRate": 0.21,
         "shippingTaxRate": 10.99
+    },
+    {
+        "country": "Romania",
+        "acronymCode": "ROM",
+        "vatRate": 0.21,
+        "shippingTaxRate": 7.99
     }
 ]

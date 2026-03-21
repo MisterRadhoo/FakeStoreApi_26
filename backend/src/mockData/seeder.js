@@ -1,12 +1,13 @@
 const dotenv = require("dotenv");
 const fs = require("fs");
-const { Product, Category, SubCategory, Brand, Coupon, TaxRatesList } = require("../models/index");
+const { User, Product, Category, SubCategory, Brand, Coupon, TaxRatesList } = require("../models/index");
 require("colors");
 
 dotenv.config({ path: "../../.env" });
 const connectDB = require("../config/database");
 
 // Read data
+const user = JSON.parse(fs.readFileSync("./user.json"), "utf-8");
 const products = JSON.parse(fs.readFileSync("./products.json"), "utf-8");
 const category = JSON.parse(fs.readFileSync("./category.json"), "utf-8");
 const subCategory = JSON.parse(fs.readFileSync("./subcategory.json"), "utf-8");
@@ -19,6 +20,7 @@ const insertData = async () => {
     try {
         await connectDB();
         // sync indexes
+        await User.syncIndexes();
         await Product.syncIndexes();
         await Category.syncIndexes();
         await SubCategory.syncIndexes();
@@ -26,6 +28,7 @@ const insertData = async () => {
         await Coupon.syncIndexes();
         await TaxRatesList.syncIndexes();
         // create collections
+        await User.create(user);
         await Product.create(products);
         await Category.create(category);
         await SubCategory.create(subCategory);
@@ -44,6 +47,7 @@ const insertData = async () => {
 const removeData = async () => {
     try {
         await connectDB();
+        await User.deleteMany();
         await Product.deleteMany();
         await Category.deleteMany();
         await SubCategory.deleteMany();

@@ -4,6 +4,7 @@ const categoryRouter = require("./categoryRouter");
 const subCategoryRouter = require("./subCategoryRouter");
 const brandRouter = require("./brandRouter");
 const couponRouter = require("./couponRouter");
+const taxRateListRouter = require("./taxRateListRouter");
 
 module.exports = {
     productsRouter,
@@ -11,5 +12,6 @@ module.exports = {
     categoryRouter,
     subCategoryRouter,
     brandRouter,
-    couponRouter
+    couponRouter,
+    taxRateListRouter
 };

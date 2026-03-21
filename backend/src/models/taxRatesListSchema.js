@@ -31,9 +31,10 @@ const taxRatesListSchema = new mongoose.Schema({
         min: 0,
         set: v => Math.round(v * 100) / 100
     }
-}, {
-    timestamps: true
-}
+},
+    {
+        timestamps: true
+    }
 );
 
 

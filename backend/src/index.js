@@ -31,7 +31,8 @@ const {
     categoryRouter,
     subCategoryRouter,
     brandRouter,
-    couponRouter
+    couponRouter,
+    taxRateListRouter
 } = require("./routers/index");
 const authRouter = require("./auth/authRouter");
 const cartRouter = require("./cart/cartRouter");
@@ -69,6 +70,7 @@ app.use("/api/categories", categoryRouter);
 app.use("/api/subcategories", subCategoryRouter);
 app.use("/api/brands", brandRouter);
 app.use("/api/coupons", couponRouter);
+app.use("/api/taxrates", taxRateListRouter);
 
 
 // Guard url
