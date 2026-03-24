@@ -7,9 +7,9 @@
 ### The features in the API:
 ---
 
-## How to install/ to use
+## How to install/use
 
-#### 1. Clone repository
+#### 1.Clone repository
 
 ```bash
 
@@ -25,11 +25,28 @@ cd backend
 
 ```
 
-#### 3. Install dependencies
+#### 3.Install dependencies
 
 ```bash
 
 npm install
+
+```
+
+#### 4.Use mockData for testing purposes
+
+```bash
+
+cd src/mockData
+
+node seeder.js -i  to insert data in mongoDb
+
+```
+**or**
+
+```bash
+
+node seeder.js -d delete data from mongoDb
 
 ```
 
