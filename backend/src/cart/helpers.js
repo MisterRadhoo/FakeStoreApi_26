@@ -1,4 +1,5 @@
-const { Coupon } = require("../models/index");
+const CustomApiError = require("../utils/ApiError");
+const { Coupon, Product } = require("../models/index");
 
 /**
  * @desc Compute totalPrice for cartItems in Cart
@@ -36,5 +37,16 @@ const recomputeCart = async (cart) => {
     cart.lastActionAt = Date.now();
 };
 
+// @desc Validate Product Stock on Cart
+const validateProductStock = async (productId, quantity) => {
+    const product = await Product.findOne({
+        _id: productId,
+        stock: { $gte: quantity }
+    });
 
-module.exports = { computeTotalCartPrice, recomputeCart };
+    if (!product) {
+        throw CustomApiError.badRequest("Not enough stock for this product!", "stock");
+    }
+};
+
+module.exports = { computeTotalCartPrice, recomputeCart, validateProductStock };

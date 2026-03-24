@@ -99,6 +99,14 @@ const orderSchema = new mongoose.Schema(
       enum: ["credit_card", "cash_on_delivery", "paypal", "bank_transfer"],
       default: "credit_card",
     },
+    isPaid: {
+      type: Boolean,
+      default: false
+    },
+    paidAt: {
+      type: Date,
+      default: undefined
+    },
     isDelivered: {
       type: Boolean,
       default: false,

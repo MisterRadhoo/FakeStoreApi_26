@@ -20,9 +20,12 @@ const zCartUpdateQtySchema = require("./cartValidatorSchema");
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
+// rate limiter
+const setLimiter = require("../middlewares/limiter/rateLimiter");
+
 // @desc Add Product to Cart
 // @access Private/User
-router.post("/", [requireLogIn, allowedTo("user")], addProductToCart);
+router.post("/", [requireLogIn, allowedTo("user")], setLimiter({ limit: 8 }), addProductToCart);
 
 // @desc Get Logged user Cart
 // @access Private/User

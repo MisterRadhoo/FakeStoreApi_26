@@ -1,6 +1,6 @@
 const CustomApiError = require("../utils/ApiError");
 const { Cart, Product, User, Coupon } = require("../models/index");
-const { computeTotalCartPrice, recomputeCart } = require("./helpers");
+const { computeTotalCartPrice, recomputeCart, validateProductStock } = require("./helpers");
 
 // @desc Add Product/Create Cart for user when is logged
 const addProduct = async (userId, productId) => {
@@ -12,6 +12,9 @@ const addProduct = async (userId, productId) => {
     let cart = await Cart.findOne({ userId: userId, status: "active" });
 
     if (!cart) {
+        // Validate Product stock >= 1
+        await validateProductStock(productId, 1);
+
         // Create Cart for logged user with Product
         cart = await Cart.create({
             userId: userId,
@@ -23,15 +26,13 @@ const addProduct = async (userId, productId) => {
 
         if (productIndex > -1) {
             const cartItem = cart.cartItems[productIndex];
+            await validateProductStock(productId, cartItem.quantity + 1);
             cartItem.quantity += 1;
         } else {
             // Product not exist in Cart, push Product to cartItems array
             cart.cartItems.push({ productId: productId, price: product.price });
         }
     }
-
-    // cart.totalCartPrice = computeTotalCartPrice(cart);
-    // cart.lastActionAt = Date.now();
 
     await recomputeCart(cart);  // modify document
     await cart.save();
@@ -44,7 +45,7 @@ const findCart = async (userId) => {
     const cart = await Cart.findOne({
         userId: userId,
         status: "active"
-    }).populate("couponId").populate("cartItems.productId");
+    }).populate("couponId").populate({ path: "cartItems.productId", select: "title imageCover" });
 
     if (!cart) {
         throw CustomApiError.notFound(`Cart for user id: ${userId}`, "userId");
@@ -60,6 +61,7 @@ const updateItem = async (userId, itemId, quantity) => {
 
     if (itemIndex > -1) {
         const cartItem = cart.cartItems[itemIndex];
+        await validateProductStock(cartItem.productId, quantity); //Validate Product stock
         cartItem.quantity = quantity;
         cart.cartItems[itemIndex] = cartItem;
     } else {

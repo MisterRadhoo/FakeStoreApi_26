@@ -36,6 +36,7 @@ const {
 } = require("./routers/index");
 const authRouter = require("./auth/authRouter");
 const cartRouter = require("./cart/cartRouter");
+const orderRouter = require("./order/orderRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -71,6 +72,7 @@ app.use("/api/subcategories", subCategoryRouter);
 app.use("/api/brands", brandRouter);
 app.use("/api/coupons", couponRouter);
 app.use("/api/taxrates", taxRateListRouter);
+app.use("/api/orders", orderRouter);
 
 
 // Guard url
