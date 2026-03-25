@@ -1,16 +1,17 @@
 # FakeStoreApi_26
 
 #### E-commerce application
-**FakeStoreApi is an e-commerce REST API application designed to support both mock data or real data for use in shopping websites.**
+**FakeStoreApi is an e-commerce REST API application designed to support both mock data and real data for use in shopping websites.**
 
 ---
 ### The features in the API:
  **loading...**
 ---
+<!--ts-->
 
 ## How to install/use
 
-#### 1.Clone repository
+#### 1.Clone the repository
 
 ```bash
 
@@ -18,7 +19,7 @@ git clone https://github.com/MisterRadhoo/FakeStoreApi_26.git
 
 ```
 
-#### 2.Go to project directory
+#### 2.Go to the project directory
 
 ```bash
 
@@ -38,15 +39,14 @@ npm install
 
 ```bash
 
-cd src/mockData
-node seeder.js -i  
+  node src/mockData/seeder.js -i
 
 ```
 **or**
 
 ```bash
 
-node seeder.js -d 
+node src/mockData/seeder.js -d 
 
 ```
 
@@ -65,9 +65,27 @@ node seeder.js -d
 npm run dev
 
 ```
-## Enviroment Variable
+#### Enviroment Variable
 **Note: .env file will be upload with the project, for less hassle when starting the application, it is not recommended.**
 
+---
 
+#### Endpoints
 
+- [Authentication](#authentication)
+  - [Register](#register)
+  - [Login](#login)
+  - [Logout](#logout)
+- [Product](#product)
+  - [Create Product](#create-product)
+  - [Get specific Product](#get-specific-product)
+  - [Update specific Product](#update-specific-product)
+  - [Delete specific Product](#delete-specific-product)
+  - [Get all Products](#get-all-products)
+  - [Get related Products](#get-related-products)
+  - [Get Product slug](#get-product-slug)
+  - [Search for a Product by price and filter](#search-for-a-product-by-price-and-filter)
+  - [Product schema](#product-schema)
+
+  <!--te-->
 

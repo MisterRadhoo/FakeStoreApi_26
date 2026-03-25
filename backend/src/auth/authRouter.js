@@ -20,6 +20,4 @@ router.post("/login", zBodyValidator(zAuthLoginSchema), login);
 router.post("/logout", logout);
 
 
-
-
 module.exports = router;
