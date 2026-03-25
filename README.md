@@ -107,11 +107,41 @@ Cookie: cookieToken=<your_token>
   
   Auth Routes:
 
-  | @Route             | @Type | @access | @desc                     |
-  |--------------------|-------|---------|---------------------------|
-  | /api/auth/register | POST  | Public  | Create new user in db     |
-  | /api/auth/login    | POST  | Public  | Authenticate current user |
-  | /api/auth/logout   | POST  | Public  | Logout current user       |
+  | @Route             | @Type | @access | @desc                       |
+  |--------------------|-------|---------|-----------------------------|
+  | /api/auth/register | POST  | Public  | Create a new user in db     |
+  | /api/auth/login    | POST  | Public  | Authenticate current user   |
+  | /api/auth/logout   | POST  | Public  | Logout current user         |
+
+  ## Register
+  - **User can register by sending an object like the following to the URL below:
+
+  ```bash
+ [POST] http://localhost:7800/api/auth/register
+  ```
+
+```json
+{
+  "userName": "radhoo",
+  "email": "rahoo@email.com",
+  "password": "stringPassword",
+  "confirmPassword": "stringPassword",
+  "fullName": "Radhoo_Radhoo"
+}
+
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+
+```
+
+
+</details>
+
+
  
 
 
