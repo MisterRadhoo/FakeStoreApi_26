@@ -76,7 +76,7 @@ npm run dev
   - [Register](#register)
   - [Login](#login)
   - [Logout](#logout)
-- [Product](#product)
+- [Products](#products)
   - [Create Product](#create-product)
   - [Get specific Product](#get-specific-product)
   - [Update specific Product](#update-specific-product)
