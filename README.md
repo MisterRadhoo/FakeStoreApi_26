@@ -135,7 +135,7 @@ Cookie: cookieToken=<your_token>
 
 ```javascript
 {
- "status": "Registered successfully!",
+  "status": "Registered successfully!",
   "data": {
     "id": "69c3f4dcb178bfb403a5ac69",
     "userName": "radu",
