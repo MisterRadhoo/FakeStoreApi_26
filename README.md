@@ -609,6 +609,68 @@ Product Routes:
 
 </details>
 
+## Get Product slug
+- **Get** product slug by adding `slug` as a parameter to the URL below:
+
+```bash
+[GET] http://localhost:7800/api/products/slug/nike-sb-dunk-low-asparagus
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "object": "slug",
+  "product": {
+    "_id": "69bec9b294bc0c4efd74869a",
+    "title": "Nike SB Dunk Low Asparagus",
+    "slug": "nike-sb-dunk-low-asparagus",
+    "price": 2649.99,
+    "currency": "USD",
+    "stock": 3,
+    "description": "Starul in ascensiune al skateboarding-ului Yuto Horigome continua sa-si lase amprenta asupra modei, streetwear, odată cu lansarea celui de-al 2-lea Nike SB Dunk Low, numit Asparagus.",
+    "categoryId": {
+      "_id": "6980755adb563b32c2d55fb6",
+      "name": "Sneakers"
+    },
+    "subcategoriesIds": [
+      {
+        "_id": "699b7838fbe26d029d8a7706",
+        "name": "Sneakers Low Man"
+      }
+    ],
+    "brandId": {
+      "_id": "69a320dcccd444547f8a0ea4",
+      "name": "Nike SB",
+      "description": "Just Do It"
+    },
+    "imageCover": "http://localhost:7800/static/img/Yuto-Horigome-Nike-SB-Dunk-Low.png",
+    "images": [],
+    "colors": [
+      "Asparagus",
+      "Legion Green",
+      "Light Khaki",
+      "Dark Loden",
+      "Sesame",
+      "Burnt Sienna"
+    ],
+    "sold": 0,
+    "ratingsAverage": 4.89,
+    "ratingsQuantity": 2,
+    "createdAt": "2026-03-21T16:39:14.642Z",
+    "updatedAt": "2026-03-25T22:01:14.731Z",
+    "__v": 0,
+    "id": "69bec9b294bc0c4efd74869a"
+  }
+}
+```
+
+</details>
+
+## Search Products by filters
+
+
 ## Product Schema
 
 | Attribute        | Type       |
@@ -629,7 +691,7 @@ Product Routes:
 | ratingsAverage   | Number     |
 | ratingsQuantity  | Number     |
 
-
+---
 
 
  
