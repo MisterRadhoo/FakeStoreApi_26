@@ -229,6 +229,65 @@ Product Routes:
 | /api/products/search                  | POST    | Public        | Search Products by filters             |
 
 ## Create Product
+- **Create** new product by sending an object like the following to the URL below:
+
+```bash
+[POST] http://localhost:7800/api/products
+```
+
+```json
+{
+   "title": "Nike SB Dunk Low x Heineken",
+   "price": 1560.77,
+   "stock": 8,
+   "description": "Probably the best collaboration in the world between Nike and beer producer Heineken.",
+   "categoryId": "6980755adb563b32c2d55fb6",
+   "subcategoriesIds": ["699b7838fbe26d029d8a7706"],
+   "brandId": "69a320dcccd444547f8a0ea4",
+   "imageCover": "https://www.diversesolesb.com/nike-sb-dunk-low-heineken-69533993.html",
+   "colors": ["Classic Green", "White", "Red", "Black"]
+}
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "message": "Document Product has been created!",
+  "data": {
+    "title": "Nike SB Dunk Low x Heineken",
+    "slug": "nike-sb-dunk-low-x-heineken",
+    "price": 1560.77,
+    "currency": "USD",
+    "stock": 8,
+    "description": "Probably the best collaboration in the world between Nike and beer producer Heineken.",
+    "categoryId": "6980755adb563b32c2d55fb6",
+    "subcategoriesIds": [
+      "699b7838fbe26d029d8a7706"
+    ],
+    "brandId": "69a320dcccd444547f8a0ea4",
+    "imageCover": "https://www.diversesolesb.com/nike-sb-dunk-low-heineken-69533993.html",
+    "images": [],
+    "colors": [
+      "Classic Green",
+      "White",
+      "Red",
+      "Black"
+    ],
+    "sold": 0,
+    "ratingsQuantity": 0,
+    "_id": "69c41666d52c75ccb4dae96c",
+    "createdAt": "2026-03-25T17:07:50.468Z",
+    "updatedAt": "2026-03-25T17:07:50.468Z",
+    "__v": 0,
+    "id": "69c41666d52c75ccb4dae96c"
+  }
+}
+```
+
+</details>
+
 
 
 
