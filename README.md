@@ -277,22 +277,118 @@ Product Routes:
     ],
     "sold": 0,
     "ratingsQuantity": 0,
-    "_id": "69c41666d52c75ccb4dae96c",
-    "createdAt": "2026-03-25T17:07:50.468Z",
-    "updatedAt": "2026-03-25T17:07:50.468Z",
+    "_id": "69c41c6201c423c5513c8a57",
+    "createdAt": "2026-03-25T17:33:22.920Z",
+    "updatedAt": "2026-03-25T17:33:22.920Z",
     "__v": 0,
-    "id": "69c41666d52c75ccb4dae96c"
+    "id": "69c41c6201c423c5513c8a57"
   }
 }
 ```
 
 </details>
 
+## Update specific Product
+- **Update** specific product that exists by sending an object like the following and adding the `id or ObjectId` as parameter to the URL below:
 
+```bash
+[PATCH] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
+```
 
+```json
+{
+   "title": "Nike SB Dunk Low x Heineken",
+   "price": 3560.77,
+   "stock": 12,
+   "description": "Probably the best collaboration in the world between Nike and beer producer Heineken.",
+   "categoryId": "6980755adb563b32c2d55fb6",
+   "subcategoriesIds": ["699b7838fbe26d029d8a7706"],
+   "brandId": "69a320dcccd444547f8a0ea4",
+   "imageCover": "https://www.highsnobiety.com/p/nike-sb-dunk-low-heineken-2-0/",
+   "colors": ["Classic Green", "White", "Red", "Black"]
+}
+```
 
+<details><summary><b>Output</b></summary>
+<br/>
 
+```javascript
+{
+  "message": "Document Product has been updated successfully!",
+  "data": {
+    "_id": "69c41c6201c423c5513c8a57",
+    "title": "Nike SB Dunk Low x Heineken",
+    "slug": "nike-sb-dunk-low-x-heineken",
+    "price": 3560.77,
+    "currency": "USD",
+    "stock": 12,
+    "description": "Probably the best collaboration in the world between Nike and beer producer Heineken.",
+    "categoryId": {
+      "_id": "6980755adb563b32c2d55fb6",
+      "name": "Sneakers"
+    },
+    "subcategoriesIds": [
+      {
+        "_id": "699b7838fbe26d029d8a7706",
+        "name": "Sneakers Low Man"
+      }
+    ],
+    "brandId": {
+      "_id": "69a320dcccd444547f8a0ea4",
+      "name": "Nike SB",
+      "description": "Just Do It"
+    },
+    "imageCover": "https://www.highsnobiety.com/p/nike-sb-dunk-low-heineken-2-0/",
+    "images": [],
+    "colors": [
+      "Classic Green",
+      "White",
+      "Red",
+      "Black"
+    ],
+    "sold": 0,
+    "ratingsQuantity": 0,
+    "createdAt": "2026-03-25T17:33:22.920Z",
+    "updatedAt": "2026-03-25T17:59:30.724Z",
+    "__v": 0,
+    "id": "69c41c6201c423c5513c8a57"
+  }
+}
+```
 
+</details>
+
+## Delete specific Product
+- **Delete** specific product that exists by adding the `id or ObjectId` as parameter to the URL below:
+
+```bash
+[DELETE] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
+```
+
+```json
+{}
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "message": "Document Product has been deleted successfully!",
+  "data": {
+    "_id": "69c41c6201c423c5513c8a57",
+    "title": "Nike SB Dunk Low x Heineken",
+    "slug": "nike-sb-dunk-low-x-heineken",
+    "price": 3560.77,
+    "currency": "USD",
+    "stock": 12,
+    "description": "Probably the best collaboration in the world between Nike and beer producer Heineken.",
+    //remaining fields
+  }
+}
+```
+
+</details>
 
 
 
