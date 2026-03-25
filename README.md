@@ -114,7 +114,7 @@ Cookie: cookieToken=<your_token>
   | /api/auth/logout   | POST  | Public  | Logout the current user         |
 
   ## Register
-  - **User can register by sending an object like the following to the URL below:
+  - **User** can register by sending an object like the following to the URL below:
 
   ```bash
  [POST] http://localhost:7800/api/auth/register
@@ -122,24 +122,76 @@ Cookie: cookieToken=<your_token>
 
 ```json
 {
-  "userName": "radhoo",
-  "email": "rahoo@email.com",
-  "password": "stringPassword",
-  "confirmPassword": "stringPassword",
-  "fullName": "Radhoo_Radhoo"
+  "userName": "radu",
+  "email": "radu@email.com",
+  "password": "forzarapid",
+  "confirmPassword": "forzarapid",
+  "fullName": "Craciun Radu"
 }
-
 ```
 
 <details><summary><b>Output</b></summary>
 <br/>
 
 ```javascript
-
+{
+ "status": "Registered successfully!",
+  "data": {
+    "id": "69c3f4dcb178bfb403a5ac69",
+    "userName": "radu",
+    "email": "radu@email.com",
+    "fullName": "Craciun Radu",
+    "role": "user",
+    "isActive": true,
+    "wishlist": [],
+    "addresses": [],
+    "createdAt": "2026-03-25T14:44:44.998Z",
+    "updatedAt": "2026-03-25T14:44:44.998Z"
+  }
+}
 ```
 
+</details>
+
+## Login
+- **User** can login sending an object like the following to the URL below:
+
+ ```bash
+ [POST] http://localhost:7800/api/auth/login
+  ```
+
+```json
+{
+  "email": "radu@email.com",
+  "password": "forzarapid"
+}
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "status": "Welcome back, radu!",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWMzZjRkY2IxNzhiZmI0MDNhNWFjNjkiLCJpYXQiOjE3NzQ0NTAzMjIsImV4cCI6MTc3NTY1OTkyMn0.idUlKlhZc2FVNMNJE3BQVhm7LjL38cTEQh0RGOBH-Cw",
+  "data": {
+    "id": "69c3f4dcb178bfb403a5ac69",
+    "userName": "radu",
+    "email": "radu@email.com",
+    "fullName": "Craciun Radu",
+    "role": "user",
+    "isActive": true,
+    "wishlist": [],
+    "addresses": [],
+    "createdAt": "2026-03-25T14:44:44.998Z",
+    "updatedAt": "2026-03-25T14:44:44.998Z"
+  }
+}
+```
 
 </details>
+
+
 
 
  
