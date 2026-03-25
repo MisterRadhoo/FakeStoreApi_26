@@ -96,8 +96,9 @@ npm run dev
   - [Delete specific Product](#delete-specific-product)
   - [Get all Products](#get-all-products)
   - [Get related Products](#get-related-products)
+  - [Get all Reviews on specific Product](#get-all-reviews-on-specific-product)
   - [Get Product slug](#get-product-slug)
-  - [Search for a Product by price and filter](#search-for-a-product-by-price-and-filter)
+  - [Search Products by filters](#search-products-by-filters)
   - [Product schema](#product-schema)
 
   <!--te-->
@@ -109,9 +110,9 @@ npm run dev
 
   | @Route             | @Type | @access | @desc                           |
   |--------------------|-------|---------|---------------------------------|
-  | /api/auth/register | POST  | Public  | Create a new user in db         |
-  | /api/auth/login    | POST  | Public  | Authenticate the current user   |
-  | /api/auth/logout   | POST  | Public  | Logout the current user         |
+  | /api/auth/register | POST  | Public  | Create a new User in db         |
+  | /api/auth/login    | POST  | Public  | Authenticate the current User   |
+  | /api/auth/logout   | POST  | Public  | Logout the current User         |
 
   ## Register
   - **User** can register by sending an object like the following to the URL below:
@@ -208,6 +209,29 @@ npm run dev
 ```
 
 </details>
+
+
+# Products
+---
+
+Product Routes:
+
+| @Routes                               | @Types  | @access       | @desc                                  |
+|---------------------------------------|---------|---------------|----------------------------------------|
+| /api/products                         | POST    | Private/Admin | Create Product                         |
+| /api/products/:id                     | PATCH   | Private/Admin | Update specific Product                |
+| /api/products/:id                     | DELETE  | Private/Admin | Delete specific Product                |
+| /api/products/:id                     | GET     | Public        | Get specific Product                   |
+| /api/products                         | GET     | Public        | Get all Products                       |
+| /api/products/related/:productId      | GET     | Public        | Get related Products                   |
+| /api/products/:productId/reviews/list | GET     | Public        | Get all Reviews on specific Product    |
+| /api/products/slug/:slug              | GET     | Public        | Get Product slug                       |
+| /api/products/search                  | POST    | Public        | Search Products by filters             |
+
+## Create Product
+
+
+
 
 
 
