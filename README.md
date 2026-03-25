@@ -519,6 +519,46 @@ Product Routes:
 
 </details>
 
+## Get related Products
+- **Get** related products by adding `productId or ObjectId`as parameter to the URL below:
+- **This route is a custom product base, that uses `productId` as parameter.** 
+
+```bash
+[GET] http://localhost:7800/api/products/related/69bec9b294bc0c4efd74869a
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "object": "related_products_list",
+  "limit": 12,
+  "page": 1,
+  "sort": "-createdAt",
+  "count": 12,
+  "products": [
+    {
+      "_id": "69bec9b294bc0c4efd748693",
+      "title": "Nike SB Dunk Low x Hayley-Wilson",
+      "slug": "nike-sb-dunk-low-x-hayley-wilson",
+      "price": 1789.88,
+      "currency": "USD",
+      "stock": 9,
+      "description": "Modelul Hayley Dunks prezinta un fir reactiv la UV care isi schimba culoarea la soare in jurul swoosh-ului.",
+      "categoryId": {
+        "_id": "6980755adb563b32c2d55fb6",
+        "name": "Sneakers"
+      },
+      //..
+    },
+    // Additional products may be returned...
+  ]
+}
+```
+</details>
+
+
 
 
  
