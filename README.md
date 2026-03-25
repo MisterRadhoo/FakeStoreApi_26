@@ -73,13 +73,13 @@ npm run dev
 
 **Certain endpoints are private routes,authentication is required.Depending on the user role,they gain access on various CRUD operations via token/cookieToken**
 - **Step 1.** Registered user, they just need to log in to obtain token/cookieToken for access.
-- **Step 2.** Unregistered user, they need to register first, then log in into new account to obtain token/cookieToken for access.
+- **Step 2.** Unregistered user, they need to register first, then login into new account to obtain token/cookieToken for access.
 
 #### Auth examples:
 
 ```http
-Authorization Header -> Authorization: Bearer <your_token>
-Browser session -> Cookie: cookieToken=<your_token>
+ Authorization: Bearer <your_token> 
+ Cookie: cookieToken=<your_token>
 ```
 ---
 
