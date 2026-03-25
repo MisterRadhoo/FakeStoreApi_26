@@ -1,10 +1,11 @@
 # FakeStoreApi_26
 
 #### E-commerce application
-**FakeStoreApi is an e-commerce REST API application designed to support both mock and real data for use in shopping websites.**
+**FakeStoreApi is an e-commerce REST API application designed to support both mock data or real data for use in shopping websites.**
 
 ---
 ### The features in the API:
+ **loading...**
 ---
 
 ## How to install/use
@@ -33,20 +34,40 @@ npm install
 
 ```
 
-#### 4.Use mockData for testing purposes
+#### 4.Use mockData for testing purposes (Optional)
 
 ```bash
 
 cd src/mockData
-
-node seeder.js -i  to insert data in mongoDb
+node seeder.js -i  
 
 ```
 **or**
 
 ```bash
 
-node seeder.js -d delete data from mongoDb
+node seeder.js -d 
 
 ```
+
+#### 5.Start server (CLI)
+
+```bash
+
+ nodemon src/index.js
+
+````
+
+**or**
+
+```bash
+
+npm run dev
+
+```
+## Enviroment Variable
+**Note: .env file will be upload with the project, for less hassle when starting the application, it is not recommended.**
+
+
+
 
