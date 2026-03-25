@@ -46,7 +46,7 @@ npm install
 
 ```bash
 
-node src/mockData/seeder.js -d 
+  node src/mockData/seeder.js -d 
 
 ```
 
