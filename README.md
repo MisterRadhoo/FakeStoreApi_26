@@ -107,11 +107,11 @@ Cookie: cookieToken=<your_token>
   
   Auth Routes:
 
-  | @Route             | @Type | @access | @desc                       |
-  |--------------------|-------|---------|-----------------------------|
-  | /api/auth/register | POST  | Public  | Create a new user in db     |
-  | /api/auth/login    | POST  | Public  | Authenticate current user   |
-  | /api/auth/logout   | POST  | Public  | Logout current user         |
+  | @Route             | @Type | @access | @desc                           |
+  |--------------------|-------|---------|---------------------------------|
+  | /api/auth/register | POST  | Public  | Create a new user in db         |
+  | /api/auth/login    | POST  | Public  | Authenticate the current user   |
+  | /api/auth/logout   | POST  | Public  | Logout the current user         |
 
   ## Register
   - **User can register by sending an object like the following to the URL below:
