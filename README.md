@@ -75,9 +75,8 @@ npm run dev
 - **Step 1.** Registered user, they just need to log in to obtain token/cookieToken for access.
 - **Step 2.** Unregistered user, they need to register first, then log in into new account to obtain token/cookieToken for access.
 
-## Auth examples:
+#### Auth examples:
 
-**Bearer token**
 ```http
 Authorization: Bearrer <your_token>
 Cookie: cookieToken=<your_token>
