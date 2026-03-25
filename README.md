@@ -229,7 +229,7 @@ Product Routes:
 | /api/products/search                  | POST    | Public        | Search Products by filters             |
 
 ## Create Product
-- **Create** new product by sending an object like the following to the URL below:
+- **Create** a new product by sending an object like the following to the URL below:
 
 ```bash
 [POST] http://localhost:7800/api/products
