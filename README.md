@@ -365,10 +365,6 @@ Product Routes:
 [DELETE] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
 ```
 
-```json
-{}
-```
-
 <details><summary><b>Output</b></summary>
 <br/>
 
@@ -383,8 +379,141 @@ Product Routes:
     "currency": "USD",
     "stock": 12,
     "description": "Probably the best collaboration in the world between Nike and beer producer Heineken.",
-    //remaining fields
+    //...
   }
+}
+```
+
+</details>
+
+## Get specific Product
+- **Get** specific product that exists by adding `id or ObjectId` as parameter to the URL below:
+
+```bash
+[GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "message": "Query document Product retrieved!",
+  "data": {
+    "_id": "69bec9b294bc0c4efd74869a",
+    "title": "Nike SB Dunk Low Asparagus",
+    "slug": "nike-sb-dunk-low-asparagus",
+    "price": 2649.99,
+    "currency": "USD",
+    "stock": 3,
+    "description": "Starul in ascensiune al skateboarding-ului Yuto Horigome continua sa-si lase amprenta asupra modei, streetwear, odată cu lansarea celui de-al 2-lea Nike SB Dunk Low, numit Asparagus.",
+    "categoryId": {
+      "_id": "6980755adb563b32c2d55fb6",
+      "name": "Sneakers"
+    },
+    "subcategoriesIds": [
+      {
+        "_id": "699b7838fbe26d029d8a7706",
+        "name": "Sneakers Low Man"
+      }
+    ],
+    "brandId": {
+      "_id": "69a320dcccd444547f8a0ea4",
+      "name": "Nike SB",
+      "description": "Just Do It"
+    },
+    "imageCover": "http://localhost:7800/static/img/Yuto-Horigome-Nike-SB-Dunk-Low.png",
+    "images": [],
+    "colors": [
+      "Asparagus",
+      "Legion Green",
+      "Light Khaki",
+      "Dark Loden",
+      "Sesame",
+      "Burnt Sienna"
+    ],
+    "sold": 0,
+    "ratingsAverage": 4.9,
+    "ratingsQuantity": 22,
+    "createdAt": "2026-03-21T16:39:14.642Z",
+    "updatedAt": "2026-03-21T16:39:14.642Z",
+    "__v": 0,
+    "reviews": [],
+    "id": "69bec9b294bc0c4efd74869a"
+  }
+}
+```
+</details>
+
+## Get all Products
+- **Get** all products from the database by using URL below:
+
+```bash
+[GET] http://localhost:7800/api/products?limit=3&page=2&sortedBy=-stock
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "result": 3,
+  "paginationResult": {
+    "currentPage": 2,
+    "limit": 3,
+    "numberOfPages": 6,
+    "totalResult": 16,
+    "nextPage": 3,
+    "prevPage": 1
+  },
+  "data": [
+    {
+      "_id": "69bec9b294bc0c4efd748695",
+      "title": "Nike SB Dunk Low Chicago J-pack",
+      "slug": "nike-sb-dunk-low-chicago-j-pack",
+      "price": 3620.99,
+      "currency": "USD",
+      "stock": 19,
+      "description": "Celebrul pattern al echipei de baschet Chicago Bulls, disponibil acum si pe un model de skateboarding.",
+      "categoryId": {
+        "_id": "6980755adb563b32c2d55fb6",
+        "name": "Sneakers"
+      },
+      "subcategoriesIds": [
+        {
+          "_id": "699b7838fbe26d029d8a7706",
+          "name": "Sneakers Low Man"
+        }
+      ],
+      "brandId": {
+        "_id": "69a320dcccd444547f8a0ea4",
+        "name": "Nike SB",
+        "description": "Just Do It"
+      },
+      "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-chicago.png",
+      "colors": [
+        "University Red",
+        "Black",
+        "White"
+      ],
+      "sold": 10,
+      "ratingsAverage": 4.9,
+      "ratingsQuantity": 37,
+      "createdAt": "2026-03-21T16:39:14.642Z",
+      "updatedAt": "2026-03-22T15:29:29.696Z",
+      "id": "69bec9b294bc0c4efd748695"
+    },
+    {
+      "_id": "69bec9b294bc0c4efd74869c",
+      "title": "Air Jordan 1 Low OG Floral Swoosh",
+      "slug": "air-jordan-1-low-og-floral-swoosh",
+      "price": 249.99,
+      "currency": "USD",
+      "stock": 17,
+      //...
+    },
+    // Additional products may be returned...
+  ]
 }
 ```
 

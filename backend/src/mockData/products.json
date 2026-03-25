@@ -71,7 +71,7 @@
       {
             "title": "Nike SB Dunk Low x Hayley-Wilson",
             "slug": "nike-sb-dunk-low-x-hayley-wilson",
-            "price": 1989.88,
+            "price": 1789.88,
             "currency": "USD",
             "stock": 9,
             "description": "Modelul Hayley Dunks prezinta un fir reactiv la UV care isi schimba culoarea la soare in jurul swoosh-ului.",
@@ -118,9 +118,9 @@
       {
             "title": "Nike SB Dunk Low Chicago J-pack",
             "slug": "nike-sb-dunk-low-chicago-j-pack",
-            "price": 2220.99,
+            "price": 3360.99,
             "currency": "USD",
-            "stock": 7,
+            "stock": 9,
             "description": "Celebrul pattern al echipei de baschet Chicago Bulls, disponibil acum si pe un model de skateboarding.",
             "categoryId": "6980755adb563b32c2d55fb6",
             "subcategoriesIds": [
@@ -141,7 +141,7 @@
       {
             "title": "Nike SB Dunk Low Court Purple J-pack",
             "slug": "nike-sb-dunk-low-court-purple-j-pack",
-            "price": 1299.99,
+            "price": 1499.99,
             "currency": "USD",
             "stock": 7,
             "description": "Modelul Nike SB court purple, aduce accente discrete constructiei sale clasice de skateboarding.",
@@ -187,7 +187,7 @@
       {
             "title": "Nike SB Dunk Low Safari",
             "slug": "nike-sb-dunk-low-safari",
-            "price": 529.99,
+            "price": 629.99,
             "currency": "USD",
             "stock": 21,
             "description": "Model Nike SB lansat in vara anului 2024, reprezentand tematica jocurilor olimpice de la Paris/Franta.",
@@ -212,7 +212,7 @@
       {
             "title": "Nike SB Dunk Low x Riot Skateshop",
             "slug": "nike-sb-dunk-low-x-riot-skateshop",
-            "price": 1749.99,
+            "price": 1649.99,
             "currency": "USD",
             "stock": 11,
             "description": "Timpul este totul si in arta plastica a vinificarii, varsta conteaza. Din 2004, Riot Skateshop din Bordeaux, Franta a cultivat legatura dintre mestesugurile din lumea veche si cultura skateboarding-ului.",
@@ -237,9 +237,9 @@
       {
             "title": "Nike SB Dunk Low Asparagus",
             "slug": "nike-sb-dunk-low-asparagus",
-            "price": 2649.99,
+            "price": 4649.99,
             "currency": "USD",
-            "stock": 3,
+            "stock": 6,
             "description": "Starul in ascensiune al skateboarding-ului Yuto Horigome continua sa-si lase amprenta asupra modei, streetwear, odată cu lansarea celui de-al 2-lea Nike SB Dunk Low, numit Asparagus.",
             "categoryId": "6980755adb563b32c2d55fb6",
             "subcategoriesIds": [
@@ -263,7 +263,7 @@
       {
             "title": "Nike SB Dunk Low x Dashawn Jordan Copperhead",
             "slug": "nike-sb-dunk-low-x-dashawn-jordan-copperhead",
-            "price": 1599.99,
+            "price": 2299.99,
             "currency": "USD",
             "stock": 6,
             "description": "Dashawn Jordan x Nike SB Dunk Low este inspirat de uniformele mov și turcoaz ale echipei Arizona Diamondbacks din timpul titlului lor de la World Series din 2001.",
@@ -287,7 +287,7 @@
       {
             "title": "Air Jordan 1 Low OG Floral Swoosh",
             "slug": "air-jordan-1-low-og-floral-swoosh",
-            "price": 249.99,
+            "price": 449.99,
             "currency": "USD",
             "stock": 17,
             "description": "Jordan brand is planting the seeds for highly sought-after drop with the AJ1 Low OG Floral Swoosh.This upcoming realese is a fresh, springtime interpretation of the original low-cut silhouette, a classic heritage.",
@@ -310,7 +310,7 @@
       {
             "title": "Air Jordan 1 Low OG Voodoo Alternate",
             "slug": "air-jordan-1-low-og-voodoo-alternate",
-            "price": 759.99,
+            "price": 770.99,
             "currency": "USD",
             "stock": 9,
             "description": "The Jordan 1 Retro Low OG Zion Willimson Voodoo Alternate captures the magic and mystery of New Orleans with a twist that feels both raw and refined.",
@@ -336,7 +336,7 @@
       {
             "title": "Nike Everyday Socks 3 Pack",
             "slug": "nike-everyday-socks-3-pack",
-            "price": 20.99,
+            "price": 22.99,
             "currency": "USD",
             "stock": 99,
             "description": "The Nike Everyday Socks blend sweat-wicking technology with breathable fabric to help keep your foot dry and cool.",
@@ -355,7 +355,7 @@
       {
             "title": "Nike Everyday Socks 6 Pack",
             "slug": "nike-everyday-socks-6-pack",
-            "price": 30.00,
+            "price": 36.99,
             "currency": "USD",
             "stock": 49,
             "description": "The Nike Everyday Socks blend sweat-wicking technology with breathable fabric to help keep your foot dry and cool.",
