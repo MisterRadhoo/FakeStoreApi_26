@@ -102,9 +102,9 @@ Cookie: cookieToken=<your_token>
 
   <!--te-->
 
+---
  # Authentication
-  ---
-
+  
   Auth Routes:
 
   | @Route             | @Type | @access | @desc                     |
