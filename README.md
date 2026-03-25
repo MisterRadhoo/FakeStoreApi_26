@@ -78,8 +78,8 @@ npm run dev
 #### Auth examples:
 
 ```http
-Authorization: Bearer <your_token>
-Cookie: cookieToken=<your_token>
+Authorization Header -> Authorization: Bearer <your_token>
+Browser session -> Cookie: cookieToken=<your_token>
 ```
 ---
 
