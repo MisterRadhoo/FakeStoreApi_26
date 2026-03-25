@@ -192,7 +192,7 @@ npm run dev
 </details>
 
 ## Logout
-- **User** can logout from account using de following url bellow:
+- **User** can logout from account using the following URL bellow:
 
 ```bash
 [POST] http://localhost:7800/api/auth/logout
