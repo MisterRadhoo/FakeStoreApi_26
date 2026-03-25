@@ -191,6 +191,25 @@ npm run dev
 
 </details>
 
+## Logout
+- **User** can logout from account using de following url bellow:
+
+```bash
+[POST] http://localhost:7800/api/auth/logout
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "status": "Logged out successfully!" 
+}
+```
+
+</details>
+
+
 
 
 
