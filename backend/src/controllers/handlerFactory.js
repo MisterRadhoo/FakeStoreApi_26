@@ -84,7 +84,9 @@ const getAll = (Model) => async (req, res) => {
             { title: { $regex: req.query.keyword, $options: "i" } },
             { description: { $regex: req.query.keyword, $options: "i" } },
             { name: { $regex: req.query.keyword, $options: "i" } },
-            { slug: { $regex: req.query.keyword, $options: "i" } }
+            { slug: { $regex: req.query.keyword, $options: "i" } },
+            { country: { $regex: req.query.keyword, $options: "i" } },
+            { acronymCode: { $regex: req.query.keyword, $options: "i" } }
         ];
     }
 

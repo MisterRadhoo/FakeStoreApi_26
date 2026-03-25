@@ -102,8 +102,20 @@ Cookie: cookieToken=<your_token>
 
   <!--te-->
 
+ # Authentication
   ---
-  ## Authentication endpoint
+
+  Auth Routes:
+
+  | @Route             | @Type | @access | @desc                     |
+  |--------------------|-------|---------|---------------------------|
+  | /api/auth/register | POST  | Public  | Create new user in db     |
+  | /api/auth/login    | POST  | Public  | Authenticate current user |
+  | /api/auth/logout   | POST  | Public  | Logout current user       |
+ 
+
+
+
 
 
 
