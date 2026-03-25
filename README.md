@@ -289,7 +289,7 @@ Product Routes:
 </details>
 
 ## Update specific Product
-- **Update** specific product that exists by sending an object like the following and adding the `id or ObjectId` as parameter to the URL below:
+- **Update** specific product that exists by sending an object like the following and adding the `id` or `ObjectId` as a parameter to the URL below:
 
 ```bash
 [PATCH] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
@@ -359,7 +359,7 @@ Product Routes:
 </details>
 
 ## Delete specific Product
-- **Delete** specific product that exists by adding the `id or ObjectId` as parameter to the URL below:
+- **Delete** specific product that exists by adding the `id` or `ObjectId` as a parameter to the URL below:
 
 ```bash
 [DELETE] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
@@ -387,7 +387,7 @@ Product Routes:
 </details>
 
 ## Get specific Product
-- **Get** specific product that exists by adding `id or ObjectId` as parameter to the URL below:
+- **Get** specific product that exists by adding `id` or `ObjectId` as a parameter to the URL below:
 
 ```bash
 [GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a
@@ -520,8 +520,8 @@ Product Routes:
 </details>
 
 ## Get related Products
-- **Get** related products by adding `productId or ObjectId`as parameter to the URL below:
-- **This route is a custom product base, that uses `productId` as parameter.** 
+- **Get** related products by adding `productId` or `ObjectId`as a parameter to the URL below:
+- **This route is a custom product base, that uses `productId` as a parameter.** 
 
 ```bash
 [GET] http://localhost:7800/api/products/related/69bec9b294bc0c4efd74869a
@@ -557,6 +557,77 @@ Product Routes:
 }
 ```
 </details>
+
+## Get all Reviews on specific Product
+- **Get** all reviews on specific product by adding `id` or `ObjectId` as a parameter to the URL below:
+- **The reviews route is implemented as a nested route.**
+
+```bash
+[GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a/reviews/list
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "object": "reviews_list",
+  "limit": 12,
+  "page": 1,
+  "sort": "-createdAt",
+  "count": 2,
+  "list": [
+    {
+      "_id": "69c45b2a404f10549f271eb5",
+      "title": "colors are indeed marvelous!",
+      "ratings": 4.8,
+      "userId": {
+        "_id": "69bec9b294bc0c4efd74868d",
+        "userName": "Ana_rose"
+      },
+      "productId": "69bec9b294bc0c4efd74869a",
+      "createdAt": "2026-03-25T22:01:14.719Z",
+      "updatedAt": "2026-03-25T22:01:14.719Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c459d4404f10549f271e9f",
+      "title": "Nice ones, they are fire!",
+      "ratings": 4.98,
+      "userId": {
+        "_id": "69c3f4dcb178bfb403a5ac69",
+        "userName": "radu"
+      },
+      "productId": "69bec9b294bc0c4efd74869a",
+      "createdAt": "2026-03-25T21:55:32.359Z",
+      "updatedAt": "2026-03-25T21:55:32.359Z",
+      "__v": 0
+    }
+  ]
+}
+```
+
+</details>
+
+## Product Schema
+
+| Attribute        | Type       |
+|------------------|------------|
+| title            | String     |
+| slug             | String     |
+| price            | Number     |
+| currency         | String     |
+| stock            | Number     |
+| description      | String     |
+| categoryId       | ObjectId   |
+| subcategoriesIds | [ObjectId] |
+| brandId          | ObjectId   |
+| imageCover       | String     |
+| images           | [String]   |
+| colors           | [String]   |
+| sold             | Number     |
+| ratingsAverage   | Number     |
+| ratingsQuantity  | Number     |
 
 
 
