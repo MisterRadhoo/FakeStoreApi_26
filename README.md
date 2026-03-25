@@ -69,6 +69,20 @@ npm run dev
 **Note: .env file will be upload with the project, for less hassle when starting the application, it is not recommended.**
 
 ---
+#### API Authentication
+
+**Certain endpoints are private routes,authentication is required.Depending on the user role,they gain access on various CRUD operations via token/cookieToken**
+**Step 1. Registered user, they just need to log in to obtain token/cookieToken for access.**
+**Step 2. Unregistered user, they need to register first, then log in into new account to obtain token/cookieToken for access.**
+
+## EX:
+
+**Bearer token**
+```http
+Authorization: Bearrer <your_token>
+Cookie: cookieToken=<your_token>
+```
+---
 
 #### Endpoints
 
@@ -88,4 +102,9 @@ npm run dev
   - [Product schema](#product-schema)
 
   <!--te-->
+
+  ---
+  ## Authentication endpoint
+
+
 
