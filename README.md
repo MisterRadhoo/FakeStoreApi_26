@@ -520,7 +520,7 @@ Product Routes:
 </details>
 
 ## Get related Products
-- **Get** related products by adding `productId` or `ObjectId`as a parameter to the URL below:
+- **Get** related products by adding `productId` or `ObjectId` as a parameter to the URL below:
 - **This route is a custom product base, that uses `productId` as a parameter.** 
 
 ```bash
