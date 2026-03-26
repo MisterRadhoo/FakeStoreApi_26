@@ -668,8 +668,78 @@ Product Routes:
 
 </details>
 
-## Search Products by filters
 
+## Search Products by filters
+- **Search** products using filter options by sending an object like the following to the URL below:
+
+```bash
+[POST] http://localhost:7800/api/products/search
+```
+
+```json
+{
+   "order": "asc",
+   "limit": 15,
+   "sortBy": "price",
+   "skip": 0,
+   "filters": {
+     "price": [20, 1000]
+   }
+}
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "size": 7,
+  "data": [
+    {
+      "_id": "69bec9b294bc0c4efd74869e",
+      "title": "Nike Everyday Socks 3 Pack",
+      "slug": "nike-everyday-socks-3-pack",
+      "price": 20.99,
+      "currency": "USD",
+      "stock": 99,
+      "description": "The Nike Everyday Socks blend sweat-wicking technology with breathable fabric to help keep your foot dry and cool.",
+      "categoryId": {
+        "_id": "699770f0a04e80c6606e6088",
+        "name": "Accessories"
+      },
+      "subcategoriesIds": [],
+      "brandId": {
+        "_id": "69be7af76f6540230bd94474",
+        "name": "Nike",
+        "description": "Just Do It"
+      },
+      "imageCover": "http://localhost:7800/static/img/nike-socks-3pack.png",
+      "images": [],
+      "colors": [
+        "White"
+      ],
+      "sold": 46,
+      "ratingsAverage": 4.44,
+      "ratingsQuantity": 26,
+      "createdAt": "2026-03-21T16:39:14.642Z",
+      "updatedAt": "2026-03-21T16:39:14.642Z",
+      "__v": 0,
+      "id": "69bec9b294bc0c4efd74869e"
+    },
+    {
+      "_id": "69bec9b294bc0c4efd74869f",
+      "title": "Nike Everyday Socks 6 Pack",
+      "slug": "nike-everyday-socks-6-pack",
+      "price": 30,
+      //...
+    },
+    // Additional products may be returned...
+  ]
+}
+      
+```
+
+</details>
 
 ## Product Schema
 
