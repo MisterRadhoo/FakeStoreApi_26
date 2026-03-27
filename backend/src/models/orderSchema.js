@@ -21,6 +21,15 @@ const orderSchema = new mongoose.Schema(
           ref: "Product",
           required: true,
         },
+        title: {
+          type: String,
+          required: true,
+          trim: true
+        },
+        imageCover: {
+          type: String,
+          required: true
+        },
         quantity: {
           type: Number,
           required: true,

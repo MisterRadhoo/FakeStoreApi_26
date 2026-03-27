@@ -66,13 +66,13 @@ npm run dev
 
 ```
 #### Enviroment Variable
-**Note: .env file will be upload with the project, for less hassle when starting the application, it is not recommended.**
+**Note: The .env file will be uploaded with the project, for less hassle when starting the application.**
 
 ---
 #### API Authentication
 
-**Certain endpoints are private routes,authentication is required.Depending on the user role,they gain access on various CRUD operations via token/cookieToken**
-- **Step 1.** Registered user, they just need to log in to obtain token/cookieToken for access.
+**Certain endpoints are private routes, authentication is required.Depending on the user role, access on various CRUD operations is granted via token/cookieToken**
+- **Step 1.** Registered user, they just need to login to obtain token/cookieToken for access.
 - **Step 2.** Unregistered user, they need to register first, then login into new account to obtain token/cookieToken for access.
 
 #### Auth examples:
@@ -155,7 +155,7 @@ npm run dev
 </details>
 
 ## Login
-- **User** can login sending an object like the following to the URL below:
+- **User** can login by sending an object like the following to the URL below:
 
  ```bash
  [POST] http://localhost:7800/api/auth/login

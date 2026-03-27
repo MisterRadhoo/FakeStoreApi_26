@@ -17,6 +17,15 @@ const cartSchema = new mongoose.Schema(
           ref: "Product",
           required: true
         },
+        title: {
+          type: String,
+          required: true,
+          trim: true
+        },
+        imageCover: {
+          type: String,
+          required: true
+        },
         // quantity of the product in cart
         quantity: {
           type: Number,

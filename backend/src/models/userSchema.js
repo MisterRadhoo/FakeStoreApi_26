@@ -77,7 +77,6 @@ const userSchema = new mongoose.Schema(
     addresses: [
       {
         _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
-        alias: { type: String, maxlength: 16, trim: true },
         details: { type: String, maxlength: 35, trim: true },
         country: { type: String, maxlength: 15, trim: true },
         city: { type: String, maxlength: 15, trim: true },
@@ -97,7 +96,6 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 
 // create User model from userSchema
 const User = mongoose.model("User", userSchema);

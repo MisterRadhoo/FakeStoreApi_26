@@ -18,7 +18,12 @@ const addProduct = async (userId, productId) => {
         // Create Cart for logged user with Product
         cart = await Cart.create({
             userId: userId,
-            cartItems: [{ productId: productId, price: product.price }]
+            cartItems: [{
+                productId: productId,
+                title: product.title,
+                imageCover: product.imageCover,
+                price: product.price
+            }]
         });
     } else {
         const productIndex = cart.cartItems.findIndex((item) =>
@@ -30,11 +35,16 @@ const addProduct = async (userId, productId) => {
             cartItem.quantity += 1;
         } else {
             // Product not exist in Cart, push Product to cartItems array
-            cart.cartItems.push({ productId: productId, price: product.price });
+            cart.cartItems.push({
+                productId: productId,
+                title: product.title,
+                imageCover: product.imageCover,
+                price: product.price
+            });
         }
     }
 
-    await recomputeCart(cart);  // modify document
+    await recomputeCart(cart);  // modify document Cart
     await cart.save();
     return cart;
 };
@@ -45,7 +55,7 @@ const findCart = async (userId) => {
     const cart = await Cart.findOne({
         userId: userId,
         status: "active"
-    }).populate("couponId").populate({ path: "cartItems.productId", select: "title imageCover" });
+    }).populate("couponId");
 
     if (!cart) {
         throw CustomApiError.notFound(`Cart for user id: ${userId}`, "userId");
