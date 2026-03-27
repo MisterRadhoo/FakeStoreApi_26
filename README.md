@@ -108,7 +108,7 @@ npm run dev
   
   Auth Routes:
 
-  | @Route             | @Type | @access | @desc                           |
+  | @Route             | @Type | @access | @description                    |
   |--------------------|-------|---------|---------------------------------|
   | /api/auth/register | POST  | Public  | Create a new User in db         |
   | /api/auth/login    | POST  | Public  | Authenticate the current User   |
@@ -216,7 +216,7 @@ npm run dev
 
 Product Routes:
 
-| @Routes                               | @Types  | @access       | @desc                                  |
+| @Routes                               | @Types  | @access       | @description                           |
 |---------------------------------------|---------|---------------|----------------------------------------|
 | /api/products                         | POST    | Private/Admin | Create Product                         |
 | /api/products/:id                     | PATCH   | Private/Admin | Update specific Product                |

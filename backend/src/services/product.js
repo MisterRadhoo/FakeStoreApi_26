@@ -2,6 +2,7 @@ const { Product, Category, SubCategory, Brand } = require("../models/index");
 const CustomApiError = require("../utils/ApiError");
 const { checkExists } = require("../utils/helpers");
 
+// @desc => description
 // @desc Find Products and filter by price in range [min, max]
 const findProducts = async (filters, sortBy, order, limit, skip) => {
     const findArgs = {};
