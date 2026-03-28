@@ -31,13 +31,16 @@ const zCreateReviewSchema = require("../validators/review/createReviewSchema");
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
+// limiter
+const setLimiter = require("../middlewares/limiter/rateLimiter");
+
 // @desc Get all Reviews
 // @access Public
-router.get("/", getAllReviews);
+router.get("/", setLimiter({ limit: 15 }), getAllReviews);
 
-// @desc Get list of Reviews
+// @desc Get list of Reviews for a specific Product
 // @access Public
-router.get("/list", zQueryValidator(zPaginationSchema), createFilterObj, getListReviews);
+router.get("/list", setLimiter({ limit: 15 }), zQueryValidator(zPaginationSchema), createFilterObj, getListReviews);
 
 // @desc Get specific Review
 // @access Public
@@ -47,6 +50,7 @@ router.get("/:id", zParamValidator(idReviewSchema), getReview);
 // @access Private/Protected/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
+    setLimiter({ limit: 15 }),
     setProductIdAndUserIdToBody,
     zBodyValidator(zCreateReviewSchema),
     checkReviewRefs,
@@ -56,13 +60,15 @@ router.post("/",
 // @access Private/Protected
 router.put("/:id",
     [requireLogIn, allowedTo("user")],
+    setLimiter({ limit: 15 }),
     zParamValidator(idReviewSchema),
     updateReview);
 
 // @desc Delete specific Review
-// @access Private/Protect/Admin
+// @access Private/Protected/Admin
 router.delete("/:id",
     [requireLogIn, allowedTo("user", "admin")],
+    setLimiter({ limit: 15 }),
     zParamValidator(idReviewSchema),
     removeReview);
 

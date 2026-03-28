@@ -43,11 +43,12 @@ router.put("/apply-coupon", [requireLogIn, allowedTo("user")], applyCouponToCart
 // @access Private/User
 router.patch("/:itemId",
     [requireLogIn, allowedTo("user")],
+    setLimiter({ limit: 8 }),
     zBodyValidator(zCartUpdateQtySchema),
     updateCartItemQuantity);
 
 // @desc Remove specific Cart item
 // @access Private/User
-router.delete("/:itemId", [requireLogIn, allowedTo("user")], removeSpecificCartItem);
+router.delete("/:itemId", [requireLogIn, allowedTo("user")], setLimiter({ limit: 8 }), removeSpecificCartItem);
 
 module.exports = router;

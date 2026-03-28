@@ -3,11 +3,10 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 
 // Product middlewares
+const { productById, filterObjCategory } = require("../middlewares/product/utilityMiddleware");
 const slugifyProduct = require("../middlewares/product/slugifyMiddleware");
 const productBySlug = require("../middlewares/product/productBySlug");
-const productById = require("../middlewares/product/paramByIdMiddleware");
 const checkProductRefs = require("../middlewares/product/referencesMiddleware");
-
 
 // Product controller functions
 const {
@@ -18,6 +17,7 @@ const {
     getAllProducts,
     getSlugProduct,
     getListRelated,
+    getListProductsByCategory,
     searchProduct
 } = require("../controllers/productController");
 
@@ -34,6 +34,9 @@ const zPaginationSchema = require("../validators/zPagination");
 //permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
+// limiter
+const setLimiter = require("../middlewares/limiter/rateLimiter");
+
 // nested router
 // @desc Get all Reviews on specific Product
 const reviewsRouter = require("./reviewRouter");
@@ -42,13 +45,17 @@ router.use("/:productId/reviews", reviewsRouter);
 // Parameter used in nested route
 router.param("productId", productById);
 
+// @desc Get list of Products by same Category
+// @access Public
+router.get("/list", filterObjCategory, zQueryValidator(zPaginationSchema), getListProductsByCategory);
+
 // @desc Get Product slug
 // @access Public
 router.get("/slug/:slug", productBySlug, getSlugProduct);
 
 // @desc Get all Products
 // @access Public
-router.get("/", getAllProducts);
+router.get("/", setLimiter({ limit: 12 }), getAllProducts);
 
 // @desc Get related Products base in productId
 // @access Public
@@ -84,6 +91,6 @@ router.delete("/:id",
 
 // @desc Product Search
 // @access Public
-router.post("/search", searchProduct);
+router.post("/search", setLimiter({ limit: 12 }), searchProduct);
 
 module.exports = router;

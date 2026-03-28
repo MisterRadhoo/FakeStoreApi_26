@@ -57,6 +57,30 @@ const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sor
     };
 };
 
+// @desc Find Products in db
+const toObtainProducts = async (filter, limit, page, sort) => {
+    // pagination
+    const limitPage = limit ? Number(limit) : 8;
+    const pageNumber = page * 1 || 1;
+    const skip = (pageNumber - 1) * limitPage;
+    const sortBy = sort ? String(sort).split(",").join(" ") : "-createdAt";
+
+    const filterObject = filter || {};
+
+    const products = await Product
+        .find(filterObject)
+        .sort(sortBy)
+        .skip(skip)
+        .limit(limitPage);
+
+    return {
+        limit: limitPage,
+        page: pageNumber,
+        sort: sortBy,
+        products
+    };
+};
+
 // @desc Assert Product references in db
 const assertProductRefs = async (categoryId, subcategoriesIds, brandId) => {
     if (!categoryId) {
@@ -84,4 +108,4 @@ const assertProductRefs = async (categoryId, subcategoriesIds, brandId) => {
 };
 
 
-module.exports = { findProducts, findRelatedProducts, assertProductRefs };
+module.exports = { findProducts, findRelatedProducts, assertProductRefs, toObtainProducts };

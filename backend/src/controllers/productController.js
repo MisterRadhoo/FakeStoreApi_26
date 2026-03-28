@@ -1,6 +1,6 @@
 const factory = require("./handlerFactory");
 const { Product } = require("../models/index");
-const { findProducts, findRelatedProducts } = require("../services/product");
+const { findProducts, findRelatedProducts, toObtainProducts } = require("../services/product");
 
 // @desc Create Product
 const createProduct = factory.createOne(Product, "Product");
@@ -17,7 +17,7 @@ const getSlugProduct = async (req, res) => {
     return res.status(200).json({ object: "slug", product: req.product });
 };
 
-// @desc Get related Product by same categoryId
+// @desc Get related Products by same categoryId
 const getListRelated = async (req, res) => {
 
     const response = await findRelatedProducts(
@@ -35,6 +35,25 @@ const getListRelated = async (req, res) => {
         sort: response.sort,
         count: response.products.length,
         products: response.products
+    });
+};
+
+// @desc Get list of Products by same Category (Nested Route)
+const getListProductsByCategory = async (req, res) => {
+    const result = await toObtainProducts(
+        req.filterObj,
+        req.Query.limit,
+        req.Query.page,
+        req.Query.sort
+    );
+
+    return res.status(200).json({
+        object: "product_list_by_same_category",
+        limit: result.limit,
+        page: result.page,
+        sort: result.sort,
+        count: result.products.length,
+        products: result.products
     });
 };
 
@@ -62,6 +81,7 @@ module.exports = {
     getAllProducts,
     searchProduct,
     getListRelated,
+    getListProductsByCategory
 };
 
 

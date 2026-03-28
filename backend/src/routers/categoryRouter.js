@@ -24,6 +24,9 @@ const {
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
+// limiter
+const setLimiter = require("../middlewares/limiter/rateLimiter");
+
 // Param for Nested Route
 router.param("categoryId", categoryById);
 
@@ -36,7 +39,7 @@ router.use("/:categoryId/subcategories", subCategoryRouter);
 
 // @desc Get all Categories
 // @access Public
-router.get("/", getAllCategories);
+router.get("/", setLimiter({ limit: 10 }), getAllCategories);
 
 // @desc Get specific Category
 // @access Public
