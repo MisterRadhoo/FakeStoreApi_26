@@ -1,7 +1,7 @@
 # FakeStoreApi_26
 
-#### E-commerce application
-**FakeStoreApi is an e-commerce REST API application designed to support both mock data and real data for use in shopping websites.**
+#### Description
+**The APP named FakeStoreApi is an e-commerce REST API application designed to support both mock data and real data for use in shopping websites.**
 
 ---
 ### The features in the API:
@@ -14,56 +14,42 @@
 #### 1.Clone the repository
 
 ```bash
-
 git clone https://github.com/MisterRadhoo/FakeStoreApi_26.git
-
 ```
 
 #### 2.Go to the project directory
 
 ```bash
-
 cd backend
-
 ```
 
 #### 3.Install dependencies
 
 ```bash
-
 npm install
-
 ```
 
 #### 4.Use mockData for testing purposes (Optional)
 
 ```bash
-
-  node src/mockData/seeder.js -i
-
+node src/mockData/seeder.js -i
 ```
 **or**
 
 ```bash
-
-  node src/mockData/seeder.js -d 
-
+node src/mockData/seeder.js -d 
 ```
 
 #### 5.Start server (CLI)
 
 ```bash
-
  nodemon src/index.js
-
 ````
 
 **or**
 
 ```bash
-
 npm run dev
-
 ```
 #### Enviroment Variable
 **Note: The .env file will be uploaded with the project, for less hassle when starting the application.**
