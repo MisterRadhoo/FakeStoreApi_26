@@ -18,7 +18,14 @@ const {
     getAllCategories
 } = require("../controllers/categoryController");
 
+// zod validation middlewares
+const zQueryValidator = require("../middlewares/zodValidators/zQuery");
+const zParamsValidator = require("../middlewares/zodValidators/zParams");
+const zBodyValidator = require("../middlewares/zodValidators/zBody");
+
 // validators
+const idCategorySchema = require("../validators/category/idCategory");
+const { zCreateCategorySchema, zUpdateCategorySchema } = require("../validators/category/createCategorySchema");
 
 
 // permissions
@@ -39,23 +46,23 @@ router.use("/:categoryId/subcategories", subCategoryRouter);
 
 // @desc Get all Categories
 // @access Public
-router.get("/", setLimiter({ limit: 10 }), getAllCategories);
+router.get("/", setLimiter({ limit: 20 }), getAllCategories);
 
 // @desc Get specific Category
 // @access Public
-router.get("/:id", getCategory);
+router.get("/:id", zParamsValidator(idCategorySchema), getCategory);
 
 // @desc Create a Category
 // @access Private/Admin
-router.post("/", [requireLogIn, allowedTo("admin")], slugifyCategory, createCategory);
+router.post("/", [requireLogIn, allowedTo("admin")], zBodyValidator(zCreateCategorySchema), slugifyCategory, createCategory);
 
 // @desc Update specific Category
 // @access Private/Admin
-router.put("/:id", [requireLogIn, allowedTo("admin")], slugifyCategory, updateCategory);
+router.put("/:id", [requireLogIn, allowedTo("admin")], zParamsValidator(idCategorySchema), zBodyValidator(zUpdateCategorySchema), slugifyCategory, updateCategory);
 
 // @desc Delete specific Category
 // @access Private/Admin
-router.delete("/:id", [requireLogIn, allowedTo("admin")], removeCategory);
+router.delete("/:id", [requireLogIn, allowedTo("admin")], zParamsValidator(idCategorySchema), removeCategory);
 
 
 module.exports = router;

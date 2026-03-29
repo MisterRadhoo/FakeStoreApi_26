@@ -13,7 +13,6 @@ const removeCoupon = factory.deleteOne(Coupon, "Coupon");
 const getAllCoupons = factory.getAll(Coupon);
 
 
-
 module.exports = {
     createCoupon,
     getCoupon,

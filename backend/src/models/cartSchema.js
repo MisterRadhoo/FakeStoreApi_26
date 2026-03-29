@@ -24,7 +24,8 @@ const cartSchema = new mongoose.Schema(
         },
         imageCover: {
           type: String,
-          required: true
+          required: true,
+          trim: true
         },
         // quantity of the product in cart
         quantity: {

@@ -15,7 +15,6 @@ const getAllSubCategories = factory.getAll(SubCategory);
 
 // @desc Get List of subCategories
 const getListSubCategories = async (req, res) => {
-
     const result = await findSubCategories(
         req.params.categoryId,
         req.Query.limit,

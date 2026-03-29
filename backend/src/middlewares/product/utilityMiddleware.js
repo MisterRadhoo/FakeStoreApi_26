@@ -11,9 +11,8 @@ const productById = async (req, res, next, id) => {
     next();
 };
 
-
 // Middleware for nested route
-// GET /api/categories/:categoryId/products
+// GET /api/categories/:categoryId/products/list
 const filterObjCategory = (req, res, next) => {
     req.filterObj = req.params.categoryId ?
         { categoryId: req.params.categoryId } : {};

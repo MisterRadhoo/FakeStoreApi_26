@@ -28,7 +28,8 @@ const orderSchema = new mongoose.Schema(
         },
         imageCover: {
           type: String,
-          required: true
+          required: true,
+          trim: true
         },
         quantity: {
           type: Number,

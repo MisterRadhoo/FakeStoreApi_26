@@ -47,7 +47,11 @@ router.param("productId", productById);
 
 // @desc Get list of Products by same Category
 // @access Public
-router.get("/list", filterObjCategory, zQueryValidator(zPaginationSchema), getListProductsByCategory);
+// GET /api/categories/:categoryId/products/list
+router.get("/list",
+    filterObjCategory,
+    zQueryValidator(zPaginationSchema),
+    getListProductsByCategory);
 
 // @desc Get Product slug
 // @access Public
@@ -55,7 +59,7 @@ router.get("/slug/:slug", productBySlug, getSlugProduct);
 
 // @desc Get all Products
 // @access Public
-router.get("/", setLimiter({ limit: 12 }), getAllProducts);
+router.get("/", setLimiter({ limit: 20 }), getAllProducts);
 
 // @desc Get related Products base in productId
 // @access Public
@@ -91,6 +95,6 @@ router.delete("/:id",
 
 // @desc Product Search
 // @access Public
-router.post("/search", setLimiter({ limit: 12 }), searchProduct);
+router.post("/search", setLimiter({ limit: 20 }), searchProduct);
 
 module.exports = router;
