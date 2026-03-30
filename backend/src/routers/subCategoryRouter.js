@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 // SubCategory middlewares
 const slugifySubCategory = require("../middlewares/subCategory/slugifySubCategory");
 
-// middleware between URL param and body request
+// middleware between URL param and body request for (Nested route)
 const setCategoryToBody = (req, res, next) => {
     if (req.params.categoryId) {
         req.body.categoryId = req.params.categoryId;
@@ -39,7 +39,6 @@ router.post("/",
     slugifySubCategory,
     createSubCategory);
 
-
 // @desc Get list of Subcategories
 // @asc Public
 router.get("/list", zQueryValidator(zPaginationSchema), getListSubCategories);
@@ -48,11 +47,9 @@ router.get("/list", zQueryValidator(zPaginationSchema), getListSubCategories);
 // @access Public
 router.get("/", getAllSubCategories);
 
-
 // @desc Get specific Subcategory
 // @access Public
 router.get("/:id", getSubCategory)
-
 
 // @desc Update specific Subcategory
 // @access Private/Admin
