@@ -47,7 +47,7 @@ router.get("/list", setLimiter({ limit: 15 }), zQueryValidator(zPaginationSchema
 router.get("/:id", zParamValidator(idReviewSchema), getReview);
 
 // @desc Create Review
-// @access Private/Protected/User
+// @access Private/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
     setLimiter({ limit: 15 }),
@@ -57,7 +57,7 @@ router.post("/",
     createReview);
 
 // @desc Update specific Review
-// @access Private/Protected
+// @access Private/User
 router.put("/:id",
     [requireLogIn, allowedTo("user")],
     setLimiter({ limit: 15 }),
@@ -65,7 +65,7 @@ router.put("/:id",
     updateReview);
 
 // @desc Delete specific Review
-// @access Private/Protected/Admin
+// @access Private/User/Admin
 router.delete("/:id",
     [requireLogIn, allowedTo("user", "admin")],
     setLimiter({ limit: 15 }),

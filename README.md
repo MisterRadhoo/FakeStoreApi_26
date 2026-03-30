@@ -796,8 +796,17 @@ Product Routes:
 
 ---
 # Review
----
 
+Review Routes:
+
+| @Route                                  | @Type  | @access             | @description
+|-----------------------------------------|--------|---------------------|----------------------------
+| /api/reviews                            | POST   | Private/User        | Create Review
+| /api/reviews/:id                        | GET    | Public              | Get specific Review
+| /api/reviews/:id                        | PUT    | Private/User        | Update specific Review
+| /api/reviews/:id                        | DELETE | Private/User/Admin  | Delete specific Review
+| /api/products/:productsId/reviews/list  | GET    | Public              | Get list of reviews on specific Product
+| /api/reviews                            | GET    | Public              | Get all Reviews         |
 
 
 
