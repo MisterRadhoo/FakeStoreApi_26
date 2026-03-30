@@ -92,7 +92,7 @@ npm run dev
   - [Update specific Review](#update-specific-review)
   - [Delete specific Review](#delete-specific-review)
   - [Get all reviews](#get-all-reviews)
-  - [Get list of Reviews on specific Product](#get-all-reviews-on-specific-product)
+  - [Get list of Reviews on specific Product](#get-list-of-reviews-on-specific-product)
   - [Review Schema](#review-schema)
 
   <!--te-->
@@ -809,6 +809,56 @@ Review Routes:
 | /api/products/:productsId/reviews/list  | GET    | Public              | Get list of reviews on specific Product |
 
 
+## Get list of Reviews on specific Product
+- **Get** list of Reviews on specific product by adding `productId` as a parameter to the URL below:
+- **The reviews route is implemented as a nested route.**
+
+```bash
+[GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a/reviews/list
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javascript
+{
+  "object": "reviews_list",
+  "limit": 12,
+  "page": 1,
+  "sort": "-createdAt",
+  "count": 2,
+  "list": [
+    {
+      "_id": "69c45b2a404f10549f271eb5",
+      "title": "colors are indeed marvelous!",
+      "ratings": 4.8,
+      "userId": {
+        "_id": "69bec9b294bc0c4efd74868d",
+        "userName": "Ana_rose"
+      },
+      "productId": "69bec9b294bc0c4efd74869a",
+      "createdAt": "2026-03-25T22:01:14.719Z",
+      "updatedAt": "2026-03-25T22:01:14.719Z",
+      "__v": 0
+    },
+    {
+      "_id": "69c459d4404f10549f271e9f",
+      "title": "Nice ones, they are fire!",
+      "ratings": 4.98,
+      "userId": {
+        "_id": "69c3f4dcb178bfb403a5ac69",
+        "userName": "radu"
+      },
+      "productId": "69bec9b294bc0c4efd74869a",
+      "createdAt": "2026-03-25T21:55:32.359Z",
+      "updatedAt": "2026-03-25T21:55:32.359Z",
+      "__v": 0
+    }
+  ]
+}
+```
+
+</details>
 
 
  
