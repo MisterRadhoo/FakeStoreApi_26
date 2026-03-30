@@ -38,7 +38,7 @@ const setLimiter = require("../middlewares/limiter/rateLimiter");
 // @access Public
 router.get("/", setLimiter({ limit: 15 }), getAllReviews);
 
-// @desc Get list of Reviews for a specific Product
+// @desc Get list of Reviews on specific Product
 // @access Public
 router.get("/list", setLimiter({ limit: 15 }), zQueryValidator(zPaginationSchema), createFilterObj, getListReviews);
 

@@ -86,6 +86,14 @@ npm run dev
   - [Get Product slug](#get-product-slug)
   - [Search Products by filters](#search-products-by-filters)
   - [Product schema](#product-schema)
+- [Review](#review)
+  - [Create Review](#create-review)
+  - [Get specific Review](#get-specific-review)
+  - [Update specific Review](#update-specific-review)
+  - [Delete specific Review](#delete-specific-review)
+  - [Get all reviews](#get-all-reviews)
+  - [Get list of Reviews on specific Product](#get-all-reviews-on-specific-product)
+  - [Review Schema](#review-schema)
 
   <!--te-->
 
@@ -786,7 +794,11 @@ Product Routes:
 | ratingsAverage   | Number     |
 | ratingsQuantity  | Number     |
 
+
+# Review
 ---
+
+
 
 
  

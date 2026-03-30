@@ -13,7 +13,7 @@ const removeReview = factory.deleteOne(Review, "Review");
 // @desc Get all Reviews
 const getAllReviews = factory.getAll(Review);
 
-// @desc Get List of Reviews
+// @desc Get list of Reviews on specific Product
 const getListReviews = async (req, res) => {
     const response = await findReviews(
         req.filterObj,
