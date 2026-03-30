@@ -809,10 +809,43 @@ Review Routes:
 | /api/products/:productsId/reviews/list  | GET    | Public              | Get list of reviews on specific Product |
 
 ## Create Review
--- 
+- **Create** a new review by sending an object like the followind to the URL below:
+
+```bash
+[POST] http://localhost:7800/api/reviews
+```
+
+```json
+{
+  "title": "Awesome sneakers!",
+  "ratings": 4.68,
+  "productId": "69bec9b294bc0c4efd748691"
+}
+```
+
+<details><summary><b>Output</b></summary>
+<br/>
+
+```javacript
+{
+  "message": "Document Review has been created!",
+  "data": {
+    "title": "Awesome sneakers!",
+    "ratings": 4.68,
+    "userId": "69c3f4dcb178bfb403a5ac69",
+    "productId": "69bec9b294bc0c4efd748691",
+    "_id": "69cad65b2fb058f564e44040",
+    "createdAt": "2026-03-30T20:00:27.028Z",
+    "updatedAt": "2026-03-30T20:00:27.028Z",
+    "__v": 0
+  }
+}
+```
+
+</details>
 
 ## Get list of Reviews on specific Product
-- **Get list of Reviews on specific product by adding `productId` as a parameter to the URL below:**
+- **Get** list of Reviews on specific product by adding `productId` as a parameter to the URL below:
 - **The reviews route is implemented as a nested route.**
 
 ```bash
