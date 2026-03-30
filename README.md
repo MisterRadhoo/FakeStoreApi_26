@@ -794,7 +794,7 @@ Product Routes:
 | ratingsAverage   | Number     |
 | ratingsQuantity  | Number     |
 
-
+---
 # Review
 ---
 
