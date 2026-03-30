@@ -808,9 +808,11 @@ Review Routes:
 | /api/reviews                            | GET    | Public              | Get all Reviews                |
 | /api/products/:productsId/reviews/list  | GET    | Public              | Get list of reviews on specific Product |
 
+## Create Review
+-- 
 
 ## Get list of Reviews on specific Product
-- **Get** list of Reviews on specific product by adding `productId` as a parameter to the URL below:
+- **Get list of Reviews on specific product by adding `productId` as a parameter to the URL below:**
 - **The reviews route is implemented as a nested route.**
 
 ```bash
