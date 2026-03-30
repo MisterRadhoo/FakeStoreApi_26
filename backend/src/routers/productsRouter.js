@@ -93,7 +93,7 @@ router.delete("/:id",
     zParamsValidator(idProductSchema),
     removeProduct);
 
-// @desc Product Search
+// @desc Search Product by filters
 // @access Public
 router.post("/search", setLimiter({ limit: 20 }), searchProduct);
 

@@ -8,7 +8,7 @@ const findSubCategories = async (categoryId, limit, page, sort) => {
     const skip = (pageNumber - 1) * limitPage;
     const sortBy = sort ? String(sort).split(",").join(" ") : "-createdAt";
 
-    const filterObject = categoryId ? { category: categoryId } : {};
+    const filterObject = categoryId ? { categoryId: categoryId } : {};
 
     const subCategories = await SubCategory
         .find(filterObject)

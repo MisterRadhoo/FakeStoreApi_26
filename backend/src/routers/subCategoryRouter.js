@@ -19,7 +19,7 @@ const {
     updateSubCategory,
     removeSubCategory,
     getAllSubCategories,
-    getListSubCategories
+    getListSubCategoriesByCategory
 } = require("../controllers/subCategoryController");
 
 // zod validation middlewares
@@ -39,9 +39,10 @@ router.post("/",
     slugifySubCategory,
     createSubCategory);
 
-// @desc Get list of Subcategories
+// @desc Get list of Subcategories by same Category
 // @asc Public
-router.get("/list", zQueryValidator(zPaginationSchema), getListSubCategories);
+// GET /api/categories/categoryId/subcategories/list
+router.get("/list", zQueryValidator(zPaginationSchema), getListSubCategoriesByCategory);
 
 // @desc Get all Subcategories
 // @access Public

@@ -57,7 +57,7 @@ const getListProductsByCategory = async (req, res) => {
     });
 };
 
-// @desc Search Product 
+// @desc Search Product by filters
 const searchProduct = async (req, res) => {
     const order = req.body.order || "desc";
     const sortBy = req.body.sortBy || "_id";
