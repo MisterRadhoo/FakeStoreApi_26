@@ -275,7 +275,7 @@ Product Routes:
 </details>
 
 ## Update specific Product
-- **Update** specific product that exists by sending an object like the following and adding the `id` or `ObjectId` as a parameter to the URL below:
+- **Update** specific product that exists by sending an object like the following and adding the `id` as a parameter to the URL below:
 
 ```bash
 [PATCH] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
@@ -345,7 +345,7 @@ Product Routes:
 </details>
 
 ## Delete specific Product
-- **Delete** specific product that exists by adding the `id` or `ObjectId` as a parameter to the URL below:
+- **Delete** specific product that exists by adding the `id` as a parameter to the URL below:
 
 ```bash
 [DELETE] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
@@ -373,7 +373,7 @@ Product Routes:
 </details>
 
 ## Get specific Product
-- **Get** specific product that exists by adding `id` or `ObjectId` as a parameter to the URL below:
+- **Get** specific product that exists by adding `id` as a parameter to the URL below:
 
 ```bash
 [GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a
@@ -506,7 +506,7 @@ Product Routes:
 </details>
 
 ## Get related Products
-- **Get** related products by adding `productId` or `ObjectId` as a parameter to the URL below:
+- **Get** related products by adding `productId` as a parameter to the URL below:
 - **This route is a custom product base, that uses `productId` as a parameter.** 
 
 ```bash
@@ -545,7 +545,7 @@ Product Routes:
 </details>
 
 ## Get all Reviews on specific Product
-- **Get** all reviews on specific product by adding `id` or `ObjectId` as a parameter to the URL below:
+- **Get** all reviews on specific product by adding `id` as a parameter to the URL below:
 - **The reviews route is implemented as a nested route.**
 
 ```bash

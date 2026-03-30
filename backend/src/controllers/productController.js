@@ -37,7 +37,7 @@ const getListRelated = async (req, res) => {
     });
 };
 
-// @desc Get list of Products by same Category (Nested route /api/categories)
+// @desc Get list of Products by same categoryId (Nested route /api/categories)
 // GET /api/categories/:categoryId/products/list
 const getListProductsByCategory = async (req, res) => {
     const result = await toObtainProducts(

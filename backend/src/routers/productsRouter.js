@@ -45,7 +45,7 @@ router.use("/:productId/reviews", reviewsRouter);
 // Parameter used in nested route
 router.param("productId", productById);
 
-// @desc Get list of Products by same Category
+// @desc Get list of Products by same categoryId
 // @access Public
 // GET /api/categories/:categoryId/products/list
 router.get("/list",
