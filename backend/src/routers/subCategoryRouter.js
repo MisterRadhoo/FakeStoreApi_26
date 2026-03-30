@@ -41,7 +41,7 @@ router.post("/",
 
 // @desc Get list of Subcategories by same Category
 // @asc Public
-// GET /api/categories/categoryId/subcategories/list
+// GET /api/categories/:categoryId/subcategories/list
 router.get("/list", zQueryValidator(zPaginationSchema), getListSubCategoriesByCategory);
 
 // @desc Get all Subcategories

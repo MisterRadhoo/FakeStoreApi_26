@@ -14,7 +14,7 @@ const removeSubCategory = factory.deleteOne(SubCategory, "SubCategory");
 const getAllSubCategories = factory.getAll(SubCategory);
 
 // @desc Get List of subCategories by same Category
-// GET /api/categories/categoryId/subcategories/list
+// GET /api/categories/:categoryId/subcategories/list
 const getListSubCategoriesByCategory = async (req, res) => {
     const result = await findSubCategories(
         req.params.categoryId,

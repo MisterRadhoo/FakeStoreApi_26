@@ -82,7 +82,7 @@ npm run dev
   - [Delete specific Product](#delete-specific-product)
   - [Get all Products](#get-all-products)
   - [Get related Products](#get-related-products)
-  - [Get all Reviews on specific Product](#get-all-reviews-on-specific-product)
+  - [Get list of Products by Category](#get-list-of-products-by-category)
   - [Get Product slug](#get-product-slug)
   - [Search Products by filters](#search-products-by-filters)
   - [Product schema](#product-schema)
@@ -202,17 +202,17 @@ npm run dev
 
 Product Routes:
 
-| @Routes                               | @Types  | @access       | @description                           |
-|---------------------------------------|---------|---------------|----------------------------------------|
-| /api/products                         | POST    | Private/Admin | Create Product                         |
-| /api/products/:id                     | PATCH   | Private/Admin | Update specific Product                |
-| /api/products/:id                     | DELETE  | Private/Admin | Delete specific Product                |
-| /api/products/:id                     | GET     | Public        | Get specific Product                   |
-| /api/products                         | GET     | Public        | Get all Products                       |
-| /api/products/related/:productId      | GET     | Public        | Get related Products                   |
-| /api/products/:productId/reviews/list | GET     | Public        | Get all Reviews on specific Product    |
-| /api/products/slug/:slug              | GET     | Public        | Get Product slug                       |
-| /api/products/search                  | POST    | Public        | Search Products by filters             |
+| @Routes                                   | @Types  | @access       | @description                           |
+|-------------------------------------------|---------|---------------|----------------------------------------|
+| /api/products                             | POST    | Private/Admin | Create Product                         |
+| /api/products/:id                         | PATCH   | Private/Admin | Update specific Product                |
+| /api/products/:id                         | DELETE  | Private/Admin | Delete specific Product                |
+| /api/products/:id                         | GET     | Public        | Get specific Product                   |
+| /api/products                             | GET     | Public        | Get all Products                       |
+| /api/products/related/:productId          | GET     | Public        | Get related Products                   |
+| /api/categories/:categoryId/products/list | GET     | Public        | Get list of Products by Category       |
+| /api/products/slug/:slug                  | GET     | Public        | Get Product slug                       |
+| /api/products/search                      | POST    | Public        | Search Products by filters             |
 
 ## Create Product
 - **Create** a new product by sending an object like the following to the URL below:
@@ -544,12 +544,11 @@ Product Routes:
 ```
 </details>
 
-## Get all Reviews on specific Product
-- **Get** all reviews on specific product by adding `id` as a parameter to the URL below:
-- **The reviews route is implemented as a nested route.**
+## Get list of Products by Category
+- **Get** list of products for a specific Category, by adding `categoryId `as a parameter to the URL below:
 
 ```bash
-[GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a/reviews/list
+[GET] http://localhost:7800/api/categories/699770f0a04e80c6606e6088/products/list
 ```
 
 <details><summary><b>Output</b></summary>
@@ -557,37 +556,77 @@ Product Routes:
 
 ```javascript
 {
-  "object": "reviews_list",
-  "limit": 12,
+  "object": "product_list_by_same_category",
+  "limit": 14,
   "page": 1,
-  "sort": "-createdAt",
+  "sort": "-price",
   "count": 2,
-  "list": [
+  "products": [
     {
-      "_id": "69c45b2a404f10549f271eb5",
-      "title": "colors are indeed marvelous!",
-      "ratings": 4.8,
-      "userId": {
-        "_id": "69bec9b294bc0c4efd74868d",
-        "userName": "Ana_rose"
+      "_id": "69bec9b294bc0c4efd74869f",
+      "title": "Nike Everyday Socks 6 Pack",
+      "slug": "nike-everyday-socks-6-pack",
+      "price": 30,
+      "currency": "USD",
+      "stock": 49,
+      "description": "The Nike Everyday Socks blend sweat-wicking technology with breathable fabric to help keep your foot dry and cool.",
+      "categoryId": {
+        "_id": "699770f0a04e80c6606e6088",
+        "name": "Accessories"
       },
-      "productId": "69bec9b294bc0c4efd74869a",
-      "createdAt": "2026-03-25T22:01:14.719Z",
-      "updatedAt": "2026-03-25T22:01:14.719Z",
-      "__v": 0
+      "subcategoriesIds": [],
+      "brandId": {
+        "_id": "69be7af76f6540230bd94474",
+        "name": "Nike",
+        "description": "Just Do It"
+      },
+      "imageCover": "http://localhost:7800/static/img/nike-socks-6pack.png",
+      "images": [],
+      "colors": [
+        "Mint Foam",
+        "Baroque Brown",
+        "Rose Gold",
+        "Washed Coral",
+        "White"
+      ],
+      "sold": 4,
+      "ratingsAverage": 4.84,
+      "ratingsQuantity": 3,
+      "createdAt": "2026-03-21T16:39:14.642Z",
+      "updatedAt": "2026-03-21T16:39:14.642Z",
+      "__v": 0,
+      "id": "69bec9b294bc0c4efd74869f"
     },
     {
-      "_id": "69c459d4404f10549f271e9f",
-      "title": "Nice ones, they are fire!",
-      "ratings": 4.98,
-      "userId": {
-        "_id": "69c3f4dcb178bfb403a5ac69",
-        "userName": "radu"
+      "_id": "69bec9b294bc0c4efd74869e",
+      "title": "Nike Everyday Socks 3 Pack",
+      "slug": "nike-everyday-socks-3-pack",
+      "price": 20.99,
+      "currency": "USD",
+      "stock": 99,
+      "description": "The Nike Everyday Socks blend sweat-wicking technology with breathable fabric to help keep your foot dry and cool.",
+      "categoryId": {
+        "_id": "699770f0a04e80c6606e6088",
+        "name": "Accessories"
       },
-      "productId": "69bec9b294bc0c4efd74869a",
-      "createdAt": "2026-03-25T21:55:32.359Z",
-      "updatedAt": "2026-03-25T21:55:32.359Z",
-      "__v": 0
+      "subcategoriesIds": [],
+      "brandId": {
+        "_id": "69be7af76f6540230bd94474",
+        "name": "Nike",
+        "description": "Just Do It"
+      },
+      "imageCover": "http://localhost:7800/static/img/nike-socks-3pack.png",
+      "images": [],
+      "colors": [
+        "White"
+      ],
+      "sold": 46,
+      "ratingsAverage": 4.44,
+      "ratingsQuantity": 26,
+      "createdAt": "2026-03-21T16:39:14.642Z",
+      "updatedAt": "2026-03-21T16:39:14.642Z",
+      "__v": 0,
+      "id": "69bec9b294bc0c4efd74869e"
     }
   ]
 }
