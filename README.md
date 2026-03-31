@@ -29,15 +29,17 @@ cd backend
 npm install
 ```
 
-#### 4.Use mockData for testing purposes (Optional)
+#### 4.Insert or delete mockData for testing purposes (optional)
 
 ```bash
-node src/mockData/seeder.js -i
+cd src/mockData
+node seeder.js -i
 ```
 **or**
 
 ```bash
-node src/mockData/seeder.js -d 
+cd src/mockData
+node seeder.js -d 
 ```
 
 #### 5.Start server (CLI)
