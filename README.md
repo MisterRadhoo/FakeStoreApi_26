@@ -82,6 +82,13 @@ Cookie: cookieToken=<your_token>
 
 ## List pagination Schema
 
+Pagination Schema:
+
+| @Query param  | @Type   | @Default value | @Optional | @description                      |
+|---------------|---------|----------------|-----------|-----------------------------------|
+| limit         | Number  |      12        |    Yes    | Return number of items per page   |
+| page          | Number  |       1        |    Yes    | Page number                       |
+| sort          | String  |  "-createdAt"  |    Yes    | Sorting descending by newest date |
 
 ---
 
