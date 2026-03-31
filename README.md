@@ -121,7 +121,7 @@ Cookie: cookieToken=<your_token>
   | /api/auth/logout   | POST  | Public  | Logout the current User         |
 
   ## Register
-  - **User** can register by sending an object like the following to the URL below:
+  - **User** can register by sending a request to `/api/auth/register` with an object like the following:
 
   ```bash
   [POST] http://localhost:7800/api/auth/register
@@ -161,7 +161,7 @@ Cookie: cookieToken=<your_token>
 </details>
 
 ## Login
-- **User** can login by sending an object like the following to the URL below:
+- **User** can login by sending a request to `/api/auth/login` with an object like the following:
 
  ```bash
  [POST] http://localhost:7800/api/auth/login
@@ -199,7 +199,7 @@ Cookie: cookieToken=<your_token>
 </details>
 
 ## Logout
-- **User** can logout from account using the following URL below:
+- **User** can logout from account by sending a request to `/api/auth/logout`:
 
 ```bash
 [POST] http://localhost:7800/api/auth/logout
@@ -235,7 +235,7 @@ Product Routes:
 | /api/products/search                      | POST    | Public        | Search Products by filters             |
 
 ## Create Product
-- **Create** a new product by sending an object like the following to the URL below:
+- **Create** a new product by sending a request to `/api/products` with an object like the following:
 
 ```bash
 [POST] http://localhost:7800/api/products
@@ -295,7 +295,7 @@ Product Routes:
 </details>
 
 ## Update specific Product
-- **Update** specific product that exists by sending an object like the following and adding the `id` as a parameter to the URL below:
+- **Update** specific product by sending a request to `/api/products/:id` with an object like the following and adding `id` as a parameter to URL:
 
 ```bash
 [PATCH] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
@@ -365,7 +365,7 @@ Product Routes:
 </details>
 
 ## Delete specific Product
-- **Delete** specific product that exists by adding the `id` as a parameter to the URL below:
+- **Delete** specific product by sending a request to `/api/products/:id` and adding `id` as a parameter to URL:
 
 ```bash
 [DELETE] http://localhost:7800/api/products/69c41c6201c423c5513c8a57
@@ -393,7 +393,7 @@ Product Routes:
 </details>
 
 ## Get specific Product
-- **Get** specific product that exists by adding `id` as a parameter to the URL below:
+- **Get** specific product by sending a request to `/api/products/:id` and adding `id` as a parameter to URL:
 
 ```bash
 [GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a
@@ -452,7 +452,7 @@ Product Routes:
 </details>
 
 ## Get all Products
-- **Get** all products from the database by using URL below:
+- **Get** all products by sending a request to `/api/products`:
 
 ```bash
 [GET] http://localhost:7800/api/products?limit=3&page=2&sortedBy=-stock
@@ -526,8 +526,8 @@ Product Routes:
 </details>
 
 ## Get related Products
-- **Get** related products by adding `productId` as a parameter to the URL below:
-- **This route is a custom product base, that uses `productId` as a parameter.** 
+- **Get** related products by sending a request to `/api/products/related/:productId` and adding `productId` as a parameter to the URL:
+- **This route is a custom and uses `productId` as a URL parameter.** 
 
 ```bash
 [GET] http://localhost:7800/api/products/related/69bec9b294bc0c4efd74869a
@@ -565,7 +565,7 @@ Product Routes:
 </details>
 
 ## Get list of Products by Category
-- **Get** list of products for a specific Category, by adding `categoryId `as a parameter to the URL below:
+- **Get** list of products for a specific Category, by sending a request to `/api/categories/:categoryId/products/list` and adding `categoryId `as a parameter to the URL:
 
 ```bash
 [GET] http://localhost:7800/api/categories/699770f0a04e80c6606e6088/products/list
@@ -655,7 +655,7 @@ Product Routes:
 </details>
 
 ## Get Product slug
-- **Get** product slug by adding `slug` as a parameter to the URL below:
+- **Get** product slug by sending a request to `/api/products/slug/:slug` and adding `slug` as a parameter to the URL:
 
 ```bash
 [GET] http://localhost:7800/api/products/slug/nike-sb-dunk-low-asparagus
@@ -713,9 +713,8 @@ Product Routes:
 
 </details>
 
-
 ## Search Products by filters
-- **Search** products using filter options by sending an object like the following to the URL below:
+- **Search** products using filter options by sending a request to `/api/products/search` with an object like the following:
 
 ```bash
 [POST] http://localhost:7800/api/products/search
@@ -821,7 +820,7 @@ Review Routes:
 | /api/products/:productsId/reviews/list  | GET    | Public              | Get list of reviews on specific Product |
 
 ## Create Review
-- **Create** a new review by sending an object like the followind to the URL below:
+- **Create** a new review by sending a request to `/api/reviews/` with and object like the following:
 
 ```bash
 [POST] http://localhost:7800/api/reviews
@@ -857,7 +856,7 @@ Review Routes:
 </details>
 
 ## Get list of Reviews on specific Product
-- **Get** list of Reviews on specific product by adding `productId` as a parameter to the URL below:
+- **Get** list of Reviews on specific product by sending a request to `/api/products/:productId/reviews/list` and adding `productId` as a parameter to the URL:
 - **The reviews route is implemented as a nested route.**
 
 ```bash
