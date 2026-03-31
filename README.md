@@ -59,7 +59,7 @@ npm run dev
 ```env
 MONGO_URI=your_mongo_uri  
 JWT_SECRET=your_jwt_secret
-BASE_URL = `http://localhost:7800/
+BASE_URL=http://localhost:7800/
 ```
 ---
 #### API Authentication
