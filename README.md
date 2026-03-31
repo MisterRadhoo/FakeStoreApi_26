@@ -81,6 +81,8 @@ Cookie: cookieToken=<your_token>
 ```
 
 ## List pagination Schema
+- **Used** to paginate and sort list results.
+- **This** feature is optional.
 
 Pagination Schema:
 
@@ -88,7 +90,14 @@ Pagination Schema:
 |---------------|---------|----------------|-----------|-----------------------------------|
 | limit         | Number  |      12        |    Yes    | Return number of items per page   |
 | page          | Number  |       1        |    Yes    | Page number                       |
-| sort          | String  |  "-createdAt"  |    Yes    | Sorting descending by newest date |
+| sort          | String  |  "-createdAt"  |    Yes    | Descending sort by newest date    |
+
+| @Supported route                            |   @description route                     |
+|----------------------------------------------|-----------------------------------------|
+| `/api/products/related/:productId`           | Get all related products by productId   |
+| `/api/categories/:categoryId/products/list`  | Get list of products by same Category   |
+| `/api/products/:productId/reviews/list`      | Get list of reviews on specific Product |
+|          ....under construction              |  .....                                  |
 
 ---
 
@@ -869,7 +878,8 @@ Review Routes:
 
 ## Get list of Reviews on specific Product
 - **Get** list of Reviews on specific product by sending a request to `/api/products/:productId/reviews/list` and adding `productId` as a parameter to the URL:
-- **The reviews route is implemented as a nested route.**
+- **The** reviews route is implemented as a nested route.
+- **The** route supports optional pagination and sorting through the `limit`, `page`, `sort` query parameters. If omitted, default values are applied.
 
 ```bash
 [GET] http://localhost:7800/api/products/69bec9b294bc0c4efd74869a/reviews/list
