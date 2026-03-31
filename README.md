@@ -112,7 +112,7 @@ npm run dev
   - **User** can register by sending an object like the following to the URL below:
 
   ```bash
- [POST] http://localhost:7800/api/auth/register
+  **[POST]** http://localhost:7800/api/auth/register
   ```
 
 ```json
