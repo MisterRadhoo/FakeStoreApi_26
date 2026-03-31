@@ -71,12 +71,12 @@ BASE_URL=http://localhost:7800/
 #### Auth examples:
 
 - **Manually**  send the token in the `Authorization` header.
-```http
+```md
  Authorization: Bearer <your_token> 
 ```
 
 - **Automatically** after login, the token is stored in the browser cookie, named `cookieToken`.
-```http
+```md
 Cookie: cookieToken=<your_token>
 ```
 ---
