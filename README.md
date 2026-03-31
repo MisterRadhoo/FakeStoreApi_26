@@ -55,7 +55,7 @@ npm run dev
 #### Enviroment Variables
 
 **Note: The .env file is included in the project for easier setup.**
-**File contents ++**
+
 ```env
 MONGO_URI=your_mongo_uri  
 JWT_SECRET=your_jwt_secret
@@ -64,15 +64,20 @@ BASE_URL=http://localhost:7800/
 ---
 #### API Authentication
 
-**Certain endpoints are private routes, authentication is required.Depending on the user role, access on various CRUD operations is granted via token/cookieToken**
+**Certain endpoints are private routes, authentication is required.Depending on the user role, access on various CRUD operations is granted with a valid JWT token. The token can be sent in 2 ways: manually or automatically after login through browser cookies (`cookieToken`).**
 - **Step 1.** Registered user, they just need to login to obtain token/cookieToken for access.
 - **Step 2.** Unregistered user, they need to register first, then login into new account to obtain token/cookieToken for access.
 
 #### Auth examples:
 
-```md
+- **Manually**  send the token in the `Authorization` header.
+```http
  Authorization: Bearer <your_token> 
- Cookie: cookieToken=<your_token>
+```
+
+- **Automatically** after login, the token is stored in the browser cookie, named `cookieToken`.
+```http
+Cookie: cookieToken=<your_token>
 ```
 ---
 
