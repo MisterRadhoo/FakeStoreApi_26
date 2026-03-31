@@ -79,8 +79,10 @@ BASE_URL=http://localhost:7800/
 ```md
 Cookie: cookieToken=<your_token>
 ```
----
-#### List pagination
+
+## List pagination Schema
+
+
 ---
 
 #### Endpoints
