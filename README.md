@@ -43,7 +43,7 @@ node src/mockData/seeder.js -d
 #### 5.Start server (CLI)
 
 ```bash
- nodemon src/index.js
+nodemon src/index.js
 ````
 
 **or**
@@ -51,9 +51,16 @@ node src/mockData/seeder.js -d
 ```bash
 npm run dev
 ```
-#### Enviroment Variable
-**Note: The .env file will be uploaded with the project, for less hassle when starting the application.**
 
+#### Enviroment Variables
+
+**Note: The .env file is included in the project for easier setup.**
+**File contents ++**
+```env
+MONGO_URI=your_mongo_uri  
+JWT_SECRET=your_jwt_secret
+BASE_URL = `http://localhost:7800/
+```
 ---
 #### API Authentication
 
