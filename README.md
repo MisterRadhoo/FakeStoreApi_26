@@ -80,6 +80,8 @@ BASE_URL=http://localhost:7800/
 Cookie: cookieToken=<your_token>
 ```
 ---
+#### List pagination
+---
 
 #### Endpoints
 
