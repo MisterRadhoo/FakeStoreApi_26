@@ -527,7 +527,8 @@ Product Routes:
 
 ## Get related Products
 - **Get** related products by sending a request to `/api/products/related/:productId` and adding `productId` as a parameter to the URL:
-- **This route is a custom and uses `productId` as a URL parameter.** 
+- **This** route is a custom and uses `productId` as a URL parameter. 
+- **The** route supports optional pagination and sorting through the `limit`, `page`, `sort` query parameters. If omitted, default values are applied.
 
 ```bash
 [GET] http://localhost:7800/api/products/related/69bec9b294bc0c4efd74869a
