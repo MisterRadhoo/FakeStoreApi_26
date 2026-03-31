@@ -567,9 +567,10 @@ Product Routes:
 
 ## Get list of Products by Category
 - **Get** list of products for a specific Category, by sending a request to `/api/categories/:categoryId/products/list` and adding `categoryId `as a parameter to the URL:
+- **The** route supports optional pagination and sorting through the `limit`, `page`, `sort` query parameters. If omitted, default values are applied.
 
 ```bash
-[GET] http://localhost:7800/api/categories/699770f0a04e80c6606e6088/products/list
+[GET] http://localhost:7800/api/categories/699770f0a04e80c6606e6088/products/list?limit=14&sort=-price&page=1
 ```
 
 <details><summary><b>Output</b></summary>
@@ -780,8 +781,7 @@ Product Routes:
     },
     // Additional products may be returned...
   ]
-}
-      
+}      
 ```
 
 </details>
