@@ -107,5 +107,27 @@ const assertProductRefs = async (categoryId, subcategoriesIds, brandId) => {
     }
 };
 
+// @desc Assert Product references in db for Update
+const assertProductRefsForUpdate = async (productId, data) => {
+    const product = await Product.findById(productId)
+        .select("categoryId subcategoriesIds brandId");
 
-module.exports = { findProducts, findRelatedProducts, assertProductRefs, toObtainProducts };
+    if (!product) {
+        throw CustomApiError.notFound(`Product for this id: ${productId}`, "productId");
+    }
+
+    await assertProductRefs(
+        data.categoryId || product.categoryId,
+        data.subcategoriesIds || product.subcategoriesIds,
+        data.brandId || product.brandId
+    );
+};
+
+
+module.exports = {
+    findProducts,
+    findRelatedProducts,
+    toObtainProducts,
+    assertProductRefs,
+    assertProductRefsForUpdate
+};

@@ -12,7 +12,7 @@ const updateOne = (Model, name = "document") => async (req, res) => {
         new: true,
         runValidators: true,
         context: "query",
-    });
+    }).select("-createdAt -updatedAt -__v");
 
     if (!document) {
         throw CustomApiError.notFound(`${name} for this id: ${req.params.id}`, "document");

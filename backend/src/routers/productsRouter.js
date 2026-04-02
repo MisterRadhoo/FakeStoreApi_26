@@ -6,7 +6,7 @@ const router = express.Router({ mergeParams: true });
 const { productById, filterObjCategory } = require("../middlewares/product/utilityMiddleware");
 const slugifyProduct = require("../middlewares/product/slugifyMiddleware");
 const productBySlug = require("../middlewares/product/productBySlug");
-const checkProductRefs = require("../middlewares/product/referencesMiddleware");
+const { checkProductRefs, checkProductRefsForUpdate } = require("../middlewares/product/referencesMiddleware");
 
 // Product controller functions
 const {
@@ -29,6 +29,7 @@ const zBodyValidator = require("../middlewares/zodValidators/zBody");
 // validators
 const idProductSchema = require("../validators/product/idProduct");
 const zCreateProductSchema = require("../validators/product/createProductSchema");
+const zUpdateProductSchema = require("../validators/product/updateProductSchema");
 const zPaginationSchema = require("../validators/zPagination");
 
 //permissions
@@ -83,6 +84,8 @@ router.post("/",
 router.patch("/:id",
     [requireLogIn, allowedTo("admin")],
     zParamsValidator(idProductSchema),
+    zBodyValidator(zUpdateProductSchema),
+    checkProductRefsForUpdate,
     slugifyProduct,
     updateProduct);
 

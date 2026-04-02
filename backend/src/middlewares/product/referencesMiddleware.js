@@ -1,4 +1,4 @@
-const { assertProductRefs } = require("../../services/product");
+const { assertProductRefs, assertProductRefsForUpdate } = require("../../services/product");
 
 // Middleware to check Product references from productSchema
 const checkProductRefs = async (req, res, next) => {
@@ -11,7 +11,17 @@ const checkProductRefs = async (req, res, next) => {
     return next();
 };
 
+// Middleware to check Product references from productSchema for Update 
+const checkProductRefsForUpdate = async (req, res, next) => {
+    await assertProductRefsForUpdate(
+        req.params.id,
+        req.body
+    );
+    return next();
+};
 
-module.exports = checkProductRefs;
+
+
+module.exports = { checkProductRefs, checkProductRefsForUpdate };
 
 
