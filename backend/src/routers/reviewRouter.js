@@ -5,7 +5,8 @@ const router = express.Router({ mergeParams: true });
 const {
     createFilterObj,
     setProductIdAndUserIdToBody,
-    checkReviewRefs
+    checkReviewRefs,
+    checkReviewOwnership
 } = require("../middlewares/review/utilityMiddleware");
 
 // Review controller functions
@@ -27,6 +28,7 @@ const zParamValidator = require("../middlewares/zodValidators/zParams");
 const zPaginationSchema = require("../validators/zPagination");
 const idReviewSchema = require("../validators/review/idReview");
 const zCreateReviewSchema = require("../validators/review/createReviewSchema");
+const zUpdateReviewSchema = require("../validators/review/updateReviewSchema");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -62,10 +64,12 @@ router.post("/",
 
 // @desc Update specific Review
 // @access Private/User
-router.put("/:id",
+router.patch("/:id",
     [requireLogIn, allowedTo("user")],
     setLimiter({ limit: 30 }),
     zParamValidator(idReviewSchema),
+    zBodyValidator(zUpdateReviewSchema),
+    checkReviewOwnership,
     updateReview);
 
 // @desc Delete specific Review
@@ -74,6 +78,7 @@ router.delete("/:id",
     [requireLogIn, allowedTo("user", "admin")],
     setLimiter({ limit: 30 }),
     zParamValidator(idReviewSchema),
+    checkReviewOwnership,
     removeReview);
 
 module.exports = router;

@@ -32,9 +32,9 @@ const reviewSchema = new mongoose.Schema(
     }
 );
 
-reviewSchema.pre(/^find/, function () {
-    this.populate({ path: "userId", select: "userName _id" });
-});
+// reviewSchema.pre(/^find/, function () {
+//     this.populate({ path: "userId", select: "userName _id" });
+// });
 
 reviewSchema.statics.calculateAverageRatingsAndQuantity = async function (productId) {
     const stats = await this.aggregate([

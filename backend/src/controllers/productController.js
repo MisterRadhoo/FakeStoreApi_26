@@ -10,7 +10,10 @@ const getProduct = factory.getOne(Product,
         { path: "categoryId", select: "name _id" },
         { path: "subcategoriesIds", select: "name _id" },
         { path: "brandId", select: "name _id description" },
-        { path: "reviews", select: "-createdAt -updatedAt -__v" }
+        {
+            path: "reviews", select: "title ratings userId productId",
+            populate: { path: "userId", select: "userName _id" }
+        }
     ],
     "Product");
 // @desc Update specific Product

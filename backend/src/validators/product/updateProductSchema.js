@@ -18,7 +18,8 @@ const zUpdateProductSchema = z.object({
     ratingsAverage: z.coerce.number().min(1, "Expected number to be >= 1").max(5, "Expected number to be <= 5").transform((val) => Math.round(val * 100) / 100).optional(),
     ratingsQuantity: z.coerce.number().int().min(0, "Expected number to be >= 0").optional(),
 }).strict().refine((data) => Object.keys(data).length >= 3, {
-    message: "At least 3 fields must be provided for update!"
+    message: "At least 3 fields must be provided for update!",
+    path: ["product"]
 });
 
 module.exports = zUpdateProductSchema;

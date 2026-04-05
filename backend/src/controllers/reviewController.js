@@ -5,7 +5,7 @@ const { findReviews } = require("../services/review");
 // @desc Create Review
 const createReview = factory.createOne(Review, "Review");
 // @desc Get specific Review
-const getReview = factory.getOne(Review, null, "Review");
+const getReview = factory.getOne(Review, { path: "userId", select: "userName _id" }, "Review");
 // @desc Update specific Review
 const updateReview = factory.updateOne(Review, "Review");
 // @desc Delete specific Review

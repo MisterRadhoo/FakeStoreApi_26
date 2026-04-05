@@ -23,8 +23,7 @@ const findProducts = async (filters, sortBy, order, limit, skip) => {
 
     const products = await Product
         .find(findArgs)
-        .select("-image -createdAt -updatedAt -__v")
-        //.populate("categoryId")
+        .select("-images -createdAt -updatedAt -__v")
         .sort([[sortBy, order]])
         .skip(skip)
         .limit(limit);
@@ -44,8 +43,11 @@ const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sor
         categoryId: categoryId,
         _id: { $ne: exceptProductId }
     })
-        .select("-images -imageCover -__v")
-        .sort(sortBy)     // sort: -price (descending), (price ascending)
+        .select("_id title slug price currency stock description categoryId subcategoriesIds brandId imageCover colors sold ratingsAverage ratingsQuantity")
+        .populate({ path: "categoryId", select: "name _id" })
+        .populate({ path: "subcategoriesIds", select: "name _id" })
+        .populate({ path: "brandId", select: "name _id" })
+        .sort(sortBy)    // sort: -price (descending), (price ascending)
         .skip(skip)
         .limit(limitPage);
 
@@ -69,7 +71,10 @@ const toObtainProducts = async (filter, limit, page, sort) => {
 
     const products = await Product
         .find(filterObject)
-        .select("-__v")
+        .select("_id title slug price currency stock description categoryId subcategoriesIds brandId imageCover colors sold ratingsAverage ratingsQuantity")
+        .populate({ path: "categoryId", select: "name _id" })
+        .populate({ path: "subcategoriesIds", select: "name _id" })
+        .populate({ path: "brandId", select: "name _id" })
         .sort(sortBy)
         .skip(skip)
         .limit(limitPage);

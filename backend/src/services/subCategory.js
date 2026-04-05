@@ -12,7 +12,8 @@ const findSubCategories = async (categoryId, limit, page, sort) => {
 
     const subCategories = await SubCategory
         .find(filterObject)
-        .select("-__v")
+        .select("_id name slug categoryId")
+        .populate({ path: "categoryId", select: "name _id" })
         .skip(skip)
         .sort(sortBy)
         .limit(limitPage);

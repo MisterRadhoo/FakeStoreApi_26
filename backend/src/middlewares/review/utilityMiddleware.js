@@ -1,4 +1,4 @@
-const { assertReviewRefs } = require("../../services/review");
+const { assertReviewRefs, assertReviewOwnership } = require("../../services/review");
 
 // Middleware for nested route
 // GET /api/products/:productId/reviews/list
@@ -27,5 +27,19 @@ const checkReviewRefs = async (req, res, next) => {
     return next();
 };
 
+// Middleware to check Review references from reviwSchema for Update 
+const checkReviewOwnership = async (req, res, next) => {
+    await assertReviewOwnership(
+        req.params.id,
+        req.crUser
+    );
+    return next();
+};
 
-module.exports = { createFilterObj, setProductIdAndUserIdToBody, checkReviewRefs };
+
+module.exports = {
+    createFilterObj,
+    setProductIdAndUserIdToBody,
+    checkReviewRefs,
+    checkReviewOwnership
+};
