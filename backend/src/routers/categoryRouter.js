@@ -46,7 +46,7 @@ router.use("/:categoryId/subcategories", subCategoryRouter);
 
 // @desc Get all Categories
 // @access Public
-router.get("/", setLimiter({ limit: 20 }), getAllCategories);
+router.get("/", setLimiter({ limit: 30 }), getAllCategories);
 
 // @desc Get specific Category
 // @access Public
@@ -54,15 +54,27 @@ router.get("/:id", zParamsValidator(idCategorySchema), getCategory);
 
 // @desc Create a Category
 // @access Private/Admin
-router.post("/", [requireLogIn, allowedTo("admin")], zBodyValidator(zCreateCategorySchema), slugifyCategory, createCategory);
+router.post("/",
+    [requireLogIn, allowedTo("admin")],
+    zBodyValidator(zCreateCategorySchema),
+    slugifyCategory,
+    createCategory);
 
 // @desc Update specific Category
 // @access Private/Admin
-router.put("/:id", [requireLogIn, allowedTo("admin")], zParamsValidator(idCategorySchema), zBodyValidator(zUpdateCategorySchema), slugifyCategory, updateCategory);
+router.put("/:id",
+    [requireLogIn, allowedTo("admin")],
+    zParamsValidator(idCategorySchema),
+    zBodyValidator(zUpdateCategorySchema),
+    slugifyCategory,
+    updateCategory);
 
 // @desc Delete specific Category
 // @access Private/Admin
-router.delete("/:id", [requireLogIn, allowedTo("admin")], zParamsValidator(idCategorySchema), removeCategory);
+router.delete("/:id",
+    [requireLogIn, allowedTo("admin")],
+    zParamsValidator(idCategorySchema),
+    removeCategory);
 
 
 module.exports = router;

@@ -14,6 +14,7 @@ const findReviews = async (filter, limit, page, sort) => {
 
   const reviews = await Review
     .find(filterObject)
+    .select("-__v")
     .sort(sortBy)
     .skip(skip)
     .limit(limitPage);

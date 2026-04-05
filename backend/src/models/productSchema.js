@@ -96,21 +96,6 @@ productSchema.virtual("reviews", {
   foreignField: "productId",
 });
 
-//Mongoose Query middleware to populate Category in Product
-productSchema.pre(/^find/, function () {
-  this.populate({
-    path: "categoryId",
-    select: "name _id"
-  });
-  this.populate({
-    "path": "subcategoriesIds",
-    "select": "name _id"
-  });
-  this.populate({
-    "path": "brandId",
-    "select": "name _id description"
-  });
-});
 
 // compound index for searching products after category and price,
 productSchema.index({ categoryId: 1, price: 1 });

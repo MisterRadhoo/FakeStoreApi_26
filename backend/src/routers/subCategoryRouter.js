@@ -42,7 +42,9 @@ router.post("/",
 // @desc Get list of Subcategories by same Category
 // @asc Public
 // GET /api/categories/:categoryId/subcategories/list
-router.get("/list", zQueryValidator(zPaginationSchema), getListSubCategoriesByCategory);
+router.get("/list",
+    zQueryValidator(zPaginationSchema),
+    getListSubCategoriesByCategory);
 
 // @desc Get all Subcategories
 // @access Public
@@ -54,7 +56,10 @@ router.get("/:id", getSubCategory)
 
 // @desc Update specific Subcategory
 // @access Private/Admin
-router.put("/:id", [requireLogIn, allowedTo("admin")], slugifySubCategory, updateSubCategory);
+router.put("/:id",
+    [requireLogIn, allowedTo("admin")],
+    slugifySubCategory,
+    updateSubCategory);
 
 // @desc Delete specific Subcategory
 // @access Private/Admin

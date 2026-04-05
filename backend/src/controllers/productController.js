@@ -5,7 +5,14 @@ const { findProducts, findRelatedProducts, toObtainProducts } = require("../serv
 // @desc Create Product
 const createProduct = factory.createOne(Product, "Product");
 // @desc Get specific Product
-const getProduct = factory.getOne(Product, { path: "reviews" }, "Product");
+const getProduct = factory.getOne(Product,
+    [
+        { path: "categoryId", select: "name _id" },
+        { path: "subcategoriesIds", select: "name _id" },
+        { path: "brandId", select: "name _id description" },
+        { path: "reviews", select: "-createdAt -updatedAt -__v" }
+    ],
+    "Product");
 // @desc Update specific Product
 const updateProduct = factory.updateOne(Product, "Product");
 // @desc Delete specific Product

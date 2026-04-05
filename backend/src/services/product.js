@@ -23,7 +23,7 @@ const findProducts = async (filters, sortBy, order, limit, skip) => {
 
     const products = await Product
         .find(findArgs)
-        .select("-image")
+        .select("-image -createdAt -updatedAt -__v")
         //.populate("categoryId")
         .sort([[sortBy, order]])
         .skip(skip)
@@ -44,7 +44,7 @@ const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sor
         categoryId: categoryId,
         _id: { $ne: exceptProductId }
     })
-        .select("-images -imageCover")
+        .select("-images -imageCover -__v")
         .sort(sortBy)     // sort: -price (descending), (price ascending)
         .skip(skip)
         .limit(limitPage);
@@ -69,6 +69,7 @@ const toObtainProducts = async (filter, limit, page, sort) => {
 
     const products = await Product
         .find(filterObject)
+        .select("-__v")
         .sort(sortBy)
         .skip(skip)
         .limit(limitPage);

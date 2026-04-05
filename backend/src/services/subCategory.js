@@ -12,6 +12,7 @@ const findSubCategories = async (categoryId, limit, page, sort) => {
 
     const subCategories = await SubCategory
         .find(filterObject)
+        .select("-__v")
         .skip(skip)
         .sort(sortBy)
         .limit(limitPage);

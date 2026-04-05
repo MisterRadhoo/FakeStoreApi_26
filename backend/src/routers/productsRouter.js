@@ -60,7 +60,7 @@ router.get("/slug/:slug", productBySlug, getSlugProduct);
 
 // @desc Get all Products
 // @access Public
-router.get("/", setLimiter({ limit: 20 }), getAllProducts);
+router.get("/", setLimiter({ limit: 30 }), getAllProducts);
 
 // @desc Get related Products base in productId
 // @access Public
@@ -98,6 +98,6 @@ router.delete("/:id",
 
 // @desc Search Product by filters
 // @access Public
-router.post("/search", setLimiter({ limit: 20 }), searchProduct);
+router.post("/search", setLimiter({ limit: 30 }), searchProduct);
 
 module.exports = router;

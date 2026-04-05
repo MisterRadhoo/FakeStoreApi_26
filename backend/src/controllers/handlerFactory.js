@@ -35,7 +35,7 @@ const deleteOne = (Model, name = "document") => async (req, res) => {
 // @desc Read/Get one document by Id
 const getOne = (Model, populationOpt, name = "document") => async (req, res) => {
     const id = req.params.id;
-    let query = Model.findById(id);
+    let query = Model.findById(id).select("-createdAt -updatedAt -__v");
     if (populationOpt) {
         query = query.populate(populationOpt);
     }
