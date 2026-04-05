@@ -1,6 +1,6 @@
 const { Product, Category, SubCategory, Brand } = require("../models/index");
 const CustomApiError = require("../utils/ApiError");
-const { checkExists } = require("../utils/helpers");
+const { checkExists, productSelectFields, productPopulateOptions } = require("../utils/helpers");
 
 // @desc => description
 // @desc Find Products and filter by price in range [min, max]
@@ -43,10 +43,8 @@ const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sor
         categoryId: categoryId,
         _id: { $ne: exceptProductId }
     })
-        .select("_id title slug price currency stock description categoryId subcategoriesIds brandId imageCover colors sold ratingsAverage ratingsQuantity")
-        .populate({ path: "categoryId", select: "name _id" })
-        .populate({ path: "subcategoriesIds", select: "name _id" })
-        .populate({ path: "brandId", select: "name _id" })
+        .select(productSelectFields)
+        .populate(productPopulateOptions)
         .sort(sortBy)    // sort: -price (descending), (price ascending)
         .skip(skip)
         .limit(limitPage);
@@ -71,10 +69,8 @@ const toObtainProducts = async (filter, limit, page, sort) => {
 
     const products = await Product
         .find(filterObject)
-        .select("_id title slug price currency stock description categoryId subcategoriesIds brandId imageCover colors sold ratingsAverage ratingsQuantity")
-        .populate({ path: "categoryId", select: "name _id" })
-        .populate({ path: "subcategoriesIds", select: "name _id" })
-        .populate({ path: "brandId", select: "name _id" })
+        .select(productSelectFields)
+        .populate(productPopulateOptions)
         .sort(sortBy)
         .skip(skip)
         .limit(limitPage);

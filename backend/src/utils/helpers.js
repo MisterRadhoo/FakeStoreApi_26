@@ -33,7 +33,24 @@ const checkExists = async (Model, ids, fieldName) => {
     }
 };
 
+// Product fields for select query
+const productSelectFields = [
+    "_id", "title", "slug", "price",
+    "currency", "stock", "description",
+    "categoryId", "subcategoriesIds", "brandId",
+    "imageCover", "colors", "sold", "ratingsAverage",
+    "ratingsQuantity"].join(" ");
 
-module.exports = { checkExists };
+// Product references for populate query
+const productPopulateOptions = [
+    { path: "categoryId", select: "name _id" },
+    { path: "subcategoriesIds", select: "name _id" },
+    { path: "brandId", select: "name _id" }
+];
+
+
+
+
+module.exports = { checkExists, productSelectFields, productPopulateOptions };
 
 
