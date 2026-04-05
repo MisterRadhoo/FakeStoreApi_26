@@ -374,5 +374,27 @@
             "sold": 4,
             "ratingsAverage": 4.84,
             "ratingsQuantity": 3
+      },
+      {
+            "title": "Air Jordan 1 Low OG Washed Teal",
+            "slug": "air-jordan-1-low-og-washed-teal",
+            "price": 189.99,
+            "currency": "USD",
+            "stock": 27,
+            "description": "A thinned-out, sized-up Swoosh, rounded toe-box, and bulkier overall paneling are the foremost changes from the silhouette we've received in the past several years.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69b95dd7e8acb4ae28af811b",
+            "imageCover": "http://localhost:7800/static/img/air-jordan-1-low-og-washed-teal.png",
+            "images": [],
+            "colors": [
+                  "Washed Teal"
+            ],
+            "sold": 2,
+            "ratingsAverage": 4.54,
+            "ratingsQuantity": 1
       }
+      
 ]
