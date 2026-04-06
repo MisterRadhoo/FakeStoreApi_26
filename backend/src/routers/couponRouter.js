@@ -10,6 +10,15 @@ const {
     getAllCoupons
 } = require("../controllers/couponController");
 
+// zod validation middlewares
+const zQueryValidator = require("../middlewares/zodValidators/zQuery");
+const zParamsValidator = require("../middlewares/zodValidators/zParams");
+const zBodyValidator = require("../middlewares/zodValidators/zBody");
+
+// validators
+const idCouponSchema = require("../validators/coupon/idCoupon");
+const zCouponSchema = require("../validators/coupon/couponSchema");
+
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
@@ -19,19 +28,19 @@ router.get("/", getAllCoupons);
 
 // @desc Get specific Coupon
 // @access Public
-router.get("/:id", getCoupon);
+router.get("/:id", zParamsValidator(idCouponSchema), getCoupon);
 
 // @desc Create Coupon
 // @access Private/Admin
-router.post("/", [requireLogIn, allowedTo("admin")], createCoupon);
+router.post("/", [requireLogIn, allowedTo("admin")], zBodyValidator(zCouponSchema), createCoupon);
 
 // @desc Update specific Coupon
 // @access Private/Admin
-router.put("/:id", [requireLogIn, allowedTo("admin")], updateCoupon);
+router.put("/:id", [requireLogIn, allowedTo("admin")], zParamsValidator(idCouponSchema), zBodyValidator(zCouponSchema), updateCoupon);
 
 // @desc Delete specific Coupon
 // @access Private/Admin
-router.delete("/:id", [requireLogIn, allowedTo("admin")], removeCoupon);
+router.delete("/:id", [requireLogIn, allowedTo("admin")], zParamsValidator(idCouponSchema), removeCoupon);
 
 
 module.exports = router;
