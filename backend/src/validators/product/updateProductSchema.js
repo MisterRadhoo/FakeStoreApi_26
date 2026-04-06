@@ -2,7 +2,7 @@ const { z } = require("zod");
 const zObjectId = require("../zObjectId");
 
 // @desc Update Product zod schema validator
-const zUpdateProductSchema = z.object({
+const zUpdateProductSchema = z.strictObject({
     title: z.string().trim().min(4, "At least 4 characters").max(120, "At most 120 characters").optional(),
     price: z.coerce.number("Must be an number").min(0, "Price must be >= 0").optional(),
     currency: z.enum(["USD", "EUR", "RON"]).optional(),
@@ -17,7 +17,7 @@ const zUpdateProductSchema = z.object({
     sold: z.coerce.number().int().min(0, "Sold must be >= 0").optional(),
     ratingsAverage: z.coerce.number().min(1, "Expected number to be >= 1").max(5, "Expected number to be <= 5").transform((val) => Math.round(val * 100) / 100).optional(),
     ratingsQuantity: z.coerce.number().int().min(0, "Expected number to be >= 0").optional(),
-}).strict().refine((data) => Object.keys(data).length >= 3, {
+}).refine((data) => Object.keys(data).length >= 3, {
     message: "At least 3 fields must be provided for update!",
     path: ["product"]
 });

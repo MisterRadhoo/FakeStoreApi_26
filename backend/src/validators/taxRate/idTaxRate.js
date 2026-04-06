@@ -1,8 +1,8 @@
 const { z } = require("zod");
 const zObjectId = require("../zObjectId");
 
-const idTaxRateSchema = z.object({
+const idTaxRateSchema = z.strictObject({
     id: zObjectId
-}).strict();
+});
 
 module.exports = idTaxRateSchema;

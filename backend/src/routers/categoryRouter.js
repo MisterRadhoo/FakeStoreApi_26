@@ -25,8 +25,7 @@ const zBodyValidator = require("../middlewares/zodValidators/zBody");
 
 // validators
 const idCategorySchema = require("../validators/category/idCategory");
-const { zCreateCategorySchema, zUpdateCategorySchema } = require("../validators/category/createCategorySchema");
-
+const zCategorySchema = require("../validators/category/categorySchema");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -56,7 +55,7 @@ router.get("/:id", zParamsValidator(idCategorySchema), getCategory);
 // @access Private/Admin
 router.post("/",
     [requireLogIn, allowedTo("admin")],
-    zBodyValidator(zCreateCategorySchema),
+    zBodyValidator(zCategorySchema),
     slugifyCategory,
     createCategory);
 
@@ -65,7 +64,7 @@ router.post("/",
 router.put("/:id",
     [requireLogIn, allowedTo("admin")],
     zParamsValidator(idCategorySchema),
-    zBodyValidator(zUpdateCategorySchema),
+    zBodyValidator(zCategorySchema),
     slugifyCategory,
     updateCategory);
 

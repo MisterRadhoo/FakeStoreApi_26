@@ -2,7 +2,7 @@ const { z } = require("zod");
 const zObjectId = require("../zObjectId");
 
 // @desc Create Review zod schema validator
-const zCreateReviewSchema = z.object({
+const zCreateReviewSchema = z.strictObject({
     title: z.string()
         .trim()
         .min(3, "Review title must have at least 3 characters"),
@@ -13,6 +13,6 @@ const zCreateReviewSchema = z.object({
         .transform((val) => Math.round(val * 100) / 100),
     userId: zObjectId,
     productId: zObjectId,
-}).strict();
+});
 
 module.exports = zCreateReviewSchema;

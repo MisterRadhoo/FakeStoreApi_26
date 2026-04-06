@@ -2,7 +2,7 @@ const { z } = require("zod");
 const { normalizeText } = require("../zUtils");
 
 // @desc Category zod schema validator
-const zCategorySchema = z.object({
+const zCategorySchema = z.strictObject({
     name: z.string("Name is required")
         .trim()
         .min(4, "At least 4 characters")
@@ -10,16 +10,6 @@ const zCategorySchema = z.object({
         .transform(normalizeText),
     image: z.string("Image is required")
         .trim()
-}).strict();
+});
 
-// @desc  Create Category zod schema validator
-const zCreateCategorySchema = zCategorySchema.strict();
-
-// @desc Update Category zod schema validator
-const zUpdateCategorySchema = zCategorySchema.strict();
-
-
-module.exports = {
-    zCreateCategorySchema,
-    zUpdateCategorySchema
-};
+module.exports = zCategorySchema;
