@@ -55,7 +55,7 @@ const findCart = async (userId) => {
     const cart = await Cart.findOne({
         userId: userId,
         status: "active"
-    }).populate("couponId");
+    }).populate({ path: "couponId", select: "_id name expire discount" });
 
     if (!cart) {
         throw CustomApiError.notFound(`Cart for user id: ${userId}`, "userId");

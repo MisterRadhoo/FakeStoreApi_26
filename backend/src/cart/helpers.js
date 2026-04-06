@@ -49,4 +49,9 @@ const validateProductStock = async (productId, quantity) => {
     }
 };
 
-module.exports = { computeTotalCartPrice, recomputeCart, validateProductStock };
+
+module.exports = {
+    computeTotalCartPrice,
+    recomputeCart,
+    validateProductStock,
+};
