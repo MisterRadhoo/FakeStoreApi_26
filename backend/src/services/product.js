@@ -3,34 +3,6 @@ const CustomApiError = require("../utils/ApiError");
 const { checkExists, productSelectFields, productPopulateOptions } = require("../utils/helpers");
 
 // @desc => description
-// @desc Find Products and filter by price in range [min, max]
-const findProducts = async (filters, sortBy, order, limit, skip) => {
-    const findArgs = {};
-
-    for (let key in filters) {
-        if (filters[key] && filters[key].length > 0) {
-            if (key === "price") {
-                findArgs[key] =
-                {
-                    $gte: filters[key][0],
-                    $lte: filters[key][1]
-                };
-            } else {
-                findArgs[key] = filters[key];
-            }
-        }
-    }
-
-    const products = await Product
-        .find(findArgs)
-        .select("-images -createdAt -updatedAt -__v")
-        .sort([[sortBy, order]])
-        .skip(skip)
-        .limit(limit);
-
-    return products;
-};
-
 // @desc Find related Products based by same categoryId
 const findRelatedProducts = async (categoryId, exceptProductId, limit, page, sort) => {
     // pagination
@@ -127,7 +99,6 @@ const assertProductRefsForUpdate = async (productId, data) => {
 
 
 module.exports = {
-    findProducts,
     findRelatedProducts,
     toObtainProducts,
     assertProductRefs,

@@ -17,8 +17,7 @@ const {
     getAllProducts,
     getSlugProduct,
     getListRelated,
-    getListProductsByCategory,
-    searchProduct
+    getListProductsByCategory
 } = require("../controllers/productController");
 
 //zod validation middlewares
@@ -96,8 +95,5 @@ router.delete("/:id",
     zParamsValidator(idProductSchema),
     removeProduct);
 
-// @desc Search Product by filters
-// @access Public
-router.post("/search", setLimiter({ limit: 30 }), searchProduct);
 
 module.exports = router;

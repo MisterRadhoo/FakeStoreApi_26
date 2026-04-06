@@ -1,6 +1,6 @@
 const factory = require("./handlerFactory");
 const { Product } = require("../models/index");
-const { findProducts, findRelatedProducts, toObtainProducts } = require("../services/product");
+const { findRelatedProducts, toObtainProducts } = require("../services/product");
 
 // @desc Create Product
 const createProduct = factory.createOne(Product, "Product");
@@ -67,20 +67,6 @@ const getListProductsByCategory = async (req, res) => {
     });
 };
 
-// @desc Search Product by filters
-const searchProduct = async (req, res) => {
-    const order = req.body.order || "desc";
-    const sortBy = req.body.sortBy || "_id";
-    const limit = req.body.limit ? Number(req.body.limit) : 25;
-    const skip = req.body.skip ? Number(req.body.skip) : 0;
-    const filters = req.body.filters || {};
-
-    const products = await findProducts(filters, sortBy, order, limit, skip);
-    return res.status(200).json({
-        size: products.length,
-        data: products
-    });
-};
 
 module.exports = {
     createProduct,
@@ -89,7 +75,6 @@ module.exports = {
     getProduct,
     getSlugProduct,
     getAllProducts,
-    searchProduct,
     getListRelated,
     getListProductsByCategory
 };
