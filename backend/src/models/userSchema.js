@@ -18,8 +18,7 @@ const userSchema = new mongoose.Schema(
       maxlength: 90,
       trim: true,
       lowercase: true,
-      unique: true,
-      match: [/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i, "Invalid email format"],  // basic email pattern example: something.something@domain.com, without spaces between characters
+      unique: true
     },
     password: {
       type: String,
@@ -76,7 +75,6 @@ const userSchema = new mongoose.Schema(
     ],
     addresses: [
       {
-        _id: { type: mongoose.Schema.Types.ObjectId, auto: true },
         details: { type: String, maxlength: 35, trim: true },
         country: { type: String, maxlength: 15, trim: true },
         city: { type: String, maxlength: 15, trim: true },
@@ -86,8 +84,7 @@ const userSchema = new mongoose.Schema(
           type: String,
           minlength: 6,
           maxlength: 32,
-          trim: true,
-          match: [/^[0-9+\-\s()]*$/, "Invalid phone number format"]  // basic phone number pattern example: +40 712 345 678 or (021) 123-4567
+          trim: true
         }
       }
     ],

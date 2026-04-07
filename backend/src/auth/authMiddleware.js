@@ -9,7 +9,7 @@ const requireLogIn = (req, res, next) =>
         if (info) return next(info);
 
         if (!currentUser) {
-            return next(CustomApiError.unauthorized("You are not login! Please login to access this route"));
+            return next(CustomApiError.unauthorized("You are not logged in! Please login to access this route"));
         }
 
         req.crUser = currentUser;
