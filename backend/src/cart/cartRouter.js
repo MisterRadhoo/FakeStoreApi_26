@@ -8,7 +8,9 @@ const {
     updateCartItemQuantity,
     removeSpecificCartItem,
     applyCouponToCart,
-    clearCart
+    removeCouponFromCart,
+    clearCart,
+    getLoggedUserCartHistory
 } = require("./cartController");
 
 // zod validation middlewares
@@ -27,6 +29,10 @@ const setLimiter = require("../middlewares/limiter/rateLimiter");
 // @access Private/User
 router.post("/", [requireLogIn, allowedTo("user")], setLimiter({ limit: 10 }), addProductToCart);
 
+// @desc Get logged user Cart history
+// @access Private/User
+router.get("/history", [requireLogIn, allowedTo("user")], getLoggedUserCartHistory);
+
 // @desc Get Logged user Cart
 // @access Private/User
 router.get("/", [requireLogIn, allowedTo("user")], getLoggedUserCart);
@@ -38,6 +44,10 @@ router.delete("/", [requireLogIn, allowedTo("user")], clearCart);
 // @desc Apply Coupon on Shopping Cart
 // @access Private/User
 router.put("/apply-coupon", [requireLogIn, allowedTo("user")], applyCouponToCart);
+
+// @desc Remove Coupon from Shopping Cart
+// @access Private/User
+router.delete("/remove-coupon", [requireLogIn, allowedTo("user")], removeCouponFromCart);
 
 // @desc Update specific Cart item quantity
 // @access Private/User

@@ -4,8 +4,8 @@ const { z } = require("zod");
 const zTaxRatesListSchema = z.strictObject({
     country: z.string("Country is required").trim().min(3, "At least 3 characters").max(60, "At most 60 characters"),
     acronymCode: z.string("AcronymCode is required").trim().min(2, "At least 2 characters").max(3, "At most 3 characters").toUpperCase(),
-    vatRate: z.coerce.number().min(0, "VAT rate must be >= 0.00").max(1, "VAT rate must be <= 1.00").optional(),
-    shippingTaxRate: z.coerce.number().min(0, "Shipping tax must be >= 0").transform((value) => Math.round(value * 100) / 100).optional()
+    vatRate: z.coerce.number("Must be a number").min(0, "VAT rate must be >= 0.00").max(1, "VAT rate must be <= 1.00").optional(),
+    shippingTaxRate: z.coerce.number("Must be a number").min(0, "Shipping tax must be >= 0").transform((value) => Math.round(value * 100) / 100).optional()
 });
 
 const zCreateTaxRateSchema = zTaxRatesListSchema;

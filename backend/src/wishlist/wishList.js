@@ -23,7 +23,10 @@ const addWishlistItem = async (userId, productId) => {
 
     const user = await User.findByIdAndUpdate(userId,
         { $addToSet: { wishlist: productId } },
-        { new: true }
+        {
+            new: true,
+            runValidators: true
+        }
     ).populate({ path: "wishlist", select: "_id title price" });
 
     if (!user) {
@@ -38,7 +41,10 @@ const addWishlistItem = async (userId, productId) => {
 const removeWishlistItem = async (userId, productId) => {
     const user = await User.findByIdAndUpdate(userId,
         { $pull: { wishlist: productId } },
-        { new: true }
+        {
+            new: true,
+            runValidators: true
+        }
     )
         .populate({ path: "wishlist", select: "_id title price" });
 

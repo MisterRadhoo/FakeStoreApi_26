@@ -128,6 +128,20 @@ const applyCoupon = async (userId, couponName) => {
     return cart;
 };
 
+// @desc Remove Coupon from logged user Cart
+const removeCoupon = async (userId) => {
+    const cart = await findCart(userId);
+    if (!cart.couponId) {
+        throw CustomApiError.badRequest("No coupon applied to this cart!", "coupon");
+    }
+    cart.couponId = undefined;
+    cart.totalPriceAfterDiscount = 0;
+    cart.lastActionAt = Date.now();
+
+    await cart.save();
+    return cart;
+};
+
 // @desc Clear content of logged user Cart
 const clearContent = async (userId) => {
     const cart = await Cart.findOneAndDelete({ userId: userId, status: "active" });
@@ -138,6 +152,18 @@ const clearContent = async (userId) => {
     return cart;
 };
 
+// @desc Get Cart history for logged user
+const findCartHistory = async (userId) => {
+    const carts = await Cart.find({
+        userId: userId,
+        status: "completed"
+    })
+        .populate({ path: "couponId", select: "_id name expire discount" })
+        .sort("-createdAt");
+
+    return carts;
+};
+
 
 module.exports = {
     addProduct,
@@ -145,5 +171,7 @@ module.exports = {
     updateItem,
     removeItem,
     applyCoupon,
-    clearContent
+    removeCoupon,
+    clearContent,
+    findCartHistory
 };

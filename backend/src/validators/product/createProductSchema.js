@@ -10,14 +10,14 @@ const zCreateProductSchema = z.strictObject({
         .max(120, "At most 120 characters"),
     price: z
         .coerce
-        .number("Must be an number")
+        .number("Must be a number")
         .min(0, "Price must be >= 0"),
     currency: z
         .enum(["USD", "EUR", "RON"])
         .optional(),
     stock: z
         .coerce
-        .number("Must be an number")
+        .number("Must be a number")
         .int("Must be an integer")
         .min(0, "Stock must be >= 0"),
     description: z

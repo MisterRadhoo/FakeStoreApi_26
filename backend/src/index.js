@@ -39,6 +39,7 @@ const cartRouter = require("./cart/cartRouter");
 const orderRouter = require("./order/orderRouter");
 const wishlistRouter = require("./wishlist/wishlistRouter");
 const addressRouter = require("./address/addressRouter");
+const userRouter = require("./user/userRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -77,6 +78,7 @@ app.use("/api/taxrates", taxRateListRouter);
 app.use("/api/orders", orderRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/addresses", addressRouter);
+app.use("/api/users", userRouter);
 
 
 // Guard url

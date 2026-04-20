@@ -16,7 +16,11 @@ const addUserAddress = async (userId, addressInfo) => {
 
     const user = await User.findByIdAndUpdate(userId,
         { $addToSet: { addresses: addressInfo } },
-        { new: true });
+        {
+            new: true,
+            runValidators: true
+        });
+
     if (!user) {
         throw CustomApiError.notFound(`User with id: ${userId}`, "userId");
     }
@@ -30,7 +34,10 @@ const removeUserAddress = async (userId, addressId) => {
 
     const user = await User.findByIdAndUpdate(userId,
         { $pull: { addresses: { _id: addressId } } },
-        { new: true }
+        {
+            new: true,
+            runValidators: true
+        }
     );
 
     if (!user) {

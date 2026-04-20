@@ -140,4 +140,3 @@ orderSchema.index({ cartId: 1 }); // associated with a Cart
 // create Order model from orderSchema
 const Order = mongoose.model("Order", orderSchema);
 module.exports = Order;
-

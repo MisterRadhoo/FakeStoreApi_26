@@ -1,4 +1,13 @@
-const { addProduct, findCart, updateItem, removeItem, applyCoupon, clearContent } = require("./cart");
+const {
+    addProduct,
+    findCart,
+    updateItem,
+    removeItem,
+    applyCoupon,
+    removeCoupon,
+    clearContent,
+    findCartHistory
+} = require("./cart");
 
 // @desc Add Product to Cart
 const addProductToCart = async (req, res) => {
@@ -68,12 +77,34 @@ const applyCouponToCart = async (req, res) => {
     });
 };
 
+// @desc Remove applied Coupon on logged user Cart
+const removeCouponFromCart = async (req, res) => {
+    const cart = await removeCoupon(req.crUser._id);
+
+    return res.status(200).json({
+        message: "Coupon removed successfully!",
+        numberOfCartItems: cart.cartItems.length,
+        data: cart
+    });
+};
+
 // @desc Clear logged user Cart
 const clearCart = async (req, res) => {
     await clearContent(req.crUser._id);
     return res.status(200).json({
         message: "No content! Cart cleared!",
         data: null
+    });
+};
+
+// @desc Get logged user Cart history
+const getLoggedUserCartHistory = async (req, res) => {
+    const carts = await findCartHistory(req.crUser._id);
+
+    return res.status(200).json({
+        message: "Cart history list retrieved!",
+        results: carts.length,
+        data: carts
     });
 };
 
@@ -84,5 +115,7 @@ module.exports = {
     updateCartItemQuantity,
     removeSpecificCartItem,
     applyCouponToCart,
-    clearCart
+    removeCouponFromCart,
+    clearCart,
+    getLoggedUserCartHistory
 };
