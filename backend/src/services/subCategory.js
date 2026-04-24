@@ -1,4 +1,6 @@
-const { SubCategory } = require("../models/index");
+const CustomApiError = require("../utils/ApiError");
+const { SubCategory, Category } = require("../models/index");
+const { checkExists } = require("../utils/helpers");
 
 // @desc Find Subcategories in db
 const findSubCategories = async (categoryId, limit, page, sort) => {
@@ -26,5 +28,23 @@ const findSubCategories = async (categoryId, limit, page, sort) => {
     };
 };
 
+// @desc Assert SubCategory references in db
+const assertSubCategoryRefs = async (categoryId) => {
+    if (!categoryId) {
+        throw CustomApiError.badRequest("CategoryId is required!", "categoryId");
+    }
+    await checkExists(Category, categoryId, "categoryId");
+};
 
-module.exports = { findSubCategories };
+// @desc Assert SubCategory references in db for Update
+const assertUpdateSubCategoryRefs = async (categoryId) => {
+    if (categoryId) {
+        await checkExists(Category, categoryId, "categoryId");
+    }
+};
+
+module.exports = {
+    findSubCategories,
+    assertSubCategoryRefs,
+    assertUpdateSubCategoryRefs
+};

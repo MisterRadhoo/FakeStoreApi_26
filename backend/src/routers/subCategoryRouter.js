@@ -3,6 +3,7 @@ const router = express.Router({ mergeParams: true });
 
 // SubCategory middlewares
 const slugifySubCategory = require("../middlewares/subCategory/slugifySubCategory");
+const { checkSubCategoryRefs, checkUpdateSubCategoryRefs } = require("../middlewares/subCategory/referenceMiddleware");
 
 // middleware between URL param and body request for (Nested route)
 const setCategoryToBody = (req, res, next) => {
@@ -25,10 +26,12 @@ const {
 // zod validation middlewares
 const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 const zParamsValidator = require("../middlewares/zodValidators/zParams");
+const zBodyValidator = require("../middlewares/zodValidators/zBody");
 
 // validators
 const zPaginationSchema = require("../validators/zPagination");
 const idSubCategorySchema = require("../validators/subCategory/idSubCategory");
+const { zCreateSubCategorySchema, zUpdateSubCategorySchema } = require("../validators/subCategory/createSubCategorySchema");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -38,6 +41,8 @@ const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 router.post("/",
     [requireLogIn, allowedTo("admin")],
     setCategoryToBody,
+    zBodyValidator(zCreateSubCategorySchema),
+    checkSubCategoryRefs,
     slugifySubCategory,
     createSubCategory);
 
@@ -60,9 +65,11 @@ router.get("/:id",
 
 // @desc Update specific Subcategory
 // @access Private/Admin
-router.put("/:id",
+router.patch("/:id",
     [requireLogIn, allowedTo("admin")],
     zParamsValidator(idSubCategorySchema),
+    zBodyValidator(zUpdateSubCategorySchema),
+    checkUpdateSubCategoryRefs,
     slugifySubCategory,
     updateSubCategory);
 

@@ -17,7 +17,7 @@ const zBodyValidator = require("../middlewares/zodValidators/zBody");
 
 // validators
 const idBrandSchema = require("../validators/brand/idBrand");
-const zBrandSchema = require("../validators/brand/brandSchema");
+const { zCreateBrandSchema, zUpdateBrandSchema } = require("../validators/brand/brandSchema");
 
 //permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -34,15 +34,15 @@ router.get("/:id", zParamsValidator(idBrandSchema), getBrand);
 // @access Private/Admin
 router.post("/", [requireLogIn,
     allowedTo("admin")],
-    zBodyValidator(zBrandSchema),
+    zBodyValidator(zCreateBrandSchema),
     createBrand);
 
 // @desc Update specific Brand
 // @access Private/Admin
-router.put("/:id",
+router.patch("/:id",
     [requireLogIn, allowedTo("admin")],
     zParamsValidator(idBrandSchema),
-    zBodyValidator(zBrandSchema),
+    zBodyValidator(zUpdateBrandSchema),
     updateBrand);
 
 // @desc Delete specific Brand

@@ -72,7 +72,7 @@ const getAll = (Model) => async (req, res) => {
     }
 
     // Apply field limiting feature
-    let fields = "-__v -images";
+    let fields = "-__v -images -createdAt -updatedAt";
     if (req.query.fields) {
         fields = req.query.fields.split(",").join(" ");
     }

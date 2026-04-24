@@ -84,7 +84,7 @@ const updateUserAccount = async (userId, userData) => {
     return userObject(userUpdate);
 };
 
-// User logged
+
 // @desc Delete User account
 const removeUserAccount = async (userId) => {
     const user = await User.findByIdAndDelete(userId);
@@ -95,6 +95,7 @@ const removeUserAccount = async (userId) => {
     return userObject(user);
 };
 
+// User logged
 // @desc Change User password
 const changeUserPassword = async (userId, userData) => {
     const user = await User.findById(userId).select("+password");

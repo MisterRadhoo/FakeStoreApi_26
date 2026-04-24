@@ -1,5 +1,6 @@
 const { z } = require("zod");
 
+// @desc Coupon zod schema validator
 const zCouponSchema = z.strictObject({
     name: z
         .string("Coupon name is required")

@@ -1,7 +1,7 @@
 const { z } = require("zod");
 const { normalizeText } = require("../zUtils");
 
-// @desc Brand zod schema validators
+// @desc Brand zod schema validator
 const zBrandSchema = z.strictObject({
     name: z
         .string("Brand name is required")
@@ -14,9 +14,21 @@ const zBrandSchema = z.strictObject({
         .trim()
         .min(4, "At least 4 characters"),
     image: z
-        .string("Brand image is required")
+        .string()
         .trim()
+        .optional()
 });
 
+// @desc Create Brand zod schema validator
+const zCreateBrandSchema = zBrandSchema;
 
-module.exports = zBrandSchema;
+// @desc Update Brand zod schema validator , all fields are optional()
+const zUpdateBrandSchema = zBrandSchema.partial().refine((data) => Object.keys(data).length > 0, {
+    message: "At least one field must be provided for update!",
+    path: ["brand"]
+});
+
+module.exports = {
+    zCreateBrandSchema,
+    zUpdateBrandSchema
+};
