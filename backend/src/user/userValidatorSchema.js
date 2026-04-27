@@ -52,6 +52,7 @@ const zUpdateLoggedUserSchema = z.strictObject({
     userName: z.string().trim().min(3, "At least 3 characters").max(90, "At most 90 characters").optional(),
     email: z.string().trim().toLowerCase().min(6, "At least 6 characters").max(90, "At most 90 characters").pipe(z.email("Email must have a format of -name@email.com-")).optional(),
     fullName: z.string().trim().min(3, "At least 3 characters").max(90, "At most 90 characters").optional(),
+    role: z.enum(["user", "admin"]).optional(),
 }).refine((data) => Object.keys(data).length > 0, {
     message: "At least one field must be provided for update!",
     path: ["user logged"]

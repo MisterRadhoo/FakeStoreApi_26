@@ -26,6 +26,7 @@ const zBodyValidator = require("../middlewares/zodValidators/zBody");
 // validators
 const idCategorySchema = require("../validators/category/idCategory");
 const { zCreateCategorySchema, zUpdateCategorySchema } = require("../validators/category/categorySchema");
+const zApiFeatures = require("../validators/zApiFeatures");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -45,7 +46,7 @@ router.use("/:categoryId/subcategories", subCategoryRouter);
 
 // @desc Get all Categories
 // @access Public
-router.get("/", setLimiter({ limit: 30 }), getAllCategories);
+router.get("/", setLimiter({ limit: 30 }), zQueryValidator(zApiFeatures), getAllCategories);
 
 // @desc Get specific Category
 // @access Public

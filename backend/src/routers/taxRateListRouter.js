@@ -18,13 +18,14 @@ const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 // validators
 const idTaxRateSchema = require("../validators/taxRate/idTaxRate");
 const { zCreateTaxRateSchema, zUpdateTaxRateSchema } = require("../validators/taxRate/taxRateListSchema");
+const zApiFeatures = require("../validators/zApiFeatures");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // @desc Get all TaxRates
 // @access Public
-router.get("/", getAllTaxRates);
+router.get("/", zQueryValidator(zApiFeatures), getAllTaxRates);
 
 // @desc Get specific TaxRate
 // @access Public

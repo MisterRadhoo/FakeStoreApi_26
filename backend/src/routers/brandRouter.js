@@ -18,13 +18,14 @@ const zBodyValidator = require("../middlewares/zodValidators/zBody");
 // validators
 const idBrandSchema = require("../validators/brand/idBrand");
 const { zCreateBrandSchema, zUpdateBrandSchema } = require("../validators/brand/brandSchema");
+const zApiFeatures = require("../validators/zApiFeatures");
 
 //permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 
 // @desc Get all Brands
 // @access Public
-router.get("/", getAllBrands);
+router.get("/", zQueryValidator(zApiFeatures), getAllBrands);
 
 // @desc Get specific Brand
 // @access Public

@@ -4,9 +4,9 @@ const zObjectId = require("../zObjectId");
 // @desc Update Product zod schema validator
 const zUpdateProductSchema = z.strictObject({
     title: z.string().trim().min(4, "At least 4 characters").max(120, "At most 120 characters").optional(),
-    price: z.coerce.number("Must be a number").min(0, "Price must be >= 0").optional(),
+    price: z.coerce.number().min(0, "Price must be >= 0").optional(),
     currency: z.enum(["USD", "EUR", "RON"]).optional(),
-    stock: z.coerce.number("Must be a number").int("Must be an integer").min(0, "Stock must be >= 0").optional(),
+    stock: z.coerce.number().int("Must be an integer").min(0, "Stock must be >= 0").optional(),
     description: z.string().trim().min(10, "At least 10 characters").optional(),
     categoryId: zObjectId.optional(),
     subcategoriesIds: z.array(zObjectId).optional(),

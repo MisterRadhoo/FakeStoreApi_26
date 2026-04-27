@@ -32,6 +32,7 @@ const zBodyValidator = require("../middlewares/zodValidators/zBody");
 const zPaginationSchema = require("../validators/zPagination");
 const idSubCategorySchema = require("../validators/subCategory/idSubCategory");
 const { zCreateSubCategorySchema, zUpdateSubCategorySchema } = require("../validators/subCategory/createSubCategorySchema");
+const zApiFeatures = require("../validators/zApiFeatures");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -55,7 +56,7 @@ router.get("/list",
 
 // @desc Get all Subcategories
 // @access Public
-router.get("/", getAllSubCategories);
+router.get("/", zQueryValidator(zApiFeatures), getAllSubCategories);
 
 // @desc Get specific Subcategory
 // @access Public

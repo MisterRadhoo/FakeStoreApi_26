@@ -14,4 +14,23 @@ const validateCartItemsStock = async (cartItems) => {
     }
 };
 
-module.exports = { validateCartItemsStock };
+// @desc formatOrders object for Order with selected fields
+const formatOrders = (orders) => orders.map((order) => ({
+    id: order._id,
+    orderItems: order.orderItems.map((item) => ({
+        productId: item.productId,
+        title: item.title,
+        imageCover: item.imageCover,
+        quantity: item.quantity,
+        price: item.price
+    })),
+    taxPrice: order.taxPrice,
+    shippingPrice: order.shippingPrice,
+    totalOrderPrice: order.totalOrderPrice,
+    currency: order.currency,
+    status: order.status,
+    createdAt: order.createdAt
+}));
+
+
+module.exports = { validateCartItemsStock, formatOrders };

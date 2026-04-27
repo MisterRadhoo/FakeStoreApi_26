@@ -395,6 +395,31 @@
             "sold": 2,
             "ratingsAverage": 4.54,
             "ratingsQuantity": 1
+      },
+      {
+            "title": "Nike SB Dunk Low x Bronx Girls Skate",
+            "slug": "nike-sb-dunk-low-x-bronx-girls-skate",
+            "price": 149.99,
+            "currency": "USD",
+            "stock": 22,
+            "description": "Bronx Girls Skate has been celebrating and growing women's skateboarding in the Bronx and beyond since 2020. Their new collaboration with Nike SB features the Dunk in a Stingray-textured black upper with colorful piping that represents the iconic colors of NYC public transport.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/bronx-girls-skate-nike-sb-dunk-low.png",
+            "images": [],
+            "colors": [
+                  "Black",
+                  "White",
+                  "Challenge Red",
+                  "Total Orange",
+                  "Lucky Green",
+                  "Smoke Grey"
+            ],
+            "sold": 1,
+            "ratingsAverage": 4.19,
+            "ratingsQuantity": 1
       }
-      
 ]

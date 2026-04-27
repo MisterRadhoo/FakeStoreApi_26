@@ -20,7 +20,7 @@ const {
     getListProductsByCategory
 } = require("../controllers/productController");
 
-//zod validation middlewares
+// zod validation middlewares
 const zQueryValidator = require("../middlewares/zodValidators/zQuery");
 const zParamsValidator = require("../middlewares/zodValidators/zParams");
 const zBodyValidator = require("../middlewares/zodValidators/zBody");
@@ -30,6 +30,7 @@ const idProductSchema = require("../validators/product/idProduct");
 const zCreateProductSchema = require("../validators/product/createProductSchema");
 const zUpdateProductSchema = require("../validators/product/updateProductSchema");
 const zPaginationSchema = require("../validators/zPagination");
+const zApiFeatures = require("../validators/zApiFeatures");
 
 //permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -59,7 +60,10 @@ router.get("/slug/:slug", productBySlug, getSlugProduct);
 
 // @desc Get all Products
 // @access Public
-router.get("/", setLimiter({ limit: 30 }), getAllProducts);
+router.get("/",
+    setLimiter({ limit: 30 }),
+    zQueryValidator(zApiFeatures),
+    getAllProducts);
 
 // @desc Get related Products base in productId
 // @access Public

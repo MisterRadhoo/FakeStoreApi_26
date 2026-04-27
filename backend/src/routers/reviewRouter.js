@@ -29,6 +29,7 @@ const zPaginationSchema = require("../validators/zPagination");
 const idReviewSchema = require("../validators/review/idReview");
 const zCreateReviewSchema = require("../validators/review/createReviewSchema");
 const zUpdateReviewSchema = require("../validators/review/updateReviewSchema");
+const zApiFeatures = require("../validators/zApiFeatures");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -38,7 +39,10 @@ const setLimiter = require("../middlewares/limiter/rateLimiter");
 
 // @desc Get all Reviews
 // @access Public
-router.get("/", setLimiter({ limit: 30 }), getAllReviews);
+router.get("/",
+    setLimiter({ limit: 30 }),
+    zQueryValidator(zApiFeatures),
+    getAllReviews);
 
 // @desc Get list of Reviews on specific Product
 // @access Public

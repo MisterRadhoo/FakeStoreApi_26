@@ -6,7 +6,6 @@ const idAddressSchema = z.strictObject({
     addressId: zObjectId
 });
 
-
 // @desc Address zod schema validators
 const zAddressSchema = z.strictObject({
     details: z

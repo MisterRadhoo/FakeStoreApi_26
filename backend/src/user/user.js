@@ -160,7 +160,8 @@ const updateCurrentUser = async (userId, userData) => {
         {
             userName: userData.userName,
             email: userData.email,
-            fullName: userData.fullName
+            fullName: userData.fullName,
+            role: userData.role
         },
         {
             new: true,

@@ -48,10 +48,11 @@ const getOne = (Model, populationOpt, name = "document") => async (req, res) => 
 };
 
 // @desc Get All documents by Model
+// ApiFeatures
 const getAll = (Model) => async (req, res) => {
     // Filtering (price, ratingsAverage)
-    const queryStringObject = { ...req.query };
-    const excludedFields = ["sortedBy", "order", "limit", "page", "keyword", "fields"];
+    const queryStringObject = { ...req.Query };
+    const excludedFields = ["sortedBy", "limit", "page", "keyword", "fields"];
     excludedFields.forEach((field) => delete queryStringObject[field]);
 
     // Apply filteration using [gte, gt, le, lte]
@@ -60,35 +61,24 @@ const getAll = (Model) => async (req, res) => {
     queryStr = JSON.parse(queryStr);
 
     // Pagination part 1.
-    const limit = req.query.limit ? Number(req.query.limit) : 100;
-    const page = req.query.page * 1 || 1;
+    const limit = req.Query.limit ? Number(req.Query.limit) : 100;
+    const page = req.Query.page * 1 || 1;
     const skip = (page - 1) * limit;
 
     // Sorting
-    let sortedBy = "-createdAt"; // sorted by newest
-    if (req.query.sortedBy) {
-        // change "price, -sold" => [price, -sold] => "price -sold";
-        sortedBy = req.query.sortedBy.split(",").join(" ");
-    }
+    const sortedBy = req.Query.sortedBy ? req.Query.sortedBy.split(",").join(" ") : "-createdAt";
 
     // Apply field limiting feature
-    let fields = "-__v -images -createdAt -updatedAt";
-    if (req.query.fields) {
-        fields = req.query.fields.split(",").join(" ");
-    }
+    const fields = req.Query.fields ? req.Query.fields.split(",").join(" ") : "-__v -images";
 
     // Apply Search Feature
-    let Search = {};
-    if (req.query.keyword) {
-        Search.$or = [
-            { title: { $regex: req.query.keyword, $options: "i" } },
-            { description: { $regex: req.query.keyword, $options: "i" } },
-            { name: { $regex: req.query.keyword, $options: "i" } },
-            { slug: { $regex: req.query.keyword, $options: "i" } },
-            { country: { $regex: req.query.keyword, $options: "i" } },
-            { acronymCode: { $regex: req.query.keyword, $options: "i" } }
-        ];
-    }
+    const searchFields = ["title", "description", "name", "slug", "country", "acronymCode"];
+    const Search = req.Query.keyword ?
+        {
+            $or: searchFields.map((field) => ({
+                [field]: { $regex: req.Query.keyword, $options: "i" }
+            }))
+        } : {};
 
     const filterAndSearch = Search.$or ? { $and: [queryStr, Search] } : queryStr;
 

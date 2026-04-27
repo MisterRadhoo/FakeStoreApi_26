@@ -1,10 +1,11 @@
 const CustomApiError = require("../utils/ApiError");
 const { findCart } = require("../cart/cart");
-const { validateCartItemsStock } = require("./helpers");
+const { findUserAddresses } = require("../address/address");
+const { validateCartItemsStock, formatOrders } = require("./helpers");
 const { Product, Cart, Order, TaxRatesList } = require("../models/index");
 
 // @desc Create Order
-const createOrder = async (userId, shippingAddress) => {
+const createOrder = async (userId, shippingAddress, addressId) => {
 
     // Get Cart of logged User
     const cart = await findCart(userId);
@@ -13,17 +14,34 @@ const createOrder = async (userId, shippingAddress) => {
         throw CustomApiError.badRequest("Cart is empty! Order must have at least 1 product!", "cartItems");
     }
 
-    if (!shippingAddress || !shippingAddress.country) {
+    let orderShippingAddress = shippingAddress;
+    if (addressId) {
+        const addresses = await findUserAddresses(userId);
+        const selectedAddress = addresses.id(addressId);
+        if (!selectedAddress) {
+            throw CustomApiError.notFound(`Address with id: ${addressId}`, "addressId");
+        }
+
+        orderShippingAddress = {
+            details: selectedAddress.details,
+            country: selectedAddress.country,
+            city: selectedAddress.city,
+            street: selectedAddress.street,
+            postalCode: selectedAddress.postalCode,
+            phone: selectedAddress.phone
+        };
+    }
+    if (!orderShippingAddress || !orderShippingAddress.country) {
         throw CustomApiError.badRequest("Shipping address is required for order!", "shippingAddress");
     }
 
     // Get TaxRates of specific country from List
     const taxRateDocument = await TaxRatesList.findOne({
-        country: shippingAddress.country
+        country: orderShippingAddress.country
     });
 
     if (!taxRateDocument) {
-        throw CustomApiError.notFound(`Tax config for country ${shippingAddress.country}`, "country");
+        throw CustomApiError.notFound(`Tax config for country ${orderShippingAddress.country}`, "country");
     }
 
     // Validate stock for cartItems (stock >= 1)
@@ -34,7 +52,7 @@ const createOrder = async (userId, shippingAddress) => {
         cart.totalPriceAfterDiscount :
         cart.totalCartPrice;
 
-    // compute taxPrice, shippingPrice and totaOrderPrice
+    // compute taxPrice, shippingPrice and totalOrderPrice
     const taxPrice = Math.round(cartPrice * taxRateDocument.vatRate * 100) / 100;
     const shippingPrice = taxRateDocument.shippingTaxRate;
     const totalOrderPrice = Math.round((cartPrice + taxPrice + shippingPrice) * 100) / 100;
@@ -45,7 +63,7 @@ const createOrder = async (userId, shippingAddress) => {
         cartId: cart._id,
         orderItems: cart.cartItems,
         taxPrice,
-        shippingAddress,
+        shippingAddress: orderShippingAddress,
         shippingPrice,
         totalOrderPrice,
         currency: cart.currency,
@@ -75,4 +93,25 @@ const createOrder = async (userId, shippingAddress) => {
     return order;
 };
 
-module.exports = { createOrder };
+// @desc Find user Orders
+const findUserOrders = async (userId) => {
+    const orders = await Order.find({ userId: userId }).sort("-createdAt");
+    return formatOrders(orders);
+};
+
+
+// @desc Find Order by id
+const findOrderById = async (orderId) => {
+    const order = await Order.findById(orderId);
+    if (!order) {
+        throw CustomApiError.notFound(`Order with id: ${orderId}`, "orderId");
+    }
+    return order;
+};
+
+
+module.exports = {
+    createOrder,
+    findOrderById,
+    findUserOrders
+};
