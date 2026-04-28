@@ -41,7 +41,12 @@ const wishlistRouter = require("./wishlist/wishlistRouter");
 const addressRouter = require("./address/addressRouter");
 const userRouter = require("./user/userRouter");
 
-app.use(cors());
+// CORS
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());

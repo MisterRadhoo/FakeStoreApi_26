@@ -4,7 +4,7 @@ const { User, Product } = require("../models/index");
 // @desc Find User wishlist by userId
 const findUserWishlist = async (userId) => {
     const user = await User.findById(userId)
-        .populate({ path: "wishlist", select: "_id title currency price" });
+        .populate({ path: "wishlist", select: "_id title imageCover currency price" });
 
     if (!user) {
         throw CustomApiError.notFound(`User with id: ${userId}`, "userId");
@@ -27,7 +27,7 @@ const addWishlistItem = async (userId, productId) => {
             new: true,
             runValidators: true
         }
-    ).populate({ path: "wishlist", select: "_id title price" });
+    ).populate({ path: "wishlist", select: "_id  title imageCover currency price" });
 
     if (!user) {
         throw CustomApiError.notFound(`User with id: ${userId}`, "userId");
@@ -46,7 +46,7 @@ const removeWishlistItem = async (userId, productId) => {
             runValidators: true
         }
     )
-        .populate({ path: "wishlist", select: "_id title price" });
+        .populate({ path: "wishlist", select: "_id  title imageCover currency price" });
 
     if (!user) {
         throw CustomApiError.notFound(`User with id: ${userId}`, "userId");

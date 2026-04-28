@@ -1,0 +1,26 @@
+import { Navigate } from "react-router-dom";
+import { useAuth } from "./AuthContext.jsx";
+
+const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated, isAuthLoading } = useAuth();
+
+    if (isAuthLoading) {
+        return (
+            <main className="min-h-screen bg-[#f8e7b8] px-6 py-16">
+                <h1 className="pixel-font text-center text-sm font-black uppercase text-slate-950">
+                    Checking authentication...
+                </h1>
+            </main>
+        );
+    }
+
+    if (!isAuthenticated) {
+        return <Navigate to="/auth/login" replace />;
+    }
+
+    return children;
+};
+
+export default ProtectedRoute;
+
+

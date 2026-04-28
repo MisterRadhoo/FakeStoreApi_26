@@ -57,6 +57,7 @@ const userSchema = new mongoose.Schema(
       default: 0.0,
       min: 0,
       max: 1,
+      set: v => Math.round(v * 100) / 100,
     },
     lastIp: {
       type: String,
