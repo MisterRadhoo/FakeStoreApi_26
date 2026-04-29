@@ -61,7 +61,7 @@ router.get("/slug/:slug", productBySlug, getSlugProduct);
 // @desc Get all Products
 // @access Public
 router.get("/",
-    setLimiter({ limit: 30 }),
+    setLimiter({ limit: 300 }),
     zQueryValidator(zApiFeatures),
     getAllProducts);
 

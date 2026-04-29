@@ -1,39 +1,25 @@
 import { createContext, useContext, useState } from "react";
-import {
-    getProducts,
-    getProductById,
-    getProductBySlug,
-    getRelatedProducts,
-    getProductsByCategory,
-    createProduct,
-    updateProduct,
-    deleteProduct
-} from "./productsApi.js";
+import { getProducts } from "./productsApi.js";
+
 
 const ProductContext = createContext(null);
 
+const defaultFilters = {
+    keyword: "",
+    sortedBy: "-createdAt",
+    fields: "title,price,currency,imageCover,ratingsAverage,stock,sold",
+    page: 1,
+    limit: 7,
+    minPrice: "",
+    maxPrice: "",
+    minRating: "",
+};
+
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
-    const [product, setProduct] = useState(null);
-    const [relatedProducts, setRelatedProducts] = useState([]);
-    const [categoryProducts, setCategoryProducts] = useState([]);
-
     const [paginationResult, setPaginationResult] = useState(null);
-    const [categoryPaginationResult, setCategoryPaginationResult] = useState(null);
-    const [relatedPaginationResult, setRelatedPaginationResult] = useState(null);
-
     const [loading, setLoading] = useState(false);
-
-    const [filters, setFilters] = useState({
-        keyword: "",
-        sortedBy: "-createdAt",
-        fields: "",
-        page: 1,
-        limit: 7,
-        minPrice: "",
-        maxPrice: "",
-        minRating: "",
-    });
+    const [filters, setFilters] = useState(defaultFilters);
 
     const updateFilters = (values) => {
         setFilters((currentFilters) => ({
@@ -49,91 +35,15 @@ export const ProductProvider = ({ children }) => {
 
         try {
             const response = await getProducts(finalFilters);
+
             setProducts(response.data || []);
             setPaginationResult(response.paginationResult || null);
-        } catch (error) {
+        } catch {
             setProducts([]);
             setPaginationResult(null);
         } finally {
             setLoading(false);
         }
-    };
-
-    const fetchProductById = async (productId) => {
-        setLoading(true);
-
-        const response = await getProductById(productId);
-
-        setProduct(response.data);
-
-        setLoading(false);
-    };
-
-    const fetchProductBySlug = async (slug) => {
-        setLoading(true);
-
-        const response = await getProductBySlug(slug);
-
-        setProduct(response.data);
-
-        setLoading(false);
-    };
-
-    const fetchRelatedProducts = async ({ productId, page, limit }) => {
-        setLoading(true);
-
-        const response = await getRelatedProducts({
-            productId,
-            page,
-            limit,
-        });
-
-        setRelatedProducts(response.data);
-        setRelatedPaginationResult(response.paginationResult);
-
-        setLoading(false);
-    };
-
-    const fetchProductsByCategory = async ({ categoryId, page, limit }) => {
-        setLoading(true);
-
-        const response = await getProductsByCategory({
-            categoryId,
-            page,
-            limit,
-        });
-
-        setCategoryProducts(response.data);
-        setCategoryPaginationResult(response.paginationResult);
-
-        setLoading(false);
-    };
-
-    const addProduct = async (productData) => {
-        const response = await createProduct(productData);
-
-        await fetchProducts();
-
-        return response;
-    };
-
-    const editProduct = async ({ productId, productData }) => {
-        const response = await updateProduct({
-            productId,
-            productData,
-        });
-
-        await fetchProducts();
-
-        return response;
-    };
-
-    const removeProduct = async (productId) => {
-        const response = await deleteProduct(productId);
-
-        await fetchProducts();
-
-        return response;
     };
 
     const applyFilters = async () => {
@@ -147,19 +57,8 @@ export const ProductProvider = ({ children }) => {
     };
 
     const resetFilters = async () => {
-        const resetedFilters = {
-            keyword: "",
-            sortedBy: "-createdAt",
-            fields: "",
-            page: 1,
-            limit: 7,
-            minPrice: "",
-            maxPrice: "",
-            minRating: "",
-        };
-
-        setFilters(resetedFilters);
-        await fetchProducts(resetedFilters);
+        setFilters(defaultFilters);
+        await fetchProducts(defaultFilters);
     };
 
     const changePage = async (page) => {
@@ -176,31 +75,14 @@ export const ProductProvider = ({ children }) => {
         <ProductContext.Provider
             value={{
                 products,
-                product,
-                relatedProducts,
-                categoryProducts,
-
                 paginationResult,
-                categoryPaginationResult,
-                relatedPaginationResult,
-
                 loading,
-
                 filters,
                 updateFilters,
+                fetchProducts,
                 applyFilters,
                 resetFilters,
                 changePage,
-
-                fetchProducts,
-                fetchProductById,
-                fetchProductBySlug,
-                fetchRelatedProducts,
-                fetchProductsByCategory,
-
-                addProduct,
-                editProduct,
-                removeProduct,
             }}
         >
             {children}
@@ -209,5 +91,11 @@ export const ProductProvider = ({ children }) => {
 };
 
 export const useProducts = () => {
-    return useContext(ProductContext);
-}
+    const context = useContext(ProductContext);
+
+    if (!context) {
+        throw new Error("useProducts must be used inside ProductProvider!");
+    }
+
+    return context;
+};

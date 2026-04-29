@@ -1,12 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "../auth/AuthContext.jsx";
-import { getLoggedUserWishlist, addProductToWishlist, removeProductFromWishlist } from "./wishlistApi.js";
-
+import {
+    getLoggedUserWishlist,
+    addProductToWishlist,
+    removeProductFromWishlist,
+} from "./wishlistApi.js";
 
 const WishlistContext = createContext(null);
 
 export const WishlistProvider = ({ children }) => {
-    const { user } = useAuth();
+    const { isAuthenticated } = useAuth();
 
     const [wishlist, setWishlist] = useState([]);
     const [isWishlistLoading, setIsWishlistLoading] = useState(false);
@@ -14,21 +17,25 @@ export const WishlistProvider = ({ children }) => {
     const loadWishlist = async () => {
         setIsWishlistLoading(true);
 
-        const result = await getLoggedUserWishlist();
-
-        setWishlist(result.data);
-        setIsWishlistLoading(false);
+        try {
+            const result = await getLoggedUserWishlist();
+            setWishlist(result.data);
+        } catch {
+            setWishlist([]);
+        } finally {
+            setIsWishlistLoading(false);
+        }
     };
 
     useEffect(() => {
-        if (!user) {
+        if (!isAuthenticated) {
             setWishlist([]);
             setIsWishlistLoading(false);
             return;
         }
 
         loadWishlist();
-    }, [user]);
+    }, [isAuthenticated]);
 
     const addToWishlist = async (productId) => {
         const result = await addProductToWishlist(productId);
@@ -52,7 +59,7 @@ export const WishlistProvider = ({ children }) => {
                 isWishlistLoading,
                 addToWishlist,
                 removeFromWishlist,
-                isProductInWishlist
+                isProductInWishlist,
             }}
         >
             {children}
@@ -61,5 +68,9 @@ export const WishlistProvider = ({ children }) => {
 };
 
 export const useWishlist = () => {
-    return useContext(WishlistContext);
+    const context = useContext(WishlistContext);
+    if (!context) {
+        throw new Error("useWishlist must be used within a WishlistProvider!");
+    }
+    return context;
 };

@@ -421,5 +421,53 @@
             "sold": 1,
             "ratingsAverage": 4.19,
             "ratingsQuantity": 1
+      },
+      {
+            "title": "Air Jordan 1 Low OG Wmns UNC To Chicago",
+            "slug": "air-jordan-1-low-og-wmns-unc-to-chicago",
+            "price": 279.99,
+            "currency": "USD",
+            "stock": 14,
+            "description": "Relive MJ's move from North Carolina to Chicago in this first-ever, women's-exclusive AJ1 Low OG. Crisp leather splashed with Gym Red and Dark Powder Blue showcases your unbeatable game.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69b95dd7e8acb4ae28af811b",
+            "imageCover": "http://localhost:7800/static/img/air-jordan-1-low-og-wmns-unc-to-chicago.png",
+            "images": [],
+            "colors": [
+                  "Black",
+                  "Gym Red",
+                  "Dark Powder Blue",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.79,
+            "ratingsQuantity": 0
+      },
+      {
+            "title": "Air Jordan 1 Low OG Dark Mocha",
+            "slug": "air-jordan-1-low-og-dark-mocha",
+            "price": 400.00,
+            "currency": "USD",
+            "stock": 7,
+            "description": "We're bringing you a low-top version of the 2020 AJ1 High 'Mocha'. Made from premium materials, signature details and easy-to-style colours like black, Sail and Dark Mocha round off the iconic design.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69b95dd7e8acb4ae28af811b",
+            "imageCover": "http://localhost:7800/static/img/air-jordan-1-low-og-dark-mocha.png",
+            "images": [],
+            "colors": [
+                  "Black",
+                  "Sail",
+                  "Dark Mocha",
+                  "White"
+            ],
+            "sold": 0,
+            "ratingsAverage": 4.14,
+            "ratingsQuantity": 0
       }
 ]
