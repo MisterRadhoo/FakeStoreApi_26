@@ -58,7 +58,7 @@ app.use("/static", express.static("src/public"));
 app.set("query parser", "extended");  // when nested object are returned, they are parsed (legacy code);
 
 // limiter
-app.use(setRateLimiter({ windowMs: 10 * 60 * 1000, limit: 90, message: "Too many requests! Try again later" }));
+app.use(setRateLimiter({ windowMs: 5 * 60 * 1000, limit: 399, message: "Too many requests! Try again later" }));
 
 
 

@@ -16,5 +16,11 @@
         "name": "Accessories",
         "slug": "accessories",
         "image": "http://localhost:7800/static/img/accessories-1.png"
+    },
+    {
+        "_id": "69f37d738b048daa0067ee4b",
+        "name": "Retro",
+        "slug": "retro",
+        "image": "http://localhost:7800/static/img/retro.png"
     }
 ]

@@ -28,9 +28,9 @@ const Navbar = () => {
                     </span>
 
                     <div>
-                        <p className="mb-2 text-[7px] font-black uppercase tracking-[0.35em] text-red-500">
-                            Retro Store
-                        </p>
+                        {/* <p className="mb-2 text-[7px] font-black uppercase tracking-[0.35em] text-red-500">
+                            26
+                        </p> */}
 
                         <h1 className="text-base font-black uppercase tracking-[0.18em] text-slate-950 dark:text-white">
                             FakeStore API

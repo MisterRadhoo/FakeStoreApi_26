@@ -9,6 +9,8 @@ export const getProducts = async ({
     minPrice,
     maxPrice,
     minRating,
+    categoryId,
+    brandId
 }) => {
     const params = {};
 
@@ -42,6 +44,14 @@ export const getProducts = async ({
 
     if (minRating) {
         params["ratingsAverage[gte]"] = minRating;
+    }
+
+    if (categoryId) {
+        params.categoryId = categoryId;
+    }
+
+    if (brandId) {
+        params.brandId = brandId;
     }
 
     const response = await axiosClient.get("/products", {
@@ -84,6 +94,7 @@ export const getProductsByCategory = async ({ categoryId, page, limit }) => {
 
     return response.data;
 };
+
 
 export const createProduct = async (productData) => {
     const response = await axiosClient.post("/products", productData);

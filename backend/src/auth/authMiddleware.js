@@ -16,23 +16,7 @@ const requireLogIn = (req, res, next) =>
         return next();
     })(req, res, next);
 
-// permissions middleware
-// @desc Make sure the user is logged in the same own url
-const isAuth = (req, res, next) => {
-    let user = req.Profile && req.crUser && req.Profile._id.toString() === req.crUser._id.toString();
 
-    if (!user) {
-        return next(CustomApiError.forbidden("Owner resource, Access denied!"));
-    }
-    next();
-};
-
-const isAdmin = (req, res, next) => {
-    if (req.crUser.role !== "admin") {
-        return next(CustomApiError.forbidden("Access denied!"));
-    }
-    next();
-};
 
 const allowedTo = (...roles) => (req, res, next) => {
     // access roles
@@ -47,8 +31,6 @@ const allowedTo = (...roles) => (req, res, next) => {
 
 module.exports = {
     requireLogIn,
-    isAuth,
-    isAdmin,
     allowedTo
 };
 

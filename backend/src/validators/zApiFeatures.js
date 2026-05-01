@@ -1,4 +1,5 @@
 const { z } = require("zod");
+const zObjectId = require("./zObjectId");
 
 // @desc ApiFeatures zod schema validator
 const zApiFeatures = z.strictObject({
@@ -27,6 +28,9 @@ const zApiFeatures = z.strictObject({
         .trim()
         .min(2, "Keyword must be at least 2 characters")
         .optional(),
+    categoryId: zObjectId.optional(),  // used in front-end when filter product by category
+    brandId: zObjectId.optional(), // used in front-end when filter product by brand
+
     price: z.union([
         z.coerce.number().min(0, "Price must be >= 0"),
 

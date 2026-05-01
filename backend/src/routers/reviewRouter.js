@@ -40,14 +40,14 @@ const setLimiter = require("../middlewares/limiter/rateLimiter");
 // @desc Get all Reviews
 // @access Public
 router.get("/",
-    setLimiter({ limit: 30 }),
+    setLimiter({ limit: 300 }),
     zQueryValidator(zApiFeatures),
     getAllReviews);
 
 // @desc Get list of Reviews on specific Product
 // @access Public
 router.get("/list",
-    setLimiter({ limit: 30 }),
+    setLimiter({ limit: 99 }),
     zQueryValidator(zPaginationSchema),
     createFilterObj,
     getListReviews);
@@ -60,7 +60,7 @@ router.get("/:id", zParamValidator(idReviewSchema), getReview);
 // @access Private/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 30 }),
+    setLimiter({ limit: 99 }),
     setProductIdAndUserIdToBody,
     zBodyValidator(zCreateReviewSchema),
     checkReviewRefs,
@@ -70,7 +70,7 @@ router.post("/",
 // @access Private/User
 router.patch("/:id",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 30 }),
+    setLimiter({ limit: 99 }),
     zParamValidator(idReviewSchema),
     zBodyValidator(zUpdateReviewSchema),
     checkReviewOwnership,
@@ -80,7 +80,7 @@ router.patch("/:id",
 // @access Private/User/Admin
 router.delete("/:id",
     [requireLogIn, allowedTo("user", "admin")],
-    setLimiter({ limit: 30 }),
+    setLimiter({ limit: 99 }),
     zParamValidator(idReviewSchema),
     checkReviewOwnership,
     removeReview);

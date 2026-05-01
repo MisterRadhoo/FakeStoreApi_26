@@ -86,7 +86,7 @@ router.get("/",
 // @desc Get specific User
 // @access Private/Admin
 router.get("/:id",
-    [requireLogIn, allowedTo("admin")],
+    [requireLogIn, allowedTo("user", "admin")],
     zParamsValidator(idUserSchema),
     getUser);
 

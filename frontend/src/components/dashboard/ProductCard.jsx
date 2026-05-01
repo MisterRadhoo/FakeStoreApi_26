@@ -13,6 +13,7 @@ const ProductCard = ({ product }) => {
                     <img
                         src={product.imageCover}
                         alt={product.title}
+                        loading="lazy"
                         className="pixelated h-full w-full object-contain"
                     />
                 )}

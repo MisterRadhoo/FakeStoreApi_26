@@ -46,11 +46,17 @@ router.use("/:categoryId/subcategories", subCategoryRouter);
 
 // @desc Get all Categories
 // @access Public
-router.get("/", setLimiter({ limit: 30 }), zQueryValidator(zApiFeatures), getAllCategories);
+router.get("/",
+    setLimiter({ limit: 199 }),
+    zQueryValidator(zApiFeatures),
+    getAllCategories);
 
 // @desc Get specific Category
 // @access Public
-router.get("/:id", zParamsValidator(idCategorySchema), getCategory);
+router.get("/:id",
+    setLimiter({ limit: 199 }),
+    zParamsValidator(idCategorySchema),
+    getCategory);
 
 // @desc Create a Category
 // @access Private/Admin

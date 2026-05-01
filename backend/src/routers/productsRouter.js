@@ -50,6 +50,7 @@ router.param("productId", productById);
 // @access Public
 // GET /api/categories/:categoryId/products/list
 router.get("/list",
+    setLimiter({ limit: 199 }),
     filterObjCategory,
     zQueryValidator(zPaginationSchema),
     getListProductsByCategory);
@@ -61,7 +62,7 @@ router.get("/slug/:slug", productBySlug, getSlugProduct);
 // @desc Get all Products
 // @access Public
 router.get("/",
-    setLimiter({ limit: 300 }),
+    setLimiter({ limit: 199 }),
     zQueryValidator(zApiFeatures),
     getAllProducts);
 

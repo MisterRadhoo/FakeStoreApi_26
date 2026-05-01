@@ -22,5 +22,13 @@
         "image": "http://localhost:7800/static/img/nike-logo-icon.png",
         "createdAt": "2026-03-21T17:09:40.948Z",
         "updatedAt": "2026-03-21T17:09:40.948Z"
+    },
+    {
+        "_id": "69f3803d475b3a05ecc317c9",
+        "name": "Bioware",
+        "description": "Legends of cRPG",
+        "image": "http://localhost:7800/static/img/bioware-logo.png",
+        "createdAt": "2026-04-30T16:15:57.918Z",
+        "updatedAt": "2026-04-30T16:15:57.918Z"
     }
 ]

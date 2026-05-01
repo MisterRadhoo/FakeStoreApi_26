@@ -3,7 +3,7 @@ const zObjectId = require("../zObjectId");
 
 // @desc Create Review zod schema validator
 const zCreateReviewSchema = z.strictObject({
-    title: z.string()
+    title: z.string("Title is required")
         .trim()
         .min(3, "Review title must have at least 3 characters"),
     ratings: z.coerce

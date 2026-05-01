@@ -8,7 +8,6 @@ import "./index.css";
 // Global Handler Request
 import GlobalRequestHandler from "./components/GlobalRequestHandler.jsx";
 
-
 // Context
 import { AuthProvider } from "./auth/AuthContext.jsx";
 import { WishlistProvider } from "./wishlist/WishlistContext.jsx";

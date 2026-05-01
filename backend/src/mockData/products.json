@@ -108,7 +108,8 @@
             "images": [],
             "colors": [
                   "Baroque Brown",
-                  "Summit White-Sanddrift-Dark Smoke Grey",
+                  "Summit White-Sanddrift",
+                  "Dark Smoke Grey",
                   "Paradise Aqua"
             ],
             "sold": 0,
@@ -419,7 +420,7 @@
                   "Smoke Grey"
             ],
             "sold": 1,
-            "ratingsAverage": 4.19,
+            "ratingsAverage": 4.29,
             "ratingsQuantity": 1
       },
       {
@@ -455,7 +456,7 @@
             "description": "We're bringing you a low-top version of the 2020 AJ1 High 'Mocha'. Made from premium materials, signature details and easy-to-style colours like black, Sail and Dark Mocha round off the iconic design.",
             "categoryId": "6980755adb563b32c2d55fb6",
             "subcategoriesIds": [
-                  "69b95b9b504cf3ab16270f4d"
+                  "699b7838fbe26d029d8a7706"
             ],
             "brandId": "69b95dd7e8acb4ae28af811b",
             "imageCover": "http://localhost:7800/static/img/air-jordan-1-low-og-dark-mocha.png",
@@ -468,6 +469,29 @@
             ],
             "sold": 0,
             "ratingsAverage": 4.14,
+            "ratingsQuantity": 0
+      },
+      {
+            "title": "Baldur's Gate II Shadows of Amn",
+            "slug": "baldurs-gate-ii-shadows-of-amn",
+            "price": 600.00,
+            "currency": "USD",
+            "stock": 4,
+            "description": "Baldur's Gate II: Shadows of Amn is a critically acclaimed CRPG developed by BioWare and released in 2000 as the sequel to the original Baldur's Gate.",
+            "categoryId": "69f37d738b048daa0067ee4b",
+            "subcategoriesIds": [
+                  "69f37e1182e0b9495a018a52"
+            ],
+            "brandId": "69f3803d475b3a05ecc317c9",
+            "imageCover": "http://localhost:7800/static/img/Baldur's_Gate_II__Shadows_of_Amn_Coverart.png",
+            "images": [],
+            "colors": [
+                  "Blue",
+                  "Dark Gold",
+                  "Green"
+            ],
+            "sold": 0,
+            "ratingsAverage": 5.00,
             "ratingsQuantity": 0
       }
 ]

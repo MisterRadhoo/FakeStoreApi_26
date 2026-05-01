@@ -20,5 +20,13 @@
         "categoryId": "6980755adb563b32c2d55fb6",
         "createdAt": "2026-03-17T13:48:11.268+00:00",
         "updatedAt": "2026-03-17T13:48:11.268+00:00"
+    },
+    {
+        "_id": "69f37e1182e0b9495a018a52",
+        "name": "Cd-rom pc games",
+        "slug": "cd-rom-pc-games",
+        "categoryId": "69f37d738b048daa0067ee4b",
+        "createdAt": "2026-04-30T16:06:41.905Z",
+        "updatedAt": "2026-04-30T16:06:41.905Z"
     }
 ]
