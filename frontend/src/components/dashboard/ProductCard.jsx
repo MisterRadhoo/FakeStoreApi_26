@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import WishlistButton from "./WishlistButton.jsx";
+import AddToCartButton from "../../cart/components/AddToCartButton.jsx"
 
 
 const ProductCard = ({ product }) => {
@@ -41,7 +42,11 @@ const ProductCard = ({ product }) => {
                 </p>
             </div>
 
-            <WishlistButton productId={product._id} />
+            <div className="mt-5 flex flex-col gap-3">
+                <WishlistButton productId={product._id} />
+                <AddToCartButton productId={product._id} />
+            </div>
+
         </article>
     );
 };

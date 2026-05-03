@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext.jsx";
 import { useWishlist } from "../wishlist/WishlistContext.jsx";
+import { useCart } from "../cart/CartContext.jsx";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const Navbar = () => {
     const navigate = useNavigate();
     const { isAuthenticated, logout } = useAuth();
     const { wishlistCount } = useWishlist();
+    const { itemsCount } = useCart();
 
     const navLinkClass =
         "border-4 border-slate-950 bg-[#fff7d6] px-4 py-3 text-[10px] font-black uppercase tracking-widest text-slate-950 shadow-[4px_4px_0_0_#0f172a] transition-all hover:translate-x-1 hover:translate-y-1 hover:bg-yellow-300 hover:shadow-none dark:border-white dark:bg-slate-800 dark:text-white dark:shadow-[4px_4px_0_0_#ffffff] dark:hover:bg-slate-700";
@@ -49,6 +51,10 @@ const Navbar = () => {
 
                     <Link to="/account/wishlist" className={navLinkClass}>
                         Wishlist ({wishlistCount})
+                    </Link>
+
+                    <Link to="/cart" className={navLinkClass}>
+                        Cart ({itemsCount})
                     </Link>
                 </div>
 

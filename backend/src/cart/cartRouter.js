@@ -27,7 +27,10 @@ const setLimiter = require("../middlewares/limiter/rateLimiter");
 
 // @desc Add Product to Cart
 // @access Private/User
-router.post("/", [requireLogIn, allowedTo("user")], setLimiter({ limit: 10 }), addProductToCart);
+router.post("/",
+    [requireLogIn, allowedTo("user")],
+    setLimiter({ limit: 100 }),
+    addProductToCart);
 
 // @desc Get logged user Cart history
 // @access Private/User
@@ -53,12 +56,15 @@ router.delete("/remove-coupon", [requireLogIn, allowedTo("user")], removeCouponF
 // @access Private/User
 router.patch("/:itemId",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 10 }),
+    setLimiter({ limit: 100 }),
     zBodyValidator(zCartUpdateQtySchema),
     updateCartItemQuantity);
 
 // @desc Remove specific Cart item
 // @access Private/User
-router.delete("/:itemId", [requireLogIn, allowedTo("user")], setLimiter({ limit: 10 }), removeSpecificCartItem);
+router.delete("/:itemId",
+    [requireLogIn, allowedTo("user")],
+    setLimiter({ limit: 100 }),
+    removeSpecificCartItem);
 
 module.exports = router;

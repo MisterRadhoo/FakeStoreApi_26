@@ -1,4 +1,4 @@
-import ProtectedRoute from "../auth/ProtectedRoute.jsx";
+import ProtectedRoutes from "../auth/ProtectedRoutes.jsx";
 
 import UserAccount from "../components/dashboard/UserAccount.jsx";
 import EditProfile from "../components/dashboard/EditProfile.jsx";
@@ -10,33 +10,33 @@ const accountRouter = [
     {
         path: "account",
         element: (
-            <ProtectedRoute>
+            <ProtectedRoutes>
                 <UserAccount />
-            </ProtectedRoute>
+            </ProtectedRoutes>
         )
     },
     {
         path: "account/edit",
         element: (
-            <ProtectedRoute>
+            <ProtectedRoutes>
                 <EditProfile />
-            </ProtectedRoute>
+            </ProtectedRoutes>
         )
     },
     {
         path: "account/change-password",
         element: (
-            <ProtectedRoute>
+            <ProtectedRoutes>
                 <ChangePassword />
-            </ProtectedRoute>
+            </ProtectedRoutes>
         )
     },
     {
         path: "account/wishlist",
         element: (
-            <ProtectedRoute>
+            <ProtectedRoutes>
                 <UserWishlist />
-            </ProtectedRoute>
+            </ProtectedRoutes>
         )
     }
 ];

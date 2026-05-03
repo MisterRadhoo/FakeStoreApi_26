@@ -125,7 +125,7 @@ const applyCoupon = async (userId, couponName) => {
     cart.lastActionAt = Date.now();
 
     await cart.save();
-    return cart;
+    return findCart(userId);
 };
 
 // @desc Remove Coupon from logged user Cart

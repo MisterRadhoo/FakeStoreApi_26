@@ -6,6 +6,7 @@ import authRouter from "./auth/AuthRouter.jsx";
 import accountRouter from "./routers/accountRouter.jsx";
 import productsRouter from "./products/productsRouter.jsx";
 import categoryRouter from "./category/categoryRouter.jsx";
+import cartRouter from "./cart/cartRouter.jsx";
 import NotFound from "./components/NotFound.jsx";
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
             ...accountRouter,
             ...productsRouter,
             ...categoryRouter,
+            ...cartRouter,
             {
                 path: "*",
                 element: <NotFound />

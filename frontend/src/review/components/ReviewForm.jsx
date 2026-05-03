@@ -52,6 +52,7 @@ const ReviewForm = ({
                 <input
                     id="review-ratings"
                     name="ratings"
+                    data-testid="review-ratings"
                     type="number"
                     min="1"
                     max="5"
@@ -71,6 +72,7 @@ const ReviewForm = ({
                 <textarea
                     id="review-title"
                     name="title"
+                    data-testid="review-title"
                     rows="4"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -95,6 +97,7 @@ const ReviewForm = ({
             <div className="flex flex-wrap gap-3">
                 <button
                     type="submit"
+                    data-testid="submit-review-button"
                     disabled={isSubmitting}
                     className={`${buttonClass} bg-[#8ec5ff] dark:bg-blue-700`}
                 >

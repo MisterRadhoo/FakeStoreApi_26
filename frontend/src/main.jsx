@@ -12,6 +12,7 @@ import GlobalRequestHandler from "./components/GlobalRequestHandler.jsx";
 import { AuthProvider } from "./auth/AuthContext.jsx";
 import { WishlistProvider } from "./wishlist/WishlistContext.jsx";
 import { ProductProvider } from "./products/ProductsContext.jsx";
+import { CartProvider } from "./cart/CartContext.jsx";
 import { ThemeProvider } from "./theme/ThemeContext.jsx";
 
 createRoot(document.getElementById("root")).render(
@@ -20,8 +21,10 @@ createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <WishlistProvider>
           <ProductProvider>
-            <GlobalRequestHandler />
-            <RouterProvider router={router} />
+            <CartProvider>
+              <GlobalRequestHandler />
+              <RouterProvider router={router} />
+            </CartProvider>
           </ProductProvider>
         </WishlistProvider>
       </AuthProvider>
