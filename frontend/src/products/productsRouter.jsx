@@ -1,10 +1,9 @@
 import { lazy, Suspense } from "react";
-// import ProductPage from "../pages/ProductsPage.jsx";
-// import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
-
+import ProtectedRoutes from "../auth/ProtectedRoutes.jsx";
 
 const ProductPage = lazy(() => import("../pages/ProductsPage.jsx"));
 const ProductDetailsPage = lazy(() => import("./pages/ProductDetailsPage.jsx"));
+const CreateProductForm = lazy(() => import("./components/CreateProductForm.jsx"));
 
 const pageLoader = (
     <div className="pixel-font flex min-h-[50vh] items-center justify-center text-sm">
@@ -25,6 +24,16 @@ const productsRouter = [
             <Suspense fallback={pageLoader}>
                 <ProductDetailsPage />
             </Suspense>
+        )
+    },
+    {
+        path: "products/create",
+        element: (
+            <ProtectedRoutes>
+                <Suspense fallback={pageLoader}>
+                    <CreateProductForm />
+                </Suspense>
+            </ProtectedRoutes>
         )
     }
 ];

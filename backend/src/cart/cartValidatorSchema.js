@@ -6,4 +6,16 @@ const zCartUpdateQtySchema = z.strictObject({
         .min(1, "Quantity product must be >= 1")
 });
 
-module.exports = zCartUpdateQtySchema;
+
+const zApplyCouponSchema = z.strictObject({
+    coupon: z
+        .string("Coupon name is required")
+        .trim()
+        .min(3, "At least 3 characters")
+        .toUpperCase()
+});
+
+
+module.exports = { zCartUpdateQtySchema, zApplyCouponSchema };
+
+

@@ -47,7 +47,7 @@ const AddToCartButton = ({ productId }) => {
                 type="button"
                 onClick={handleAddToCart}
                 disabled={isMutating}
-                className={`pixel-font flex min-h-12 w-full items-center justify-center border-4 border-[#030712] px-4 py-3 text-center text-[10px] font-black uppercase tracking-widest text-[#030712] shadow-[5px_5px_0_#030712] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:cursor-not-allowed disabled:opacity-60 dark:border-white dark:shadow-[5px_5px_0_#ffffff] ${isAdded ? "bg-green-300 dark:bg-green-500" : "bg-sky-300 dark:bg-sky-500"
+                className={`pixel-font flex min-h-12 w-full items-center justify-center border-4 border-[#030712] px-4 py-3 text-center text-[10px] font-black uppercase tracking-widest text-[#030712] shadow-[5px_5px_0_#030712] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:cursor-not-allowed disabled:opacity-60 dark:border-white dark:shadow-[5px_5px_0_#ffffff] ${isAdded ? "bg-[#7fcf7a] text-black dark:bg-[#7fcf7a] dark:text-black" : "bg-sky-300 dark:bg-sky-500"
                     }`}
             >
                 {isMutating ? "ADDING..." : isAdded ? "ADDED TO CART" : "ADD TO CART"}

@@ -18,6 +18,8 @@ const CartCouponForm = ({ applyCoupon, removeCoupon, isMutating }) => {
         <div className="mt-6 flex flex-col gap-4">
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <input
+                    id="coupon"
+                    name="coupon"
                     type="text"
                     value={coupon}
                     onChange={(event) => setCoupon(event.target.value)}
@@ -38,7 +40,7 @@ const CartCouponForm = ({ applyCoupon, removeCoupon, isMutating }) => {
                 type="button"
                 onClick={removeCoupon}
                 disabled={isMutating}
-                className="pixel-font border-4 border-black bg-pink-200 px-4 py-3 text-xs text-white shadow-[6px_6px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:opacity-60"
+                className="pixel-font border-4 border-black bg-pink-200 px-4 py-3 text-xs text-black shadow-[6px_6px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:opacity-60"
             >
                 REMOVE COUPON
             </button>

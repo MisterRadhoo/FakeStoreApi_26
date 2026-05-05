@@ -40,6 +40,8 @@ const orderRouter = require("./order/orderRouter");
 const wishlistRouter = require("./wishlist/wishlistRouter");
 const addressRouter = require("./address/addressRouter");
 const userRouter = require("./user/userRouter");
+// Ai router
+const AIrouter = require("./systemAI/AIrouter");
 
 // CORS
 app.use(cors({
@@ -84,6 +86,8 @@ app.use("/api/orders", orderRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/addresses", addressRouter);
 app.use("/api/users", userRouter);
+
+app.use("/api/openai", AIrouter);
 
 
 // Guard url

@@ -95,7 +95,7 @@ export const getProductsByCategory = async ({ categoryId, page, limit }) => {
     return response.data;
 };
 
-
+// @desc Create Product from Interface
 export const createProduct = async (productData) => {
     const response = await axiosClient.post("/products", productData);
 

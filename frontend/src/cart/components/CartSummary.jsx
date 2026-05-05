@@ -7,10 +7,11 @@ const CartSummary = ({
     removeCoupon,
     clearUserCart,
 }) => {
+
     const subtotal = cart && cart.totalCartPrice ? cart.totalCartPrice : 0;
     const totalAfterDiscount = cart && cart.totalPriceAfterDiscount ? cart.totalPriceAfterDiscount : 0;
-    const finalTotal = totalAfterDiscount || subtotal;
     const appliedCoupon = cart && cart.couponId ? cart.couponId : null;
+    const finalTotal = appliedCoupon ? totalAfterDiscount : subtotal;
 
     return (
         <aside className="h-fit border-4 border-black bg-[#0b1637] p-6 text-white shadow-[10px_10px_0_#000]">
@@ -55,7 +56,7 @@ const CartSummary = ({
                     type="button"
                     onClick={clearUserCart}
                     disabled={isMutating}
-                    className="pixel-font mt-2 border-4 border-black bg-red-300 px-4 py-3 text-xs text-black shadow-[6px_6px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:opacity-60"
+                    className="pixel-font mt-2 border-4 border-black bg-[#f4a39a] px-4 py-3 text-xs text-black shadow-[6px_6px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:opacity-60"
                 >
                     CLEAR CART
                 </button>

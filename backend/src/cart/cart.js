@@ -2,6 +2,20 @@ const CustomApiError = require("../utils/ApiError");
 const { Cart, Product, User, Coupon } = require("../models/index");
 const { computeTotalCartPrice, recomputeCart, validateProductStock } = require("./helpers");
 
+// @desc Find Cart for user
+const findCart = async (userId) => {
+    const cart = await Cart.findOne({
+        userId: userId,
+        status: "active"
+    }).populate({ path: "couponId", select: "_id name expire discount" });
+
+    if (!cart) {
+        throw CustomApiError.notFound(`Cart for user id: ${userId}`, "userId");
+    }
+    return cart;
+};
+
+
 // @desc Add Product/Create Cart for user when is logged
 const addProduct = async (userId, productId) => {
     const product = await Product.findById(productId);
@@ -46,22 +60,12 @@ const addProduct = async (userId, productId) => {
 
     await recomputeCart(cart);  // modify document Cart
     await cart.save();
-    return cart;
+
+    return await findCart(userId);
 };
 
 
-// @desc Find Cart for user
-const findCart = async (userId) => {
-    const cart = await Cart.findOne({
-        userId: userId,
-        status: "active"
-    }).populate({ path: "couponId", select: "_id name expire discount" });
 
-    if (!cart) {
-        throw CustomApiError.notFound(`Cart for user id: ${userId}`, "userId");
-    }
-    return cart;
-};
 
 // @desc Update item from Cart
 const updateItem = async (userId, itemId, quantity) => {
@@ -97,6 +101,7 @@ const removeItem = async (userId, itemId) => {
 
     await recomputeCart(cart);  // modify document Cart
     await cart.save();
+
     return cart;
 };
 

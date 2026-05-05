@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { ProtectedRoutes } from "../auth/ProtectedRoutes.jsx";
+import ProtectedRoutes from "../auth/ProtectedRoutes.jsx";
 
 const CartPage = lazy(() => import("./pages/CartPage.jsx"));
 
@@ -20,14 +20,6 @@ const cartRouter = [
             </ProtectedRoutes>
         )
     },
-    // {
-    //     path: "cart/history",
-    //     element: (
-    //         <Suspense fallback={pageLoader}>
-    //             <CartHistoryPage />
-    //         </Suspense>
-    //     )
-    // }
 ];
 
 export default cartRouter;

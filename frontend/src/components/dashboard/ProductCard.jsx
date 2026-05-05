@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import WishlistButton from "./WishlistButton.jsx";
 import AddToCartButton from "../../cart/components/AddToCartButton.jsx"
 
-
 const ProductCard = ({ product }) => {
     return (
         <article className="border-4 border-[#030712] bg-[#fff6cc] p-5 text-[#030712] shadow-[8px_8px_0_#030712] dark:border-white dark:bg-[#374151] dark:text-white dark:shadow-[8px_8px_0_#ffffff]">

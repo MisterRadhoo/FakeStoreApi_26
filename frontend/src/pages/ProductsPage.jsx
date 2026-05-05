@@ -36,7 +36,7 @@ const ProductPage = () => {
                     <div className="mt-5">
                         <Link
                             to="/categories"
-                            className="inline-block border-4 border-[#030712] bg-[#6E260E] px-4 py-3 text-xs text-[#030712] shadow-[5px_5px_0_#030712] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none dark:border-white dark:bg-blue-700 dark:text-white dark:shadow-[5px_5px_0_#ffffff]"
+                            className="inline-block border-4 border-[#030712] bg-[#fff1b8] px-4 py-3 text-xs text-[#030712] shadow-[5px_5px_0_#030712] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none dark:border-white dark:bg-blue-700 dark:text-white dark:shadow-[5px_5px_0_#ffffff]"
                         >
                             VIEW CATEGORIES
                         </Link>

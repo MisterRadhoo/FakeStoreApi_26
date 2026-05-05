@@ -17,7 +17,7 @@ const CartPage = () => {
 
     if (isLoading) {
         return (
-            <section className="min-h-screen bg-[#d8cca3] px-4 py-10 dark:bg-slate-950">
+            <section className="min-h-screen bg-[#fff1b8] px-4 py-10 dark:bg-slate-950">
                 <div className="mx-auto max-w-7xl">
                     <div className="border-4 border-black bg-white p-8 shadow-[10px_10px_0_#000] dark:bg-slate-900 dark:text-white">
                         <h1 className="pixel-font text-lg">LOADING CART...</h1>
@@ -28,7 +28,7 @@ const CartPage = () => {
     }
 
     return (
-        <section className="min-h-screen bg-[#d8cca3] px-4 py-10 text-black dark:bg-slate-950 dark:text-white">
+        <section className="min-h-screen bg-[#fff1b8] px-4 py-10 text-black dark:bg-slate-950 dark:text-white">
             <div className="mx-auto max-w-7xl">
                 <div className="mb-8 border-4 border-black bg-[#efefef] p-8 shadow-[12px_12px_0_#000] dark:bg-slate-900">
                     <p className="pixel-font text-[10px] text-red-400">

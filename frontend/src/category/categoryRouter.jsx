@@ -1,8 +1,5 @@
 import { lazy, Suspense } from "react";
 
-//import CategoriesPage from "./pages/CategoriesPage.jsx";
-//import CategoryDetailsPage from "./pages/CategoryDetailsPage.jsx";
-
 const CategoriesPage = lazy(() => import("./pages/CategoriesPage.jsx"));
 const CategoryDetailsPage = lazy(() => import("./pages/CategoryDetailsPage.jsx"));
 

@@ -17,7 +17,7 @@ const {
 const zBodyValidator = require("../middlewares/zodValidators/zBody");
 
 // validators
-const zCartUpdateQtySchema = require("./cartValidatorSchema");
+const { zCartUpdateQtySchema, zApplyCouponSchema } = require("./cartValidatorSchema");
 
 // permissions
 const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
@@ -29,7 +29,7 @@ const setLimiter = require("../middlewares/limiter/rateLimiter");
 // @access Private/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 100 }),
+    setLimiter({ limit: 150 }),
     addProductToCart);
 
 // @desc Get logged user Cart history
@@ -46,7 +46,10 @@ router.delete("/", [requireLogIn, allowedTo("user")], clearCart);
 
 // @desc Apply Coupon on Shopping Cart
 // @access Private/User
-router.put("/apply-coupon", [requireLogIn, allowedTo("user")], applyCouponToCart);
+router.put("/apply-coupon",
+    [requireLogIn, allowedTo("user")],
+    zBodyValidator(zApplyCouponSchema),
+    applyCouponToCart);
 
 // @desc Remove Coupon from Shopping Cart
 // @access Private/User
@@ -56,7 +59,7 @@ router.delete("/remove-coupon", [requireLogIn, allowedTo("user")], removeCouponF
 // @access Private/User
 router.patch("/:itemId",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 100 }),
+    setLimiter({ limit: 150 }),
     zBodyValidator(zCartUpdateQtySchema),
     updateCartItemQuantity);
 
@@ -64,7 +67,7 @@ router.patch("/:itemId",
 // @access Private/User
 router.delete("/:itemId",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 100 }),
+    setLimiter({ limit: 150 }),
     removeSpecificCartItem);
 
 module.exports = router;

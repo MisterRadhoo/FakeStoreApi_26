@@ -78,7 +78,7 @@ const CartItem = ({ item, isMutating, updateItemQuantity, removeItem }) => {
                         type="button"
                         onClick={handleRemove}
                         disabled={isMutating}
-                        className="pixel-font border-4 border-black bg-pink-300 px-6 py-2 text-xs text-white shadow-[4px_4px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:opacity-60"
+                        className="pixel-font border-4 border-black bg-[#f88379] px-6 py-2 text-xs text-black shadow-[4px_4px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:opacity-60"
                     >
                         REMOVE
                     </button>

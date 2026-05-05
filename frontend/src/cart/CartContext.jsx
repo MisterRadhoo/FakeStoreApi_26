@@ -1,13 +1,14 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import {
-    addProductToCart as addProductToCartRequest,
-    getLoggedUserCart as getLoggedUserCartRequest,
-    updateCartItemQuantity as updateCartItemQuantityRequest,
-    removeSpecificCartItem as removeSpecificCartItemRequest,
-    clearCart as clearCartRequest,
-    applyCouponToCart as applyCouponToCartRequest,
-    removeCouponFromCart as removeCouponFromCartRequest,
+    addProductToCart,
+    getLoggedUserCart,
+    updateCartItemQuantity,
+    removeSpecificCartItem,
+    clearCart,
+    applyCouponToCart,
+    removeCouponFromCart,
 } from "./cartApi.js";
+import { getErrorMessage } from "../utils/utils.js";
 import { useAuth } from "../auth/AuthContext.jsx";
 
 const CartContext = createContext(null);
@@ -24,6 +25,8 @@ const extractCart = (responseData) => {
     return responseData;
 };
 
+
+
 export const CartProvider = ({ children }) => {
     const { isAuthenticated, isAuthLoading } = useAuth();
 
@@ -37,11 +40,13 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            const data = await getLoggedUserCartRequest();
+            const data = await getLoggedUserCart();
             setCart(extractCart(data));
+            return data;
         } catch (err) {
             setCart(null);
-            setError(err.response?.data?.message || "Failed loading the cart.");
+            setError(getErrorMessage(err, "Cart loading failed."));
+            throw err;
         } finally {
             setIsLoading(false);
         }
@@ -52,12 +57,11 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            const data = await addProductToCartRequest({ productId });
+            const data = await addProductToCart({ productId });
             setCart(extractCart(data));
             return data;
         } catch (err) {
-            const message = err.response?.data?.message || "Failed to add product to cart.";
-            setError(message);
+            setError(getErrorMessage(err, "Failed to add product to cart."));
             throw err;
         } finally {
             setIsMutating(false);
@@ -69,12 +73,11 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            const data = await updateCartItemQuantityRequest({ itemId, quantity });
+            const data = await updateCartItemQuantity({ itemId, quantity });
             setCart(extractCart(data));
             return data;
         } catch (err) {
-            const message = err.response?.data?.message || "Failed to update cart item.";
-            setError(message);
+            setError(getErrorMessage(err, "Failed to update cart item."));
             throw err;
         } finally {
             setIsMutating(false);
@@ -86,12 +89,11 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            const data = await removeSpecificCartItemRequest(itemId);
+            const data = await removeSpecificCartItem(itemId);
             setCart(extractCart(data));
             return data;
         } catch (err) {
-            const message = err.response?.data?.message || "Failed to remove cart item.";
-            setError(message);
+            setError(getErrorMessage(err, "Failed to remove cart item."));
             throw err;
         } finally {
             setIsMutating(false);
@@ -103,11 +105,11 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            await clearCartRequest();
+            const data = await clearCart();
             setCart(null);
+            return data;
         } catch (err) {
-            const message = err.response?.data?.message || "Failed to clear cart.";
-            setError(message);
+            setError(getErrorMessage(err, "Failed to clear cart."));
             throw err;
         } finally {
             setIsMutating(false);
@@ -119,34 +121,30 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            const data = await applyCouponToCartRequest({ coupon });
-            setCart(extractCart(data));
-            return data;
+            await applyCouponToCart({ coupon });
+            return await refreshCart();
         } catch (err) {
-            const message = err.response?.data?.message || "Failed to apply coupon.";
-            setError(message);
+            setError(getErrorMessage(err, "Failed to apply coupon."));
             throw err;
         } finally {
             setIsMutating(false);
         }
-    }, []);
+    }, [refreshCart]);
 
     const removeCoupon = useCallback(async () => {
         setIsMutating(true);
         setError("");
 
         try {
-            const data = await removeCouponFromCartRequest();
-            setCart(extractCart(data));
-            return data;
+            await removeCouponFromCart();
+            return await refreshCart();
         } catch (err) {
-            const message = err.response?.data?.message || "Failed to remove coupon.";
-            setError(message);
+            setError(getErrorMessage(err, "Failed to remove coupon."));
             throw err;
         } finally {
             setIsMutating(false);
         }
-    }, []);
+    }, [refreshCart]);
 
     useEffect(() => {
         if (isAuthLoading) {
@@ -161,7 +159,7 @@ export const CartProvider = ({ children }) => {
             return;
         }
 
-        refreshCart();
+        refreshCart().catch(() => { });
     }, [isAuthenticated, isAuthLoading, refreshCart]);
 
     const cartItems = cart && cart.cartItems ? cart.cartItems : [];
