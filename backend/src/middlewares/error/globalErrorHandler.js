@@ -22,7 +22,8 @@ const globalErrorHandler = (err, req, res, next) => {
         statusCode: statusCode,  //http status
         code: err.code || null,  // codul semantic
         param: err.param || null, // parametru invalid
-        message: err.message || "Unknown error",
+        message: statusCode === 503 ? err.message || "Service unavailable!" :
+            statusCode >= 500 ? "Internal server error" : err.message || "Unknown error",
         path: req.originalUrl,
         method: req.method,
     };

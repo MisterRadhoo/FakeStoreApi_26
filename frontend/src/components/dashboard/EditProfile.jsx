@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext.jsx";
 import { updateMe } from "../../user/userApi.js";
+import { getErrorMessage } from "../../utils/utils.js"
 
 const EditProfile = () => {
     const navigate = useNavigate();
@@ -42,11 +43,7 @@ const EditProfile = () => {
             updateCurrentUser(response.data.data);
             navigate("/account");
         } catch (error) {
-            setErrorMessage(
-                error.response && error.response.data && error.response.data.message
-                    ? error.response.data.message
-                    : "Profile update failed!"
-            );
+            setErrorMessage(getErrorMessage(error, "Profile update failed!"));
         } finally {
             setIsSubmitting(false);
         }

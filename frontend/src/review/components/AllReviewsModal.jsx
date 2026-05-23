@@ -1,18 +1,34 @@
 import { useEffect, useState } from "react";
 import { getProductReviews } from "../reviewApi.js";
 import { getReviewErrorMessage } from "../utils/reviewUtils.js";
+import { useEscapeClose } from "../hooks/useEscapeClose.js";
+import { useReviewAnalysis } from "../hooks/useReviewAnalysis.js";
 import ReviewCard from "./ReviewCard.jsx";
+import ReviewAiPanel from "./ReviewAiPanel.jsx";
 
-const AllReviewsModal = ({ productId, productTitle, onClose }) => {
+const AllReviewsModal = ({ productId, productTitle, onClose, reloadProduct }) => {
     const [reviews, setReviews] = useState([]);
     const [reviewsCount, setReviewsCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState("");
+    const [selectedReview, setSelectedReview] = useState(null);
 
-    const loadReviews = async () => {
+    const {
+        analysisResult,
+        analysisError,
+        isAnalyzing,
+        resetAnalysis,
+        handleAnalyzeReview
+    } = useReviewAnalysis();
+
+    useEscapeClose(onClose);
+
+    const loadReviews = async (selectedReviewId = "") => {
         if (!productId) {
             setReviews([]);
             setReviewsCount(0);
+            setSelectedReview(null);
+            resetAnalysis();
             setLoading(false);
             return;
         }
@@ -33,11 +49,22 @@ const AllReviewsModal = ({ productId, productTitle, onClose }) => {
                     : [];
 
             setReviews(reviewsList);
+
             setReviewsCount(
                 response && typeof response.count === "number"
                     ? response.count
                     : reviewsList.length
             );
+
+            if (selectedReviewId) {
+                const updatedSelectedReview =
+                    reviewsList.find((review) => review._id === selectedReviewId) || null;
+
+                setSelectedReview(updatedSelectedReview);
+            } else {
+                setSelectedReview(null);
+                resetAnalysis();
+            }
         } catch (error) {
             setErrorMessage(
                 getReviewErrorMessage(error, "Reviews could not be loaded!")
@@ -45,8 +72,30 @@ const AllReviewsModal = ({ productId, productTitle, onClose }) => {
 
             setReviews([]);
             setReviewsCount(0);
+            setSelectedReview(null);
+            resetAnalysis();
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleSelectReview = (review) => {
+        setSelectedReview(review);
+        resetAnalysis();
+    };
+
+    const handleAnalyzeSelectedReview = async () => {
+        if (!selectedReview || !selectedReview._id || isAnalyzing) {
+            return;
+        }
+
+        const selectedReviewId = selectedReview._id;
+
+        await handleAnalyzeReview(selectedReviewId);
+        await loadReviews(selectedReviewId);
+
+        if (reloadProduct) {
+            await reloadProduct();
         }
     };
 
@@ -89,13 +138,49 @@ const AllReviewsModal = ({ productId, productTitle, onClose }) => {
                     </p>
                 ) : reviews.length > 0 ? (
                     <div className="space-y-5">
-                        {reviews.map((review) => (
-                            <ReviewCard
-                                key={review._id}
-                                review={review}
-                                canManage={false}
+                        <div className="space-y-4">
+                            {reviews.map((review) => (
+                                <ReviewCard
+                                    key={review._id}
+                                    review={review}
+                                    canManage={false}
+                                    isSelected={selectedReview && selectedReview._id === review._id}
+                                    onSelect={handleSelectReview}
+                                />
+                            ))}
+                        </div>
+
+                        <div className="border-t-4 border-[#030712] pt-4 dark:border-white">
+                            <div className="mb-4 flex flex-wrap items-center gap-3">
+                                <button
+                                    type="button"
+                                    onClick={handleAnalyzeSelectedReview}
+                                    disabled={!selectedReview || isAnalyzing}
+                                    className="border-4 border-[#030712] bg-[#b9fbc0] px-4 py-3 text-xs text-[#030712] shadow-[5px_5px_0_#030712] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none disabled:cursor-not-allowed disabled:opacity-60 dark:border-white dark:bg-green-700 dark:text-white dark:shadow-[5px_5px_0_#ffffff]"
+                                >
+                                    {isAnalyzing
+                                        ? "AI ANALYZING..."
+                                        : "AI ANALYZE SELECTED REVIEW"}
+                                </button>
+
+                                {selectedReview ? (
+                                    <p className="text-xs">
+                                        SELECTED REVIEW BY:{" "}
+                                        {selectedReview.userId && selectedReview.userId.userName
+                                            ? selectedReview.userId.userName
+                                            : "DELETED USER"}
+                                    </p>
+                                ) : (
+                                    <p className="text-xs">SELECT A REVIEW FIRST.</p>
+                                )}
+                            </div>
+
+                            <ReviewAiPanel
+                                analysisResult={analysisResult}
+                                analysisError={analysisError}
+                                isAnalyzing={isAnalyzing}
                             />
-                        ))}
+                        </div>
                     </div>
                 ) : (
                     <p className="text-sm">NO REVIEWS YET</p>

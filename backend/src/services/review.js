@@ -14,7 +14,7 @@ const findReviews = async (filter, limit, page, sort) => {
 
   const reviews = await Review
     .find(filterObject)
-    .select("title ratings userId productId")
+    .select("title ratings userId productId aiStatus createdAt updatedAt")
     .populate({ path: "userId", select: "userName _id" })
     .sort(sortBy)
     .skip(skip)
@@ -64,5 +64,36 @@ const assertReviewOwnership = async (reviewId, currentUser) => {
 
 };
 
+// Used for AI toxicity checker in frontend
+// @desc Find all Reviews from all products
+const findAllProductReviews = async (limit, page, sort) => {
+  // pagination
+  const limitPage = limit ? Number(limit) : 90;
+  const pageNumber = page * 1 || 1;
+  const skip = (pageNumber - 1) * limitPage;
+  const sortBy = sort ? String(sort).split(",").join(" ") : "-createdAt";
 
-module.exports = { findReviews, assertReviewRefs, assertReviewOwnership };
+  const reviews = await Review
+    .find({})
+    .select("title ratings userId productId aiStatus createdAt updatedAt")
+    .populate({ path: "userId", select: "userName _id" })
+    .populate({ path: "productId", select: "title _id" })
+    .sort(sortBy)
+    .skip(skip)
+    .limit(limitPage);
+
+  return {
+    limit: limitPage,
+    page: pageNumber,
+    sort: sortBy,
+    reviews
+  };
+
+};
+
+module.exports = {
+  findReviews,
+  assertReviewRefs,
+  assertReviewOwnership,
+  findAllProductReviews
+};

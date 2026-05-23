@@ -1,8 +1,9 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext.jsx";
+import Forbidden from "../components/Forbidden.jsx";
 
-const ProtectedRoutes = ({ children }) => {
-    const { isAuthenticated, isAuthLoading } = useAuth();
+const ProtectedRoutes = ({ children, allowedTo }) => {
+    const { user, isAuthenticated, isAuthLoading } = useAuth();
 
     if (isAuthLoading) {
         return (
@@ -18,9 +19,18 @@ const ProtectedRoutes = ({ children }) => {
         return <Navigate to="/auth/login" replace />;
     }
 
+    if (
+        Array.isArray(allowedTo) &&
+        allowedTo.length > 0 &&
+        (!user || !allowedTo.includes(user.role))
+    ) {
+        return <Forbidden />;
+    }
+
     return children;
 };
 
 export default ProtectedRoutes;
+
 
 

@@ -13,6 +13,14 @@ import { useAuth } from "../auth/AuthContext.jsx";
 
 const CartContext = createContext(null);
 
+// Empty Cart state
+const EMPTY_CART = {
+    cartItems: [],
+    totalCartPrice: 0,
+    totalPriceAfterDiscount: 0,
+    couponId: null
+};
+
 const extractCart = (responseData) => {
     if (!responseData) {
         return null;
@@ -25,8 +33,6 @@ const extractCart = (responseData) => {
     return responseData;
 };
 
-
-
 export const CartProvider = ({ children }) => {
     const { isAuthenticated, isAuthLoading } = useAuth();
 
@@ -34,6 +40,11 @@ export const CartProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isMutating, setIsMutating] = useState(false);
     const [error, setError] = useState("");
+
+    const resetCartState = useCallback(() => {
+        setCart(EMPTY_CART);
+        setError("");
+    }, []);
 
     const refreshCart = useCallback(async () => {
         setIsLoading(true);
@@ -44,13 +55,18 @@ export const CartProvider = ({ children }) => {
             setCart(extractCart(data));
             return data;
         } catch (err) {
+            if (err.response && err.response.status === 404) {
+                resetCartState();
+                return EMPTY_CART;
+            }
+
             setCart(null);
             setError(getErrorMessage(err, "Cart loading failed."));
             throw err;
         } finally {
             setIsLoading(false);
         }
-    }, []);
+    }, [resetCartState]);
 
     const addToCart = useCallback(async (productId) => {
         setIsMutating(true);
@@ -105,16 +121,15 @@ export const CartProvider = ({ children }) => {
         setError("");
 
         try {
-            const data = await clearCart();
-            setCart(null);
-            return data;
+            await clearCart();
+            return await refreshCart();
         } catch (err) {
             setError(getErrorMessage(err, "Failed to clear cart."));
             throw err;
         } finally {
             setIsMutating(false);
         }
-    }, []);
+    }, [refreshCart]);
 
     const applyCoupon = useCallback(async (coupon) => {
         setIsMutating(true);
@@ -180,6 +195,7 @@ export const CartProvider = ({ children }) => {
             clearUserCart,
             applyCoupon,
             removeCoupon,
+            resetCartState,
         };
     }, [
         cart,
@@ -195,6 +211,7 @@ export const CartProvider = ({ children }) => {
         clearUserCart,
         applyCoupon,
         removeCoupon,
+        resetCartState,
     ]);
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

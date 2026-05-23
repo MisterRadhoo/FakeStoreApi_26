@@ -40,8 +40,9 @@ const orderRouter = require("./order/orderRouter");
 const wishlistRouter = require("./wishlist/wishlistRouter");
 const addressRouter = require("./address/addressRouter");
 const userRouter = require("./user/userRouter");
-// Ai router
-const AIrouter = require("./systemAI/AIrouter");
+// AI Router
+const reviewAnalysisRouter = require("./AI/reviewAnalysisRouter");
+
 
 // CORS
 app.use(cors({
@@ -60,7 +61,7 @@ app.use("/static", express.static("src/public"));
 app.set("query parser", "extended");  // when nested object are returned, they are parsed (legacy code);
 
 // limiter
-app.use(setRateLimiter({ windowMs: 5 * 60 * 1000, limit: 399, message: "Too many requests! Try again later" }));
+app.use(setRateLimiter({ windowMs: 5 * 60 * 1000, limit: 699, message: "Too many requests! Try again later" }));
 
 
 
@@ -86,8 +87,8 @@ app.use("/api/orders", orderRouter);
 app.use("/api/wishlist", wishlistRouter);
 app.use("/api/addresses", addressRouter);
 app.use("/api/users", userRouter);
+app.use("/api/ai", reviewAnalysisRouter);
 
-app.use("/api/openai", AIrouter);
 
 
 // Guard url

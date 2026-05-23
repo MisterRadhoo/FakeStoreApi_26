@@ -25,3 +25,23 @@ export const getProductReviews = async ({ productId, page, limit }) => {
 
     return response.data;
 };
+
+// AI fake review detector
+export const analyzeReviewAi = async (reviewId) => {
+    const response = await axiosClient.post("/ai/review-analysis", {
+        reviewId
+    });
+    return response.data.data;
+};
+
+// AI toxicity checker
+export const getAllProductReviews = async () => {
+    const response = await axiosClient.get("/reviews/all-products", {
+        params: {
+            page: 1,
+            limit: 120
+        }
+    });
+
+    return response.data;
+};

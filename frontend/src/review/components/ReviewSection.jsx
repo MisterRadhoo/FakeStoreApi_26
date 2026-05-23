@@ -1,10 +1,15 @@
 import { useMemo, useState } from "react";
 import { useAuth } from "../../auth/AuthContext.jsx";
-import { createReview, updateReview, deleteReview } from "../reviewApi.js";
+import {
+    createReview,
+    updateReview,
+    deleteReview
+} from "../reviewApi.js";
+import { useReviewAnalysis } from "../hooks/useReviewAnalysis.js";
 import { getReviewUserId, getReviewErrorMessage } from "../utils/reviewUtils.js";
 import ReviewForm from "./ReviewForm.jsx";
 import ReviewCard from "./ReviewCard.jsx";
-
+import ReviewAiPanel from "./ReviewAiPanel.jsx";
 
 const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
     const { user, isAuthenticated } = useAuth();
@@ -14,6 +19,14 @@ const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
     const [successMessage, setSuccessMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [deletingReviewId, setDeletingReviewId] = useState("");
+
+    const {
+        analysisResult,
+        analysisError,
+        isAnalyzing,
+        resetAnalysis,
+        handleAnalyzeReview
+    } = useReviewAnalysis();
 
     const loggedUserId =
         user && (user._id || user.id) ? String(user._id || user.id) : "";
@@ -33,6 +46,7 @@ const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
 
     const handleCreateReview = async (reviewData) => {
         resetMessages();
+        resetAnalysis();
         setIsSubmitting(true);
 
         try {
@@ -61,6 +75,7 @@ const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
         }
 
         resetMessages();
+        resetAnalysis();
         setIsSubmitting(true);
 
         try {
@@ -87,6 +102,7 @@ const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
         }
 
         resetMessages();
+        resetAnalysis();
         setDeletingReviewId(reviewId);
 
         try {
@@ -107,9 +123,15 @@ const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
         }
     };
 
+    const handleAnalyzeLoggedUserReview = async (reviewId) => {
+        await handleAnalyzeReview(reviewId);
+        await reloadProduct();
+    };
+
     const handleCancelEdit = () => {
         setEditingReview(null);
         resetMessages();
+        resetAnalysis();
     };
 
     return (
@@ -164,7 +186,15 @@ const ReviewSection = ({ productId, productTitle, reviews, reloadProduct }) => {
                         canManage
                         onEdit={setEditingReview}
                         onDelete={handleDeleteReview}
+                        onAnalyze={handleAnalyzeLoggedUserReview}
                         isDeleting={deletingReviewId === loggedUserReview._id}
+                        isAnalyzing={isAnalyzing}
+                    />
+
+                    <ReviewAiPanel
+                        analysisResult={analysisResult}
+                        analysisError={analysisError}
+                        isAnalyzing={isAnalyzing}
                     />
                 </div>
             )}

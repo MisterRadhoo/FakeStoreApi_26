@@ -26,7 +26,7 @@ const zApiFeatures = z.strictObject({
         .default("-__v -images -createdAt -updatedAt"),
     keyword: z.string()
         .trim()
-        .min(2, "Keyword must be at least 2 characters")
+        .min(1, "Keyword must be at least 1 character")
         .optional(),
     categoryId: zObjectId.optional(),  // used in front-end when filter product by category
     brandId: zObjectId.optional(), // used in front-end when filter product by brand

@@ -16,7 +16,8 @@ const {
     updateReview,
     removeReview,
     getAllReviews,
-    getListReviews
+    getListReviews,
+    getAllProductReviews
 } = require("../controllers/reviewController");
 
 // zod validation middlewares
@@ -44,10 +45,18 @@ router.get("/",
     zQueryValidator(zApiFeatures),
     getAllReviews);
 
+// @desc Get all reviews from Products
+// @access Public
+router.get("/all-products",
+    setLimiter({ limit: 199 }),
+    [requireLogIn, allowedTo("user", "admin")],
+    zQueryValidator(zPaginationSchema),
+    getAllProductReviews);
+
 // @desc Get list of Reviews on specific Product
 // @access Public
 router.get("/list",
-    setLimiter({ limit: 99 }),
+    setLimiter({ limit: 199 }),
     zQueryValidator(zPaginationSchema),
     createFilterObj,
     getListReviews);
@@ -60,7 +69,7 @@ router.get("/:id", zParamValidator(idReviewSchema), getReview);
 // @access Private/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 99 }),
+    setLimiter({ limit: 199 }),
     setProductIdAndUserIdToBody,
     zBodyValidator(zCreateReviewSchema),
     checkReviewRefs,
@@ -70,7 +79,7 @@ router.post("/",
 // @access Private/User
 router.patch("/:id",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 99 }),
+    setLimiter({ limit: 199 }),
     zParamValidator(idReviewSchema),
     zBodyValidator(zUpdateReviewSchema),
     checkReviewOwnership,
@@ -80,7 +89,7 @@ router.patch("/:id",
 // @access Private/User/Admin
 router.delete("/:id",
     [requireLogIn, allowedTo("user", "admin")],
-    setLimiter({ limit: 99 }),
+    setLimiter({ limit: 199 }),
     zParamValidator(idReviewSchema),
     checkReviewOwnership,
     removeReview);

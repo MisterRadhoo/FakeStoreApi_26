@@ -1,14 +1,30 @@
-import LoginPage from "../pages/LoginPage.jsx";
-import RegisterPage from "../pages/RegisterPage.jsx";
+import { lazy, Suspense } from "react";
+
+const LoginPage = lazy(() => import("../pages/LoginPage.jsx"));
+const RegisterPage = lazy(() => import("../pages/RegisterPage.jsx"));
+
+const pageLoader = (
+    <div className="pixel-font flex min-h-[50vh] items-center justify-center text-sm">
+        PLEASE WAIT TO LOAD PAGE...
+    </div>
+);
 
 const authRouter = [
     {
         path: "auth/login",
-        element: <LoginPage />
+        element: (
+            <Suspense fallback={pageLoader}>
+                <LoginPage />
+            </Suspense>
+        )
     },
     {
         path: "auth/register",
-        element: <RegisterPage />
+        element: (
+            <Suspense fallback={pageLoader}>
+                <RegisterPage />
+            </Suspense >
+        )
     }
 ];
 

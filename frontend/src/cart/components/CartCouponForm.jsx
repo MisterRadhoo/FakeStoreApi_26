@@ -24,7 +24,7 @@ const CartCouponForm = ({ applyCoupon, removeCoupon, isMutating }) => {
                     value={coupon}
                     onChange={(event) => setCoupon(event.target.value)}
                     placeholder="ENTER COUPON"
-                    className="pixel-font w-full border-4 border-black bg-[#efefef] px-4 py-3 text-[10px] uppercase text-black outline-none placeholder:text-gray-500 caret-black dark:border-white dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-400 dark:caret-white"
+                    className="pixel-font w-full border-4 border-black bg-[#efefef] px-4 py-3 text-[11px] uppercase text-black outline-none placeholder:text-gray-500 caret-black dark:border-white dark:bg-slate-950 dark:text-white dark:placeholder:text-slate-400 dark:caret-white"
                 />
 
                 <button

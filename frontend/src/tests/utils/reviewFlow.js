@@ -25,7 +25,11 @@ function shuffleArray(items) {
     }
 
     return array;
-};
+}
+
+function escapeRegex(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 export async function saveMetrics(metrics) {
     await mkdir(OUTPUT_DIR, { recursive: true });
@@ -35,16 +39,11 @@ export async function saveMetrics(metrics) {
     if (!existsSync(CSV_FILE)) {
         const header = [
             "timestamp",
-            "behaviorLabel",
+            "scenarioType",
             "actionType",
             "selectedProductId",
             "checkedProductIds",
             "productsCheckedCount",
-            "loginDurationMs",
-            "typingDurationMs",
-            "submitActionDurationMs",
-            "sessionDurationMs",
-            "scrollCount",
             "reviewLength",
             "wordCount",
             "rating",
@@ -57,16 +56,11 @@ export async function saveMetrics(metrics) {
 
     const row = [
         csvEscape(metrics.timestamp),
-        csvEscape(metrics.behaviorLabel),
+        csvEscape(metrics.scenarioType),
         csvEscape(metrics.actionType),
         csvEscape(metrics.selectedProductId),
         csvEscape((metrics.checkedProductIds || []).join("|")),
         csvEscape(metrics.productsCheckedCount),
-        csvEscape(metrics.loginDurationMs),
-        csvEscape(metrics.typingDurationMs),
-        csvEscape(metrics.submitActionDurationMs),
-        csvEscape(metrics.sessionDurationMs),
-        csvEscape(metrics.scrollCount),
         csvEscape(metrics.reviewLength),
         csvEscape(metrics.wordCount),
         csvEscape(metrics.rating),
@@ -75,16 +69,23 @@ export async function saveMetrics(metrics) {
     ].join(",");
 
     await appendFile(CSV_FILE, `${row}\n`, "utf-8");
-};
+}
 
 export async function getProductIds(page) {
-    const response = await page.request.get("http://localhost:7800/api/products?limit=50");
+    const response = await page.request.get(
+        "http://localhost:7800/api/products?limit=50"
+    );
+
+    expect(response.ok()).toBeTruthy();
+
     const result = await response.json();
+
+    expect(Array.isArray(result.data)).toBeTruthy();
 
     const ids = result.data.map((product) => product._id);
 
-    return shuffleArray(ids);//.slice(0, 8); // return first 8 random product from database
-};
+    return shuffleArray(ids);
+}
 
 export async function getReviewState(page) {
     const editButton = page.getByRole("button", { name: /edit/i });
@@ -107,30 +108,28 @@ export async function getReviewState(page) {
         hasExistingReview,
         hasReviewForm
     };
-};
+}
 
 export async function addReview(page, ratingValue, reviewText, typingDelay = 50) {
     const ratingInput = page.locator("#review-ratings");
     const titleInput = page.locator("#review-title");
     const submitButton = page.locator('form button[type="submit"]');
 
-    const typingStart = Date.now();
+    await expect(ratingInput).toBeVisible();
+    await expect(titleInput).toBeVisible();
+    await expect(submitButton).toBeVisible();
 
     await ratingInput.fill(String(ratingValue));
-    await titleInput.pressSequentially(reviewText, { delay: typingDelay });
+    await titleInput.click();
+    await titleInput.fill("");
+    await page.keyboard.type(reviewText, { delay: typingDelay });
 
-    const typingEnd = Date.now();
-
-    const submitStart = Date.now();
     await submitButton.click();
-    await expect(page.getByText(new RegExp(reviewText, "i"))).toBeVisible();
-    const submitEnd = Date.now();
 
-    return {
-        typingDurationMs: typingEnd - typingStart,
-        submitActionDurationMs: submitEnd - submitStart
-    };
-};
+    await expect(
+        page.getByText(new RegExp(escapeRegex(reviewText), "i"))
+    ).toBeVisible();
+}
 
 export async function editReview(page, ratingValue, reviewText, typingDelay = 50) {
     await page.getByRole("button", { name: /edit/i }).click();
@@ -141,29 +140,33 @@ export async function editReview(page, ratingValue, reviewText, typingDelay = 50
 
     await expect(ratingInput).toBeVisible();
     await expect(titleInput).toBeVisible();
-
-    const typingStart = Date.now();
+    await expect(submitButton).toBeVisible();
 
     await ratingInput.fill(String(ratingValue));
+    await titleInput.click();
     await titleInput.fill("");
-    await titleInput.pressSequentially(reviewText, { delay: typingDelay });
+    await page.keyboard.type(reviewText, { delay: typingDelay });
 
-    const typingEnd = Date.now();
-
-    const submitStart = Date.now();
     await submitButton.click();
-    await expect(page.getByText(new RegExp(reviewText, "i"))).toBeVisible();
-    const submitEnd = Date.now();
 
-    return {
-        typingDurationMs: typingEnd - typingStart,
-        submitActionDurationMs: submitEnd - submitStart
-    };
-};
+    await expect(
+        page.getByText(new RegExp(escapeRegex(reviewText), "i"))
+    ).toBeVisible();
+}
 
 export async function deleteReview(page) {
     await page.getByRole("button", { name: /delete/i }).click();
 
-    await expect(page.locator("#review-ratings")).toBeVisible();
-    await expect(page.locator("#review-title")).toBeVisible();
-};
+    const ratingInput = page.locator("#review-ratings");
+    const titleInput = page.locator("#review-title");
+    const submitButton = page.locator('form button[type="submit"]');
+    const editButton = page.getByRole("button", { name: /edit/i });
+    const deleteButton = page.getByRole("button", { name: /delete/i });
+
+    await expect(ratingInput).toBeVisible();
+    await expect(titleInput).toBeVisible();
+    await expect(submitButton).toBeVisible();
+
+    await expect(editButton).toHaveCount(0);
+    await expect(deleteButton).toHaveCount(0);
+}

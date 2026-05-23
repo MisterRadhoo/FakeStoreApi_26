@@ -1,60 +1,67 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../auth/AuthContext.jsx";
 import { useBootLoader } from "../hooks/useBootLoader.js";
 
 const HomePage = () => {
-    const { progress, visibleLines, bootComplete, bootLines } = useBootLoader();
+    const { isAuthenticated, user } = useAuth();
+    const { progress, visibleLines, bootComplete, bootLines } = useBootLoader(
+        isAuthenticated,
+        user
+    );
 
     return (
-        <div className="min-h-screen bg-[#efe3b0] text-slate-950">
+        <div className="min-h-screen bg-[#efe3b0] text-slate-950 dark:bg-[#111827] dark:text-white">
             <main className="mx-auto max-w-7xl px-6 py-12 sm:py-16">
-                <section className="border-4 border-black bg-[#f3f4f6] p-6 shadow-[12px_12px_0px_#0f172a] md:p-10">
+                <section className="border-4 border-black bg-[#f3f4f6] p-6 shadow-[12px_12px_0px_#0f172a] dark:border-white dark:bg-[#1f2937] dark:shadow-[12px_12px_0px_#ffffff] md:p-10">
                     <div className="grid items-center gap-12 lg:grid-cols-2">
                         <div>
-                            <p className="pixel-font mb-5 text-[10px] uppercase tracking-[0.28em] text-[#ff3b4a] sm:text-xs">
+                            <p className="pixel-font mb-5 text-[10px] uppercase tracking-[0.28em] text-[#ff3b4a] dark:text-[#ff6b77] sm:text-xs">
                                 Retro Store // Plug & Shop
                             </p>
 
-                            <h1 className="pixel-font text-3xl leading-relaxed text-slate-950 sm:text-4xl lg:text-5xl">
+                            <h1 className="pixel-font text-3xl leading-relaxed text-slate-950 dark:text-white sm:text-4xl lg:text-5xl">
                                 WELCOME TO
                                 <br />
                                 MY SHOP
                             </h1>
 
-                            <p className="mt-8 max-w-2xl text-lg leading-8 text-slate-700">
-                                Fake Store API Retro & Pixel UI
+                            <p className="pixel-font mt-8 max-w-2xl text-lg leading-8 text-slate-700 dark:text-slate-300">
+                                {isAuthenticated && user && user.userName
+                                    ? `Logged in as ${user.userName}`
+                                    : "Fake Store API Retro & Pixel UI"}
                             </p>
 
                             <div className="mt-10 flex flex-wrap gap-4">
                                 <Link
                                     to="/products"
-                                    className="pixel-font border-4 border-black bg-[#7dd3fc] px-6 py-4 text-[10px] uppercase tracking-wider text-slate-950 shadow-[6px_6px_0px_#0f172a] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0px_#0f172a] sm:text-xs"
+                                    className="pixel-font border-4 border-black bg-[#7dd3fc] px-6 py-4 text-[10px] uppercase tracking-wider text-slate-950 shadow-[6px_6px_0px_#0f172a] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0px_#0f172a] dark:border-white dark:bg-cyan-300 dark:text-slate-950 dark:shadow-[6px_6px_0px_#ffffff] sm:text-xs"
                                 >
-                                    Enter Shop
+                                    ENTER SHOP
                                 </Link>
 
                                 <a
                                     href="#shop-terminal"
-                                    className="pixel-font border-4 border-black bg-[#facc15] px-6 py-4 text-[10px] uppercase tracking-wider text-slate-950 shadow-[6px_6px_0px_#0f172a] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0px_#0f172a] sm:text-xs"
+                                    className="pixel-font border-4 border-cyan-300 bg-[#0f172a] px-6 py-4 text-[10px] uppercase tracking-wider text-green-400 shadow-[6px_6px_0px_#020617] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[4px_4px_0px_#020617] dark:border-cyan-300 dark:bg-[#0b1220] dark:text-green-400 dark:shadow-[6px_6px_0px_#ffffff] sm:text-xs"
                                 >
-                                    Boot System
+                                    {">"} RUN BOOT
                                 </a>
                             </div>
 
                             <div className="mt-10 grid max-w-xl grid-cols-2 gap-4">
-                                <div className="border-4 border-black bg-[#fef3c7] p-4 shadow-[5px_5px_0px_#0f172a]">
-                                    <p className="pixel-font text-[10px] text-slate-950 sm:text-xs">
+                                <div className="border-4 border-black bg-[#fef3c7] p-4 shadow-[5px_5px_0px_#0f172a] dark:border-white dark:bg-[#374151] dark:shadow-[5px_5px_0px_#ffffff]">
+                                    <p className="pixel-font text-[10px] text-slate-950 dark:text-white sm:text-xs">
                                         STYLE
                                     </p>
-                                    <p className="mt-3 text-sm text-slate-700 sm:text-base">
+                                    <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
                                         Pixel retro UI
                                     </p>
                                 </div>
 
-                                <div className="border-4 border-black bg-[#fecdd3] p-4 shadow-[5px_5px_0px_#0f172a]">
-                                    <p className="pixel-font text-[10px] text-slate-950 sm:text-xs">
+                                <div className="border-4 border-black bg-[#fecdd3] p-4 shadow-[5px_5px_0px_#0f172a] dark:border-white dark:bg-[#4b5563] dark:shadow-[5px_5px_0px_#ffffff]">
+                                    <p className="pixel-font text-[10px] text-slate-950 dark:text-white sm:text-xs">
                                         VIBE
                                     </p>
-                                    <p className="mt-3 text-sm text-slate-700 sm:text-base">
+                                    <p className="mt-3 text-sm text-slate-700 dark:text-slate-300 sm:text-base">
                                         Terminal + arcade
                                     </p>
                                 </div>
@@ -63,11 +70,11 @@ const HomePage = () => {
 
                         <div
                             id="shop-terminal"
-                            className="border-4 border-black bg-[#0f172a] p-5 text-white shadow-[10px_10px_0px_#1e293b]"
+                            className="border-4 border-black bg-[#0f172a] p-5 text-white shadow-[10px_10px_0px_#1e293b] dark:border-white dark:bg-[#020617] dark:shadow-[10px_10px_0px_#ffffff]"
                         >
                             <div className="mb-5 flex items-center justify-between border-b-4 border-cyan-300 pb-4">
                                 <p className="pixel-font text-[10px] uppercase tracking-[0.25em] text-cyan-300 sm:text-xs">
-                                    Shop Terminal
+                                    SHOP TERMINAL
                                 </p>
 
                                 <p className="pixel-font text-[10px] text-slate-300 sm:text-xs">
@@ -85,11 +92,11 @@ const HomePage = () => {
                                     </p>
                                 ))}
 
-                                {!bootComplete && (
+                                {!bootComplete ? (
                                     <p className="pixel-font animate-pulse text-[10px] leading-6 text-yellow-300 sm:text-xs">
                                         {">"} BOOTING...
                                     </p>
-                                )}
+                                ) : null}
                             </div>
 
                             <div className="mt-8">
@@ -123,11 +130,17 @@ const HomePage = () => {
                                         </p>
 
                                         <p className="pixel-font text-[10px] leading-6 text-pink-300 sm:text-xs">
-                                            {">"} PLUG & SHOP READY
+                                            {">"}{" "}
+                                            {isAuthenticated && user && user.userName
+                                                ? `WELCOME BACK ${user.userName.toUpperCase()}`
+                                                : "GUEST MODE ACTIVE"}
                                         </p>
 
                                         <p className="pixel-font text-[10px] leading-6 text-yellow-300 sm:text-xs">
-                                            {">"} START EXPLORING PRODUCTS
+                                            {">"}{" "}
+                                            {isAuthenticated
+                                                ? "CONTINUE YOUR SHOPPING SESSION"
+                                                : "START EXPLORING PRODUCTS"}
                                         </p>
                                     </div>
                                 )}

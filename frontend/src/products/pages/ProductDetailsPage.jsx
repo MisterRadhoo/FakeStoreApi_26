@@ -80,6 +80,7 @@ const ProductDetailsPage = () => {
                     productId={productId}
                     productTitle={product.title}
                     onClose={() => setIsAllReviewsOpen(false)}
+                    reloadProduct={loadProduct}
                 />
             ) : null}
         </main>

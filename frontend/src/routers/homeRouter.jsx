@@ -1,9 +1,21 @@
-import HomePage from "../pages/HomePage.jsx";
+import { lazy, Suspense } from "react";
+
+const HomePage = lazy(() => import("../pages/HomePage.jsx"));
+
+const pageLoader = (
+    <div className="pixel-font flex min-h-[50vh] items-center justify-center text-sm">
+        PLEASE WAIT TO LOAD HOME...
+    </div>
+);
 
 const homeRouter = [
     {
         index: true,
-        element: <HomePage />
+        element: (
+            <Suspense fallback={pageLoader}>
+                <HomePage />
+            </Suspense>
+        )
     }
 ];
 

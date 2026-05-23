@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../CartContext.jsx";
 import CartContainer from "../components/CartContainer.jsx";
 
@@ -38,6 +39,15 @@ const CartPage = () => {
                     <h1 className="pixel-font mt-6 text-2xl leading-[1.6] md:text-4xl">
                         MY CART
                     </h1>
+
+                    <div className="mt-6">
+                        <Link
+                            to="/products"
+                            className="pixel-font inline-flex items-center justify-center border-4 border-black bg-sky-300 px-3 py-2 text-[10px] uppercase text-black shadow-[4px_4px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+                        >
+                            <span>BACK TO PRODUCTS</span>
+                        </Link>
+                    </div>
 
                     {error ? (
                         <div className="mt-6">

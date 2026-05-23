@@ -12,10 +12,13 @@
     "test:e2e:headed": "playwright test --headed",
     "th": "playwright test src/tests/reviewHuman.spec.js --headed --workers=1",
     "tb": "playwright test src/tests/reviewBot.spec.js --headed --workers=1",
-    "tr": "npm run th && npm run tb"
+    "tb2": "playwright test src/tests/botTwo.spec.js --headed --workers=1",
+    "tr": "npm run th && npm run tb && npm run tb2"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",
+    "@tensorflow-models/toxicity": "^1.2.2",
+    "@tensorflow/tfjs": "^4.22.0",
     "axios": "^1.15.2",
     "lucide-react": "^1.11.0",
     "react": "^19.2.5",

@@ -26,6 +26,23 @@ const reviewSchema = new mongoose.Schema(
             ref: "Product",
             required: [true, "Review must belong to a product"],
         },
+        aiStatus: {
+            label: {
+                type: String,
+                enum: ["NotAnalyzed", "Fake", "Real"],
+                default: "NotAnalyzed"
+            },
+            confidence: {
+                type: Number,
+                default: 0,
+                min: 0,
+                max: 1
+            },
+            analyzedAt: {
+                type: Date,
+                default: null
+            }
+        }
     },
     {
         timestamps: true,

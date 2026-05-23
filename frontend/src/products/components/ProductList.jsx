@@ -1,4 +1,4 @@
-import ProductCard from "../../components/dashboard/ProductCard.jsx";
+import ProductCard from "./ProductCard.jsx";
 
 
 const ProductList = ({ products, loading }) => {
@@ -11,7 +11,7 @@ const ProductList = ({ products, loading }) => {
     }
 
     return (
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {products.map((product) => (
                 <ProductCard key={product._id} product={product} />
             ))}

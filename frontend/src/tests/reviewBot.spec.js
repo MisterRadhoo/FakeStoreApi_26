@@ -6,48 +6,47 @@ import {
     deleteReview,
     saveMetrics
 } from "./utils/reviewFlow.js";
+import { fakeLikeBotMessages, allFakeLikeBotMessages } from "./utils/botReviews.js";
 
-test("bot full flow", async ({ page }) => {
-    const sessionStart = Date.now();
-    const loginStart = Date.now();
+test("fake-like text multiple reviews flow", async ({ page }) => {
+    const BOT_EMAIL = "toxicbot1@email.com";
+    const BOT_PASSWORD = "forzarapid";
+    const MAX_PRODUCTS_TO_REVIEW = 15;
 
-    const botReviewTexts = [
-        "Amazing product!!! Must buy!!! Best ever!!!",
-        "Excellent item!!! Highly recommended!!!",
-        "Superb product!!! Five stars!!!",
-        "Perfect quality!!! Buy now!!!",
-        "Awesome product!!"
-    ];
+    const MESSAGE_SOURCE = "genericAmazonStyle";   // spammyAggressive messages from botReviews, switch
 
-    const botRatings = [4, 5, 5, 5, 5];
+    const selectedMessagePool =
+        MESSAGE_SOURCE === "all"
+            ? allFakeLikeBotMessages
+            : fakeLikeBotMessages[MESSAGE_SOURCE];
 
-    const reviewText =
-        botReviewTexts[Math.floor(Math.random() * botReviewTexts.length)];
-    const ratingValue =
-        botRatings[Math.floor(Math.random() * botRatings.length)];
-
-    let selectedProductId = "";
-    let actionType = "";
-    let productsCheckedCount = 0;
-    let scrollCount = 0;
-    let typingDurationMs = 0;
-    let submitActionDurationMs = 0;
     let checkedProductIds = [];
+    let productsCheckedCount = 0;
+    let createdReviewsCount = 0;
 
     await page.goto("http://localhost:5173/auth/login");
-    await page.locator("#email").fill("radhoo@emailfaker.com");
-    await page.locator("#password").fill("forzarapid");
+    await page.locator("#email").fill(BOT_EMAIL);
+    await page.locator("#password").fill(BOT_PASSWORD);
     await page.getByRole("button", { name: /login/i }).click();
     await expect(page).toHaveURL(/account/);
 
-    const loginEnd = Date.now();
     const productIds = await getProductIds(page);
 
     for (const productId of productIds) {
+        if (createdReviewsCount >= MAX_PRODUCTS_TO_REVIEW) {
+            break;
+        }
+
         productsCheckedCount += 1;
         checkedProductIds.push(productId);
 
-        console.log("Trying product:", productId);
+        const selectedReview =
+            selectedMessagePool[createdReviewsCount % selectedMessagePool.length];
+
+        const reviewText = selectedReview.text;
+        const ratingValue = selectedReview.rating;
+
+        let actionType = "";
 
         await page.goto(`http://localhost:5173/products/${productId}`);
         await expect(page.getByText(/your review/i)).toBeVisible();
@@ -55,59 +54,39 @@ test("bot full flow", async ({ page }) => {
         const state = await getReviewState(page);
 
         if (state.hasExistingReview) {
-            console.log("Review already exists on product:", productId);
-
             await deleteReview(page);
+            await addReview(page, ratingValue, reviewText, 0);
 
-            const result = await addReview(page, ratingValue, reviewText, 1);
-
-            console.log("Review deleted and recreated on product:", productId);
-
-            selectedProductId = productId;
             actionType = "delete_then_create_review";
-            typingDurationMs = result.typingDurationMs;
-            submitActionDurationMs = result.submitActionDurationMs;
-            break;
-        }
+            createdReviewsCount += 1;
+        } else if (state.hasReviewForm) {
+            await addReview(page, ratingValue, reviewText, 0);
 
-        if (state.hasReviewForm) {
-            const result = await addReview(page, ratingValue, reviewText, 1);
-
-            console.log("Review added on product:", productId);
-
-            selectedProductId = productId;
             actionType = "create_review";
-            typingDurationMs = result.typingDurationMs;
-            submitActionDurationMs = result.submitActionDurationMs;
-            break;
+            createdReviewsCount += 1;
+        } else {
+            continue;
         }
+
+        const metrics = {
+            timestamp: new Date().toISOString(),
+            scenarioType: "fake_like_text",
+            actionType,
+            selectedProductId: productId,
+            checkedProductIds: [...checkedProductIds],
+            productsCheckedCount,
+            reviewLength: reviewText.length,
+            wordCount: reviewText.split(/\s+/).filter(Boolean).length,
+            rating: ratingValue,
+            reviewText,
+            result: "success"
+        };
+
+        console.log(metrics);
+        await saveMetrics(metrics);
     }
 
-    expect(selectedProductId).toBeTruthy();
-
-    const sessionEnd = Date.now();
-
-    const metrics = {
-        timestamp: new Date().toISOString(),
-        behaviorLabel: "bot",
-        actionType,
-        selectedProductId,
-        checkedProductIds,
-        productsCheckedCount,
-        loginDurationMs: loginEnd - loginStart,
-        typingDurationMs,
-        submitActionDurationMs,
-        sessionDurationMs: sessionEnd - sessionStart,
-        scrollCount,
-        reviewLength: reviewText.length,
-        wordCount: reviewText.split(/\s+/).length,
-        rating: ratingValue,
-        reviewText,
-        result: "success"
-    };
-
-    console.log(metrics);
-    await saveMetrics(metrics);
+    expect(createdReviewsCount).toBeGreaterThan(0);
 
     await page.getByRole("button", { name: /logout/i }).click();
     await expect(page.getByRole("link", { name: /login/i })).toBeVisible();

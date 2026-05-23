@@ -11,7 +11,7 @@ const getProduct = factory.getOne(Product,
         { path: "subcategoriesIds", select: "name _id" },
         { path: "brandId", select: "name _id description" },
         {
-            path: "reviews", select: "title ratings userId productId",
+            path: "reviews", select: "title ratings userId productId aiStatus createdAt updatedAt",
             populate: { path: "userId", select: "userName _id" }
         }
     ],

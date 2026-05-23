@@ -1,6 +1,6 @@
 const { Review } = require("../models/index");
 const factory = require("./handlerFactory");
-const { findReviews } = require("../services/review");
+const { findReviews, findAllProductReviews } = require("../services/review");
 
 // @desc Create Review
 const createReview = factory.createOne(Review, "Review");
@@ -32,6 +32,26 @@ const getListReviews = async (req, res) => {
     });
 };
 
+// Used for AI toxicity checker in frontend
+// @desc Get all reviews from all products
+const getAllProductReviews = async (req, res) => {
+
+    const response = await findAllProductReviews(
+        req.Query.limit,
+        req.Query.page,
+        req.Query.sort
+    );
+
+    return res.status(200).json({
+        object: "all_product_reviews_list",
+        limit: response.limit,
+        page: response.page,
+        sort: response.sort,
+        count: response.reviews.length,
+        list: response.reviews
+    });
+};
+
 
 module.exports = {
     createReview,
@@ -39,5 +59,6 @@ module.exports = {
     updateReview,
     removeReview,
     getAllReviews,
-    getListReviews
+    getListReviews,
+    getAllProductReviews
 };

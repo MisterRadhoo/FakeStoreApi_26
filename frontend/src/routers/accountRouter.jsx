@@ -1,17 +1,26 @@
+import { lazy, Suspense } from "react";
+
 import ProtectedRoutes from "../auth/ProtectedRoutes.jsx";
 
-import UserAccount from "../components/dashboard/UserAccount.jsx";
-import EditProfile from "../components/dashboard/EditProfile.jsx";
-import ChangePassword from "../components/dashboard/ChangePassword.jsx";
-import UserWishlist from "../components/dashboard/UserWishlist.jsx";
+const UserAccount = lazy(() => import("../components/dashboard/UserAccount.jsx"));
+const EditProfile = lazy(() => import("../components/dashboard/EditProfile.jsx"));
+const ChangePassword = lazy(() => import("../components/dashboard/ChangePassword.jsx"));
+const UserWishlist = lazy(() => import("../components/dashboard/UserWishlist.jsx"));
 
+const pageLoader = (
+    <div className="pixel-font flex min-h-[50vh] items-center justify-center text-sm">
+        PLEASE WAIT TO LOAD ACCOUNT...
+    </div>
+);
 
 const accountRouter = [
     {
         path: "account",
         element: (
             <ProtectedRoutes>
-                <UserAccount />
+                <Suspense fallback={pageLoader}>
+                    <UserAccount />
+                </Suspense>
             </ProtectedRoutes>
         )
     },
@@ -19,7 +28,9 @@ const accountRouter = [
         path: "account/edit",
         element: (
             <ProtectedRoutes>
-                <EditProfile />
+                <Suspense fallback={pageLoader}>
+                    <EditProfile />
+                </Suspense>
             </ProtectedRoutes>
         )
     },
@@ -27,7 +38,9 @@ const accountRouter = [
         path: "account/change-password",
         element: (
             <ProtectedRoutes>
-                <ChangePassword />
+                <Suspense fallback={pageLoader}>
+                    <ChangePassword />
+                </Suspense>
             </ProtectedRoutes>
         )
     },
@@ -35,7 +48,9 @@ const accountRouter = [
         path: "account/wishlist",
         element: (
             <ProtectedRoutes>
-                <UserWishlist />
+                <Suspense fallback={pageLoader}>
+                    <UserWishlist />
+                </Suspense>
             </ProtectedRoutes>
         )
     }

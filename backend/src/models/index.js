@@ -9,6 +9,7 @@ const Coupon = require("./couponSchema");
 const Category = require("./categorySchema");
 const Cart = require("./cartSchema");
 const Brand = require("./brandSchema");
+const ReviewAnalysis = require("../AI/reviewAnalysisSchema");
 
 // list of schemas
 module.exports = {
@@ -22,5 +23,6 @@ module.exports = {
     Coupon,
     Category,
     Cart,
-    Brand
+    Brand,
+    ReviewAnalysis
 };

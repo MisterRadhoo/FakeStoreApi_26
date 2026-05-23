@@ -9,7 +9,7 @@ const defaultFilters = {
     sortedBy: "-createdAt",
     fields: "title,price,currency,imageCover,ratingsAverage,stock,sold",
     page: 1,
-    limit: 7,
+    limit: 10,
     minPrice: "",
     maxPrice: "",
     minRating: "",

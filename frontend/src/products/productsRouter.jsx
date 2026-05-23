@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import ProtectedRoutes from "../auth/ProtectedRoutes.jsx";
 
-const ProductPage = lazy(() => import("../pages/ProductsPage.jsx"));
+const ProductPage = lazy(() => import("./pages/ProductsPage.jsx"));
 const ProductDetailsPage = lazy(() => import("./pages/ProductDetailsPage.jsx"));
-const CreateProductForm = lazy(() => import("./components/CreateProductForm.jsx"));
+const CreateProductPage = lazy(() => import("./pages/CreateProductPage.jsx"));
 
 const pageLoader = (
     <div className="pixel-font flex min-h-[50vh] items-center justify-center text-sm">
@@ -11,7 +11,7 @@ const pageLoader = (
     </div>
 );
 
-const productsRouter = [
+const ProductsRouter = [
     {
         path: "products",
         element: (<Suspense fallback={pageLoader}>
@@ -29,13 +29,13 @@ const productsRouter = [
     {
         path: "products/create",
         element: (
-            <ProtectedRoutes>
+            <ProtectedRoutes allowedTo={["admin"]}>
                 <Suspense fallback={pageLoader}>
-                    <CreateProductForm />
+                    <CreateProductPage />
                 </Suspense>
             </ProtectedRoutes>
         )
     }
 ];
 
-export default productsRouter;
+export default ProductsRouter;

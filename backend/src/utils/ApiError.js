@@ -62,6 +62,12 @@ class CustomApiError extends Error {
             code: "internal_error"
         });
     }
+    static serviceUnavailable(message = "Service unavailable!", param) {
+        return new CustomApiError(message, 503, {
+            code: "service_unavailable",
+            param
+        });
+    }
 };
 
 module.exports = CustomApiError;

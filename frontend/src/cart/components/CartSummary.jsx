@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CartCouponForm from "./CartCouponForm.jsx";
 
 const CartSummary = ({
@@ -61,12 +62,12 @@ const CartSummary = ({
                     CLEAR CART
                 </button>
 
-                <button
-                    type="button"
-                    className="pixel-font border-4 border-black bg-green-300 px-4 py-3 text-xs text-black shadow-[6px_6px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none"
+                <Link
+                    to="/checkout"
+                    className="pixel-font border-4 border-black bg-green-300 px-4 py-3 text-center text-xs text-black shadow-[6px_6px_0_#000] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-none dark:border-white dark:shadow-[6px_6px_0_#ffffff]"
                 >
                     CHECKOUT
-                </button>
+                </Link>
             </div>
         </aside>
     );
