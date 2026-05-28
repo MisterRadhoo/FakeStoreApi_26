@@ -43,7 +43,10 @@ const ReviewAiPanel = ({ analysisResult, analysisError, isAnalyzing }) => {
                     REVIEW DATA
                 </p>
 
-                <p>TEXT: {analysisResult.reviewData.text}</p>
+                <p className="break-all">
+                    TEXT: {analysisResult.reviewData.text}
+                </p>
+
                 <p>RATING: {analysisResult.reviewData.rating}</p>
                 <p>REVIEW LENGTH: {analysisResult.reviewData.reviewLength}</p>
                 <p>WORD COUNT: {analysisResult.reviewData.wordCount}</p>

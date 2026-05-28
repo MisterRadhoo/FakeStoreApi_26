@@ -1,224 +1,160 @@
 export const humanLikeReviewMessages = {
-    balancedComfort: [
+    detailedPositive: [
         {
-            rating: 4.2,
-            text: "Pretty comfortable overall. The front felt a little tight on the first wear, but after two days it was much better."
+            rating: 4.8,
+            text: "I have been using this product for about two weeks and it works well so far. The material feels solid, the size is accurate, and the delivery arrived on time."
         },
         {
-            rating: 3.8,
-            text: "Not bad, but I expected a softer feel inside. Still fine for normal daily use."
+            rating: 4.6,
+            text: "The product matched the online description and the colour looked very close to the photos. Packaging was clean and the item arrived without any damage."
         },
         {
-            rating: 4.1,
-            text: "The comfort is good once they break in a bit. The heel was slightly stiff at first."
-        },
-        {
-            rating: 3.9,
-            text: "I can wear them for a few hours without issues. After that I start noticing a bit of pressure near the toe area."
-        },
-        {
-            rating: 4.3,
-            text: "Good support underfoot and they do not feel heavy. For everyday wear they are comfortable enough."
-        },
-        {
-            rating: 4,
-            text: "They felt a little firm out of the box, but after a couple of uses they became much easier to wear."
-        },
-        {
-            rating: 3.7,
-            text: "The fit is okay, just a little narrow in the front for my preference."
-        },
-        {
-            rating: 4.2,
-            text: "Comfort surprised me in a good way. Not super cushioned, but stable and easy to walk in."
-        },
-        {
-            rating: 4,
-            text: "Overall a comfortable pair. I only wish the inner padding was slightly thicker."
-        },
-        {
-            rating: 3.9,
-            text: "Decent comfort, although I would not call them soft. More supportive than plush."
-        }
-    ],
-
-    casualEverydayUse: [
-        {
-            rating: 4.4,
-            text: "I bought these mostly for everyday use and they have been good so far. Easy to wear with jeans or joggers."
-        },
-        {
-            rating: 4.1,
-            text: "Good for walking around town and doing errands. They feel light enough and not bulky."
-        },
-        {
-            rating: 4,
-            text: "Nothing fancy, but they do the job well for daily wear."
-        },
-        {
-            rating: 4.3,
-            text: "I used them for a full afternoon outside and they stayed comfortable the whole time."
-        },
-        {
-            rating: 4.2,
-            text: "Nice casual pair. Simple look, decent comfort, and easy to match with regular clothes."
-        },
-        {
-            rating: 3.8,
-            text: "They work fine for normal use, but I would probably not choose them for very long walks."
-        },
-        {
-            rating: 4.3,
-            text: "I like them for daily use. They feel stable and the sole gives enough support for normal walking."
-        },
-        {
-            rating: 4,
-            text: "Pretty solid everyday shoes. The overall feel is good and they were easy to get used to."
-        },
-        {
-            rating: 4.1,
-            text: "Good casual option. I have worn them several times already and they still feel consistent."
-        },
-        {
-            rating: 3.9,
-            text: "Comfort is good enough for routine use. A couple of small details feel basic, but nothing serious."
-        }
-    ],
-
-    appearanceAndFit: [
-        {
-            rating: 4.5,
-            text: "They look better in person than in the photos. Clean shape and the fit ended up being just right for me."
-        },
-        {
-            rating: 4.2,
-            text: "I like how they look on foot. The front was a little snug at first, but not enough to return them."
-        },
-        {
-            rating: 4.4,
-            text: "The design is simple in a good way. Not flashy, just easy to wear with a lot of outfits."
-        },
-        {
-            rating: 4,
-            text: "Fit is mostly good, though they felt a bit stiff around the heel the first day."
-        },
-        {
-            rating: 3.8,
-            text: "They run slightly smaller than I expected, especially if you wear thicker socks."
-        },
-        {
-            rating: 4.3,
-            text: "Nice looking pair overall. The material feels decent and the shape is flattering on foot."
-        },
-        {
-            rating: 4.1,
-            text: "Pretty happy with the appearance. The finish looks clean and nothing felt cheap when I opened the box."
+            rating: 4.7,
+            text: "I bought this for daily use and it has been comfortable so far. The quality feels good for the price and I did not notice any major issue."
         },
         {
             rating: 4.5,
-            text: "Really like the look of these. They feel modern without trying too hard."
+            text: "The item arrived earlier than expected and was easy to use. It feels reliable, although the packaging could have been a little better."
         },
         {
-            rating: 3.9,
-            text: "Good shape and decent finish, but the toe box feels slightly narrow for me."
+            rating: 4.9,
+            text: "I was not sure about the size at first, but it fits well and looks exactly like the product images. Overall, I am happy with the purchase."
         },
         {
-            rating: 4.2,
-            text: "The fit improved after the second wear. Now they feel much more natural on foot."
+            rating: 4.6,
+            text: "I ordered this after comparing a few similar products and it turned out to be a good choice. The finish looks clean and it has worked well so far."
+        },
+        {
+            rating: 4.7,
+            text: "The product arrived in good condition and matched the size information from the listing. I have used it several times and it feels comfortable."
+        },
+        {
+            rating: 4.5,
+            text: "I liked that the product looked the same as in the photos. The material feels decent and the delivery was faster than I expected."
+        },
+        {
+            rating: 4.8,
+            text: "This has been reliable during the first week of use. The colour, size, and general quality are close to what I expected from the description."
+        },
+        {
+            rating: 4.6,
+            text: "The item feels sturdy and the packaging was handled properly. I bought it for everyday use and it has been practical so far."
+        },
+        {
+            rating: 4.7,
+            text: "I was pleased with the overall quality. The product does not feel cheap, the stitching looks clean, and the size was accurate for me."
+        },
+        {
+            rating: 4.5,
+            text: "The product works as expected and did not have any visible defects when it arrived. I also liked that the delivery updates were clear."
         }
     ],
 
-    practicalMixedFeedback: [
+    balancedReviews: [
         {
-            rating: 4.2,
-            text: "Overall I am happy with them. They are comfortable, look good, and feel reasonably well made."
+            rating: 3.8,
+            text: "The product is good overall, but the delivery took longer than expected. The item itself works fine and the quality seems fair for the price."
         },
         {
-            rating: 4,
-            text: "Good pair for regular use. Not perfect, but definitely good enough that I keep reaching for them."
-        },
-        {
-            rating: 4.3,
-            text: "They felt average on the first try, but after wearing them a few times I liked them more."
-        },
-        {
-            rating: 3.9,
-            text: "The sole is supportive, but the inside could be softer if you plan to wear them for many hours."
-        },
-        {
-            rating: 4.4,
-            text: "Nice balance between comfort and style. They feel reliable for normal day to day wear."
+            rating: 4.0,
+            text: "I like the design and the product feels comfortable, but the box arrived slightly damaged. Luckily, the item inside was in good condition."
         },
         {
             rating: 3.7,
-            text: "The design is good, but the front feels a bit tighter than I would prefer."
+            text: "The quality is decent, but I expected the material to feel a bit more premium. It still works as intended and I will keep it."
         },
         {
             rating: 4.1,
-            text: "So far so good. They seem durable enough and I have not had any major issues."
+            text: "The product looks nice and matches the listing, but customer support answered a bit slowly when I asked about the shipment."
         },
         {
-            rating: 4,
-            text: "Comfort is decent and the overall quality matches the price fairly well."
+            rating: 3.9,
+            text: "It is a useful product and I have no major complaints. The only downside is that the size runs slightly smaller than I expected."
         },
         {
             rating: 3.8,
-            text: "Not my favorite pair ever, but still a solid everyday option."
+            text: "The item is fine for normal use, but the packaging could have been better. There were no major problems with the product itself."
+        },
+        {
+            rating: 4.0,
+            text: "The product feels comfortable and looks good, but the delivery estimate was not very accurate. I still think it was worth keeping."
+        },
+        {
+            rating: 3.6,
+            text: "The material is acceptable for the price, although it is not as soft as I expected. The product is usable and matches most of the description."
         },
         {
             rating: 4.2,
-            text: "Good shoes overall. A few parts feel basic, though the actual wearing experience has been positive."
+            text: "The product arrived on time and works well, but the colour is slightly different from the photos. It is not a big issue for me."
+        },
+        {
+            rating: 3.9,
+            text: "I am mostly satisfied with the product. The quality is good, but the size guide could be more accurate."
+        },
+        {
+            rating: 3.7,
+            text: "The product does the job, but I noticed a small difference between the photos and the actual finish. It is still useful."
+        },
+        {
+            rating: 4.0,
+            text: "I had a good experience overall. The item arrived safely, but the delivery took two extra days compared with the estimate."
         }
     ],
 
-    shortNaturalMixed: [
+    negativeReal: [
         {
-            rating: 4.1,
-            text: "Good overall. Took a day or two to feel right."
+            rating: 2.2,
+            text: "The product arrived with a small defect on the side. I contacted support and they answered, but the replacement process took several days."
         },
         {
-            rating: 3.9,
-            text: "Nice look, decent comfort, slightly narrow in front."
+            rating: 2.5,
+            text: "The item does not look as good as in the photos. It is usable, but the material feels cheaper than I expected."
         },
         {
-            rating: 4.3,
-            text: "Happy with them so far. Better than I expected."
+            rating: 2.8,
+            text: "Delivery was late and the package was not handled very carefully. The product still works, but the overall experience was disappointing."
         },
         {
-            rating: 3.8,
-            text: "Not bad, just a little firm inside."
+            rating: 2.0,
+            text: "I ordered the correct size, but the product feels tighter than expected. I will probably return it and choose a different model."
         },
         {
-            rating: 4.2,
-            text: "Comfortable enough for everyday wear."
+            rating: 2.6,
+            text: "The product is not terrible, but it did not meet my expectations. The finish looks different from the pictures and the quality feels average."
         },
         {
-            rating: 4,
-            text: "Solid pair. No major complaints."
+            rating: 2.4,
+            text: "The item arrived later than expected and the box was slightly damaged. The product was still usable, but the experience was not great."
         },
         {
-            rating: 3.7,
-            text: "Fit is okay, but I expected a bit more cushioning."
+            rating: 2.3,
+            text: "The product looked better online than it does in person. It works, but the material feels thin and not very durable."
         },
         {
-            rating: 4.4,
-            text: "Really like the look and the feel."
+            rating: 2.7,
+            text: "I had to contact support because the tracking information was not updated. The product eventually arrived, but the process was frustrating."
         },
         {
-            rating: 3.9,
-            text: "Fine for casual use, just not amazing."
+            rating: 2.1,
+            text: "The size was not accurate for me, even though I checked the guide before ordering. I will return it because it is not comfortable."
         },
         {
-            rating: 4.1,
-            text: "Easy to wear and easy to match."
+            rating: 2.5,
+            text: "The product has a small mark on the surface and the packaging was not sealed properly. It is usable, but I expected better quality."
+        },
+        {
+            rating: 2.8,
+            text: "The item works, but it feels less stable than I expected. For the price, I thought the build quality would be better."
+        },
+        {
+            rating: 2.2,
+            text: "The colour was noticeably different from the listing photos. I can still use it, but I would not order the same version again."
         }
     ]
 };
 
 export const allHumanLikeReviewMessages = [
-    ...humanLikeReviewMessages.balancedComfort,
-    ...humanLikeReviewMessages.casualEverydayUse,
-    ...humanLikeReviewMessages.appearanceAndFit,
-    ...humanLikeReviewMessages.practicalMixedFeedback,
-    ...humanLikeReviewMessages.shortNaturalMixed
+    ...humanLikeReviewMessages.detailedPositive,
+    ...humanLikeReviewMessages.balancedReviews,
+    ...humanLikeReviewMessages.negativeReal
 ];

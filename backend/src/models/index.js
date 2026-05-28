@@ -10,6 +10,7 @@ const Category = require("./categorySchema");
 const Cart = require("./cartSchema");
 const Brand = require("./brandSchema");
 const ReviewAnalysis = require("../AI/reviewAnalysisSchema");
+const BlackList = require("./blackListSchema");
 
 // list of schemas
 module.exports = {
@@ -24,5 +25,6 @@ module.exports = {
     Category,
     Cart,
     Brand,
-    ReviewAnalysis
+    ReviewAnalysis,
+    BlackList
 };

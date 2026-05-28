@@ -1,4 +1,8 @@
-import { getReviewDateLabel } from "../utils/reviewDate";
+import {
+    getReviewDateLabel,
+    getReviewAiAnalyzedDateLabel
+}
+    from "../utils/reviewDate";
 import ReviewAiBadge from "./ReviewAiBadge.jsx";
 
 const ReviewCard = ({
@@ -21,6 +25,7 @@ const ReviewCard = ({
         : "border-4 border-[#030712] bg-[#fff6cc] p-4 shadow-[6px_6px_0_#030712] dark:border-white dark:bg-[#374151] dark:shadow-[6px_6px_0_#ffffff]";
 
     const reviewDateLabel = getReviewDateLabel(review);
+    const aiAnalyzedDateLabel = getReviewAiAnalyzedDateLabel(review);
 
     return (
         <article
@@ -57,12 +62,18 @@ const ReviewCard = ({
                 </p>
             ) : null}
 
+            {aiAnalyzedDateLabel ? (
+                <p className="mt-2 mb-2 text-[10px]">
+                    {aiAnalyzedDateLabel}
+                </p>
+            ) : null}
+
             <ReviewAiBadge aiStatus={review.aiStatus} />
-            
+
             {review.title ? (
                 <p
                     data-testid="review-title-text"
-                    className="text-sm leading-7"
+                    className="break-all text-sm leading-7"
                 >
                     {review.title}
                 </p>

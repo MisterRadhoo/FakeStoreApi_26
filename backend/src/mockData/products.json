@@ -2,7 +2,7 @@
       {
             "title": "Nike SB Dunk Low x Futura Laboratories",
             "slug": "nike-sb-dunk-low-x-futura-laboratories",
-            "price": 10329.99,
+            "price": 12999.99,
             "currency": "USD",
             "stock": 4,
             "description": "Aceasta editie Nike SB, este o colaborare intre brandul de produse comerciale si studioul de design, Futura Laboratories si divizia de skateboarding Nike.",
@@ -95,7 +95,7 @@
       {
             "title": "Nike SB Dunk Low Big Money Savings",
             "slug": "nike-sb-dunk-low-big-money-savings",
-            "price": 4320.99,
+            "price": 6300.99,
             "currency": "USD",
             "stock": 5,
             "description": "Pentru cumparatorii priceputi carora le place sa caute afacearea vietii, acest Nike SB dunk, aduce etosul discount profund adidasului tau de skate preferat.",
@@ -114,12 +114,12 @@
             ],
             "sold": 0,
             "ratingsAverage": 4.9,
-            "ratingsQuantity": 18
+            "ratingsQuantity": 6
       },
       {
             "title": "Nike SB Dunk Low Chicago J-pack",
             "slug": "nike-sb-dunk-low-chicago-j-pack",
-            "price": 3360.99,
+            "price": 3999.99,
             "currency": "USD",
             "stock": 9,
             "description": "Celebrul pattern al echipei de baschet Chicago Bulls, disponibil acum si pe un model de skateboarding.",
@@ -142,7 +142,7 @@
       {
             "title": "Nike SB Dunk Low Court Purple J-pack",
             "slug": "nike-sb-dunk-low-court-purple-j-pack",
-            "price": 1499.99,
+            "price": 1899.99,
             "currency": "USD",
             "stock": 7,
             "description": "Modelul Nike SB court purple, aduce accente discrete constructiei sale clasice de skateboarding.",
@@ -158,7 +158,7 @@
                   "Black",
                   "White"
             ],
-            "sold": 0,
+            "sold": 2,
             "ratingsAverage": 4.4,
             "ratingsQuantity": 11
       },
@@ -181,9 +181,9 @@
                   "Black",
                   "White"
             ],
-            "sold": 0,
+            "sold": 2,
             "ratingsAverage": 4.5,
-            "ratingsQuantity": 56
+            "ratingsQuantity": 5
       },
       {
             "title": "Nike SB Dunk Low Safari",
@@ -238,7 +238,7 @@
       {
             "title": "Nike SB Dunk Low Asparagus",
             "slug": "nike-sb-dunk-low-asparagus",
-            "price": 4649.99,
+            "price": 5877.99,
             "currency": "USD",
             "stock": 6,
             "description": "Starul in ascensiune al skateboarding-ului Yuto Horigome continua sa-si lase amprenta asupra modei, streetwear, odată cu lansarea celui de-al 2-lea Nike SB Dunk Low, numit Asparagus.",
@@ -257,9 +257,9 @@
                   "Sesame",
                   "Burnt Sienna"
             ],
-            "sold": 0,
+            "sold": 3,
             "ratingsAverage": 4.9,
-            "ratingsQuantity": 22
+            "ratingsQuantity": 2
       },
       {
             "title": "Nike SB Dunk Low x Dashawn Jordan Copperhead",
@@ -379,7 +379,7 @@
       {
             "title": "Air Jordan 1 Low OG Washed Teal",
             "slug": "air-jordan-1-low-og-washed-teal",
-            "price": 189.99,
+            "price": 589.99,
             "currency": "USD",
             "stock": 27,
             "description": "A thinned-out, sized-up Swoosh, rounded toe-box, and bulkier overall paneling are the foremost changes from the silhouette we've received in the past several years.",
@@ -400,7 +400,7 @@
       {
             "title": "Nike SB Dunk Low x Bronx Girls Skate",
             "slug": "nike-sb-dunk-low-x-bronx-girls-skate",
-            "price": 149.99,
+            "price": 749.99,
             "currency": "USD",
             "stock": 22,
             "description": "Bronx Girls Skate has been celebrating and growing women's skateboarding in the Bronx and beyond since 2020. Their new collaboration with Nike SB features the Dunk in a Stingray-textured black upper with colorful piping that represents the iconic colors of NYC public transport.",
@@ -426,7 +426,7 @@
       {
             "title": "Air Jordan 1 Low OG Wmns UNC To Chicago",
             "slug": "air-jordan-1-low-og-wmns-unc-to-chicago",
-            "price": 279.99,
+            "price": 579.99,
             "currency": "USD",
             "stock": 14,
             "description": "Relive MJ's move from North Carolina to Chicago in this first-ever, women's-exclusive AJ1 Low OG. Crisp leather splashed with Gym Red and Dark Powder Blue showcases your unbeatable game.",
@@ -450,7 +450,7 @@
       {
             "title": "Air Jordan 1 Low OG Dark Mocha",
             "slug": "air-jordan-1-low-og-dark-mocha",
-            "price": 400.00,
+            "price": 500.99,
             "currency": "USD",
             "stock": 7,
             "description": "We're bringing you a low-top version of the 2020 AJ1 High 'Mocha'. Made from premium materials, signature details and easy-to-style colours like black, Sail and Dark Mocha round off the iconic design.",
@@ -467,14 +467,14 @@
                   "Dark Mocha",
                   "White"
             ],
-            "sold": 0,
+            "sold": 1,
             "ratingsAverage": 4.14,
-            "ratingsQuantity": 0
+            "ratingsQuantity": 1
       },
       {
             "title": "Baldur's Gate II Shadows of Amn",
             "slug": "baldur-s-gate-ii-shadows-of-amn",
-            "price": 600.00,
+            "price": 610.25,
             "currency": "USD",
             "stock": 4,
             "description": "Baldur's Gate II: Shadows of Amn is a critically acclaimed CRPG developed by BioWare and released in 2000 as the sequel to the original Baldur's Gate.",
@@ -497,7 +497,7 @@
       {
             "title": "Neverwinter Nights",
             "slug": "neverwinter-nights",
-            "price": 550.00,
+            "price": 550.50,
             "currency": "USD",
             "stock": 6,
             "description": "Neverwinter Nights is a series of video games developed by BioWare and Obsidian Entertainment, based on the Forgotten Realms campaign setting of the Dungeons & Dragons role-playing game.",
@@ -518,7 +518,7 @@
       {
             "title": "Baldur's Gate",
             "slug": "baldurs-gate",
-            "price": 600.00,
+            "price": 600.25,
             "currency": "USD",
             "stock": 4,
             "description": "Baldur's Gate is a role-playing video game that was developed by BioWare and published in 1998 by Interplay Entertainment. It is the first game in the Baldur's Gate series and takes place in the Forgotten Realms, a high fantasy campaign setting, using a modified version of the Advanced Dungeons & Dragons (AD&D) 2nd edition rules.",
@@ -558,5 +558,76 @@
             "sold": 2,
             "ratingsAverage": 5.00,
             "ratingsQuantity": 1
+      },
+      {
+            "title": "Nike SB Dunk Low Bluetile",
+            "slug": "nike-sb-dunk-low-bluetile",
+            "price": 5880.99,
+            "currency": "USD",
+            "stock": 6,
+            "description": "Combining the nostalgia of the old school skate shops and the DIY perseverance of punk, Bluetile Skateboards is owner David Toole’s outlet for expression. More than a brick-and-mortar, Bluetile’s a destination where shop talk gets as heavy as the sessions themselves. Drawing on Toole’s deep knowledge of skate shoes and storytelling, the Nike SB Bluetile Dunk Low Pro illustrates a natural phenomenon through an iconic silhouette.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706",
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-bluetile.png",
+            "images": [],
+            "colors": [
+                  "Black",
+                  "Marina-White-Campfire",
+                  "Orange-Court",
+                  "Blue-Orange Horizon"
+            ],
+            "sold": 1,
+            "ratingsQuantity": 1,
+            "ratingsAverage": 4.45
+      },
+      {
+            "title": "Nike SB Dunk Low Heineken",
+            "slug": "nike-sb-dunk-low-heineken",
+            "price": 13500.88,
+            "currency": "USD",
+            "stock": 5,
+            "description": "The Nike SB Dunk Low Heineken is designed with a color palette inspired by the iconic green bottles of the Dutch beer brand. It features a white leather upper, green nubuck overlays, and a black suede Swoosh. The shoe is complemented by a green midsole, white outsole, and an embroidered red star on the lateral heel.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/nike-sb-dunk-low-heineken.png",
+            "images": [],
+            "colors": [
+                  "Classic Green",
+                  "Black-White-Red"
+            ],
+            "sold": 2,
+            "ratingsQuantity": 1,
+            "ratingsAverage": 4.55
+      },
+      {
+            "title": "Nike SB Dunk Low Street Hawker",
+            "slug": "nike-sb-dunk-low-street-hawker",
+            "price": 16000.99,
+            "currency": "USD",
+            "stock": 4,
+            "description": "From noodles to hot pot, skaters from New York to Beijing fuel their sessions with nosh from “Hawkers,” or Chinese street food vendors. Artist Jason Deng created watercolor paintings representing 6 different regional dishes from 6 Chinese cities and combined them alongside a whole mess of other hidden nods to Chinese food to make a Dunk that brings the sweet, the sour and everything else.",
+            "categoryId": "6980755adb563b32c2d55fb6",
+            "subcategoriesIds": [
+                  "699b7838fbe26d029d8a7706",
+                  "69b95b9b504cf3ab16270f4d"
+            ],
+            "brandId": "69a320dcccd444547f8a0ea4",
+            "imageCover": "http://localhost:7800/static/img/Nike-SB-Dunk-Low-Street-Hawker.png",
+            "images": [],
+            "colors": [
+                  "Metallic Copper",
+                  "Light Silver-Pueblo",
+                  "Brown-Metallic Silver"
+            ],
+            "sold": 0,
+            "ratingsQuantity": 1,
+            "ratingsAverage": 4.98
       }
 ]

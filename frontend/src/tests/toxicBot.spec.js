@@ -6,23 +6,15 @@ import {
     deleteReview,
     saveMetrics
 } from "./utils/reviewFlow.js";
-import {
-    fakeLikeBotMessages,
-    allFakeLikeBotMessages
-} from "./utils/botReviews.js";
+import { allToxicBotReviews } from "./utils/botReviews.js";
 
-test("fake-like text multiple reviews flow", async ({ page }) => {
-    const BOT_EMAIL = "bot2@email.com";
+// toxicBot
+test("toxic text multiple reviews flow", async ({ page }) => {
+    const BOT_EMAIL = "toxicbot@email.com";
     const BOT_PASSWORD = "forzarapid";
-    const MAX_PRODUCTS_TO_REVIEW = 12;
+    const MAX_PRODUCTS_TO_REVIEW = 20;
 
-    // options: ....
-    const MESSAGE_SOURCE = "spammyAggressive";
-
-    const selectedMessagePool =
-        MESSAGE_SOURCE === "all"
-            ? allFakeLikeBotMessages
-            : fakeLikeBotMessages[MESSAGE_SOURCE];
+    const selectedMessagePool = allToxicBotReviews;
 
     expect(Array.isArray(selectedMessagePool)).toBeTruthy();
     expect(selectedMessagePool.length).toBeGreaterThan(0);
@@ -82,7 +74,7 @@ test("fake-like text multiple reviews flow", async ({ page }) => {
 
         const metrics = {
             timestamp: new Date().toISOString(),
-            scenarioType: "fake_like_text",
+            scenarioType: "toxic_text",
             actionType,
             selectedProductId: product.id,
             selectedProductTitle: product.title,
@@ -92,7 +84,7 @@ test("fake-like text multiple reviews flow", async ({ page }) => {
             reviewLength: reviewText.length,
             wordCount: reviewText.split(/\s+/).filter(Boolean).length,
             rating: ratingValue,
-            reviewType: MESSAGE_SOURCE,
+            reviewType: "toxic_bot_review",
             reviewText,
             result: "success"
         };

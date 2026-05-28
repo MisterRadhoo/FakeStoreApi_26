@@ -11,13 +11,20 @@ const normalizeText = (text) => {
 
 const normalizeScore = (value) => {
     const numericValue = Number(value) || 0;
+
     return Math.min(Math.max(numericValue, 0), 1);
 };
 
+const getPredictionResult = (prediction) => {
+    if (prediction.results && prediction.results[0]) {
+        return prediction.results[0];
+    }
+
+    return null;
+};
+
 const getToxicScore = (prediction) => {
-    const result = prediction.results && prediction.results[0]
-        ? prediction.results[0]
-        : null;
+    const result = getPredictionResult(prediction);
 
     if (!result || !result.probabilities) {
         return 0;
@@ -27,24 +34,30 @@ const getToxicScore = (prediction) => {
 };
 
 const buildCategoryResult = (prediction) => {
+    const result = getPredictionResult(prediction);
     const score = getToxicScore(prediction);
 
     return {
         label: prediction.label,
         score,
-        match: score >= TOXICITY_THRESHOLD
+        match: result ? result.match === true : false
     };
 };
 
-const getStrongestCategory = (categories) => {
-    return categories.reduce((currentMax, category) => {
-        if (!currentMax || category.score > currentMax.score) {
-            return category;
-        }
-
-        return currentMax;
-    }, null);
+const getMatchedCategories = (categories) => {
+    return categories.filter((category) => {
+        return category.match;
+    });
 };
+
+const getPrimaryCategory = (matchedCategories, categories) => {
+    if (matchedCategories.length) {
+        return matchedCategories[0];
+    }
+
+    return categories[0] || null;
+};
+
 
 export const loadToxicityModel = async () => {
     if (toxicityModel) {
@@ -52,6 +65,7 @@ export const loadToxicityModel = async () => {
     }
 
     toxicityModel = await toxicity.load(TOXICITY_THRESHOLD);
+
     return toxicityModel;
 };
 
@@ -62,6 +76,7 @@ export const analyzeTextToxicity = async (text) => {
         return {
             label: "Clean",
             confidence: 0,
+            primaryCategory: "",
             categories: []
         };
     }
@@ -69,14 +84,21 @@ export const analyzeTextToxicity = async (text) => {
     const model = await loadToxicityModel();
     const predictions = await model.classify([reviewText]);
 
-    const categories = predictions.map(buildCategoryResult);
-    const strongestCategory = getStrongestCategory(categories);
+    const categories = predictions
+        .map(buildCategoryResult)
+        .sort((firstCategory, secondCategory) => {
+            return secondCategory.score - firstCategory.score;
+        });
 
-    const isToxic = categories.some((category) => category.match);
+    const matchedCategories = getMatchedCategories(categories);
+    const primaryCategory = getPrimaryCategory(matchedCategories, categories);
 
     return {
-        label: isToxic ? "Toxic" : "Clean",
-        confidence: strongestCategory ? strongestCategory.score : 0,
+        label: matchedCategories.length ? "Toxic" : "Clean",
+        confidence: primaryCategory ? primaryCategory.score : 0,
+        primaryCategory: matchedCategories.length && primaryCategory
+            ? primaryCategory.label
+            : "",
         categories
     };
 };

@@ -26,6 +26,7 @@ const reviewSchema = new mongoose.Schema(
             ref: "Product",
             required: [true, "Review must belong to a product"],
         },
+        // Persistent AI badge for Fake review detector
         aiStatus: {
             label: {
                 type: String,
@@ -42,6 +43,52 @@ const reviewSchema = new mongoose.Schema(
                 type: Date,
                 default: null
             }
+        },
+        // Persistent AI badge for toxicity checker 
+        toxicityStatus: {
+            label: {
+                type: String,
+                enum: ["NotAnalyzed", "Clean", "Toxic"],
+                default: "NotAnalyzed"
+            },
+            confidence: {
+                type: Number,
+                default: 0,
+                min: 0,
+                max: 1,
+                set: v => Math.round(v * 1000) / 1000
+            },
+            primaryCategory: {
+                type: String,
+                default: ""
+            },
+            categories: {
+                type: [
+                    {
+                        _id: false,
+                        label: {
+                            type: String
+                        },
+                        score: {
+                            type: Number,
+                            min: 0,
+                            max: 1,
+                            set: v => Math.round(v * 1000) / 1000
+                        },
+                        match: {
+                            type: Boolean,
+                            default: false
+                        }
+                    }
+                ],
+                default: []
+
+            },
+            analyzedAt: {
+                type: Date,
+                default: null
+            }
+
         }
     },
     {

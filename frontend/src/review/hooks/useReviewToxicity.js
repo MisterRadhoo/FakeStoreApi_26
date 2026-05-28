@@ -1,10 +1,42 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { analyzeTextToxicity } from "../../AI/toxicityModel.js";
+import { updateReviewToxicityStatus } from "../reviewApi.js";
 
 export const useReviewToxicity = () => {
     const [toxicityResults, setToxicityResults] = useState({});
     const [toxicityErrors, setToxicityErrors] = useState({});
+    const [visibleToxicityDetails, setVisibleToxicityDetails] = useState({});
     const [analyzingToxicityId, setAnalyzingToxicityId] = useState("");
+
+    const hideDetailsTimers = useRef({});
+
+    const hideToxicityDetailsAfterDelay = (reviewId) => {
+        if (hideDetailsTimers.current[reviewId]) {
+            clearTimeout(hideDetailsTimers.current[reviewId]);
+        }
+
+        setVisibleToxicityDetails((currentDetails) => ({
+            ...currentDetails,
+            [reviewId]: true
+        }));
+
+        hideDetailsTimers.current[reviewId] = setTimeout(() => {
+            setVisibleToxicityDetails((currentDetails) => ({
+                ...currentDetails,
+                [reviewId]: false
+            }));
+
+            delete hideDetailsTimers.current[reviewId];
+        }, 10000);
+    };
+
+    useEffect(() => {
+        return () => {
+            Object.values(hideDetailsTimers.current).forEach((timerId) => {
+                clearTimeout(timerId);
+            });
+        };
+    }, []);
 
     const handleAnalyzeToxicity = async (review) => {
         if (!review || !review._id || analyzingToxicityId) {
@@ -24,12 +56,24 @@ export const useReviewToxicity = () => {
         }));
 
         try {
-            const result = await analyzeTextToxicity(review.title);
+            const toxicityResult = await analyzeTextToxicity(review.title);
+
+            const response = await updateReviewToxicityStatus(
+                review._id,
+                toxicityResult
+            );
+
+            const savedToxicityStatus =
+                response.data && response.data.toxicityStatus
+                    ? response.data.toxicityStatus
+                    : toxicityResult;
 
             setToxicityResults((currentResults) => ({
                 ...currentResults,
-                [review._id]: result
+                [review._id]: savedToxicityStatus
             }));
+
+            hideToxicityDetailsAfterDelay(review._id);
         } catch (error) {
             console.error("Toxicity analysis error:", error);
 
@@ -45,6 +89,7 @@ export const useReviewToxicity = () => {
     return {
         toxicityResults,
         toxicityErrors,
+        visibleToxicityDetails,
         analyzingToxicityId,
         handleAnalyzeToxicity
     };

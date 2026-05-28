@@ -1,5 +1,5 @@
 const CustomApiError = require("../utils/ApiError");
-const { Review, Product } = require("../models/index");
+const { Review, Product, BlackList } = require("../models/index");
 const { checkExists } = require("../utils/helpers");
 
 // @desc Find Reviews in db
@@ -75,7 +75,7 @@ const findAllProductReviews = async (limit, page, sort) => {
 
   const reviews = await Review
     .find({})
-    .select("title ratings userId productId aiStatus createdAt updatedAt")
+    .select("title ratings userId productId aiStatus toxicityStatus createdAt updatedAt")
     .populate({ path: "userId", select: "userName _id" })
     .populate({ path: "productId", select: "title _id" })
     .sort(sortBy)
@@ -88,12 +88,81 @@ const findAllProductReviews = async (limit, page, sort) => {
     sort: sortBy,
     reviews
   };
+};
 
+// constant for toxicity threshold
+const TOXICITY_BLACKLIST_THRESHOLD = 0.75;
+
+// @desc Add Toxic label in BlackList if toxicity score is >= 75%
+const addToxicLabelToBlackList = async (review, toxicityStatus) => {
+  const toxicityScore = Number(toxicityStatus.confidence) || 0;
+
+  if (toxicityStatus.label !== "Toxic" || toxicityScore < TOXICITY_BLACKLIST_THRESHOLD) {
+    return null;
+  }
+
+  return BlackList.findOneAndUpdate(
+    {
+      userId: review.userId,
+      reviewId: review._id,
+      label: "Toxic"
+    },
+    {
+      userId: review.userId,
+      reviewId: review._id,
+      label: "Toxic",
+      reason: "Toxic content detected by AI",
+      aiScore: toxicityScore,
+      reviewTextSnapshot: review.title
+    },
+    {
+      new: true,
+      upsert: true,
+      runValidators: true
+    }
+  );
+};
+
+// @desc Save toxicity status on Review
+const saveReviewToxicityStatus = async (reviewId, toxicityStatus) => {
+  const updateReviewStatus = await Review.updateOne(
+    { _id: reviewId },
+    {
+      $set: {
+        toxicityStatus: {
+          label: toxicityStatus.label,
+          confidence: toxicityStatus.confidence,
+          primaryCategory: toxicityStatus.primaryCategory,
+          categories: toxicityStatus.categories || [],
+          analyzedAt: new Date()
+        }
+      }
+    },
+    {
+      runValidators: true,
+      timestamps: false
+    }
+  );
+
+  if (!updateReviewStatus.matchedCount) {
+    throw CustomApiError.notFound(`Review with id: ${reviewId}`, "reviewId");
+  }
+
+  const reviewBlackList = await Review.findById(reviewId).select("title userId");
+
+  // // Add Toxic label in BlackList if toxicity rule is matched
+  await addToxicLabelToBlackList(reviewBlackList, toxicityStatus);
+
+  return Review.findById(reviewId)
+    .select("title ratings userId productId toxicityStatus createdAt updatedAt")
+    .populate({ path: "userId", select: "userName _id" })
+    .populate({ path: "productId", select: "title _id" });
 };
 
 module.exports = {
   findReviews,
   assertReviewRefs,
   assertReviewOwnership,
-  findAllProductReviews
+  findAllProductReviews,
+  saveReviewToxicityStatus
 };

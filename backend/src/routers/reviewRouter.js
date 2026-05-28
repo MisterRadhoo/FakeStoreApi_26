@@ -17,7 +17,8 @@ const {
     removeReview,
     getAllReviews,
     getListReviews,
-    getAllProductReviews
+    getAllProductReviews,
+    updateReviewToxicityStatus
 } = require("../controllers/reviewController");
 
 // zod validation middlewares
@@ -65,11 +66,19 @@ router.get("/list",
 // @access Public
 router.get("/:id", zParamValidator(idReviewSchema), getReview);
 
+// @desc Update specific Review toxicity status
+// @desc Private/User/Admin
+router.patch("/:id/toxicity-status",
+    [requireLogIn, allowedTo("user", "admin")],
+    setLimiter({ limit: 199 }),
+    zParamValidator(idReviewSchema),
+    updateReviewToxicityStatus);
+
 // @desc Create Review
 // @access Private/User
 router.post("/",
     [requireLogIn, allowedTo("user")],
-    setLimiter({ limit: 199 }),
+    setLimiter({ limit: 399 }),
     setProductIdAndUserIdToBody,
     zBodyValidator(zCreateReviewSchema),
     checkReviewRefs,
@@ -89,7 +98,7 @@ router.patch("/:id",
 // @access Private/User/Admin
 router.delete("/:id",
     [requireLogIn, allowedTo("user", "admin")],
-    setLimiter({ limit: 199 }),
+    setLimiter({ limit: 399 }),
     zParamValidator(idReviewSchema),
     checkReviewOwnership,
     removeReview);

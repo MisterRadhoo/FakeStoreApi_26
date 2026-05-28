@@ -21,6 +21,7 @@ const AllProductReviewsPage = () => {
     const {
         toxicityResults,
         toxicityErrors,
+        visibleToxicityDetails,
         analyzingToxicityId,
         handleAnalyzeToxicity
     } = useReviewToxicity();
@@ -54,8 +55,9 @@ const AllProductReviewsPage = () => {
                             <AllProductReviewCard
                                 key={review._id}
                                 review={review}
-                                toxicityResult={toxicityResults[review._id]}
+                                toxicityResult={toxicityResults[review._id] || review.toxicityStatus}
                                 toxicityError={toxicityErrors[review._id]}
+                                showToxicityDetails={visibleToxicityDetails[review._id]}
                                 analyzingToxicityId={analyzingToxicityId}
                                 handleAnalyzeToxicity={handleAnalyzeToxicity}
                             />

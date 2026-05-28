@@ -1,6 +1,6 @@
 const { Review } = require("../models/index");
 const factory = require("./handlerFactory");
-const { findReviews, findAllProductReviews } = require("../services/review");
+const { findReviews, findAllProductReviews, saveReviewToxicityStatus } = require("../services/review");
 
 // @desc Create Review
 const createReview = factory.createOne(Review, "Review");
@@ -52,6 +52,19 @@ const getAllProductReviews = async (req, res) => {
     });
 };
 
+// @desc Update Review toxicity status
+const updateReviewToxicityStatus = async (req, res) => {
+    const review = await saveReviewToxicityStatus(
+        req.params.id,
+        req.body
+    );
+
+    return res.status(200).json({
+        message: "Review toxicity status has been updated!",
+        data: review
+    });
+};
+
 
 module.exports = {
     createReview,
@@ -60,5 +73,6 @@ module.exports = {
     removeReview,
     getAllReviews,
     getListReviews,
-    getAllProductReviews
+    getAllProductReviews,
+    updateReviewToxicityStatus
 };

@@ -1,26 +1,35 @@
 import { test, expect } from "@playwright/test";
 import {
-    getProductIds,
+    getProductsForReview,
     getReviewState,
     addReview,
     deleteReview,
     saveMetrics
 } from "./utils/reviewFlow.js";
-import { fakeLikeBotMessages, allFakeLikeBotMessages } from "./utils/botReviews.js";
+import {
+    fakeLikeBotMessages,
+    allFakeLikeBotMessages
+} from "./utils/botReviews.js";
 
 test("fake-like text multiple reviews flow", async ({ page }) => {
-    const BOT_EMAIL = "toxicbot1@email.com";
+    const BOT_EMAIL = "bot1@email.com";
     const BOT_PASSWORD = "forzarapid";
-    const MAX_PRODUCTS_TO_REVIEW = 15;
+    const MAX_PRODUCTS_TO_REVIEW = 12;
 
-    const MESSAGE_SOURCE = "genericAmazonStyle";   // spammyAggressive messages from botReviews, switch
+    // options: ....
+    const MESSAGE_SOURCE = "overPositiveNoDetails";
 
     const selectedMessagePool =
         MESSAGE_SOURCE === "all"
             ? allFakeLikeBotMessages
             : fakeLikeBotMessages[MESSAGE_SOURCE];
 
-    let checkedProductIds = [];
+    expect(Array.isArray(selectedMessagePool)).toBeTruthy();
+    expect(selectedMessagePool.length).toBeGreaterThan(0);
+
+    const checkedProductIds = [];
+    const checkedProductTitles = [];
+
     let productsCheckedCount = 0;
     let createdReviewsCount = 0;
 
@@ -28,17 +37,19 @@ test("fake-like text multiple reviews flow", async ({ page }) => {
     await page.locator("#email").fill(BOT_EMAIL);
     await page.locator("#password").fill(BOT_PASSWORD);
     await page.getByRole("button", { name: /login/i }).click();
+
     await expect(page).toHaveURL(/account/);
 
-    const productIds = await getProductIds(page);
+    const products = await getProductsForReview(page);
 
-    for (const productId of productIds) {
+    for (const product of products) {
         if (createdReviewsCount >= MAX_PRODUCTS_TO_REVIEW) {
             break;
         }
 
         productsCheckedCount += 1;
-        checkedProductIds.push(productId);
+        checkedProductIds.push(product.id);
+        checkedProductTitles.push(product.title);
 
         const selectedReview =
             selectedMessagePool[createdReviewsCount % selectedMessagePool.length];
@@ -48,7 +59,8 @@ test("fake-like text multiple reviews flow", async ({ page }) => {
 
         let actionType = "";
 
-        await page.goto(`http://localhost:5173/products/${productId}`);
+        await page.goto(`http://localhost:5173/products/${product.id}`);
+
         await expect(page.getByText(/your review/i)).toBeVisible();
 
         const state = await getReviewState(page);
@@ -72,12 +84,15 @@ test("fake-like text multiple reviews flow", async ({ page }) => {
             timestamp: new Date().toISOString(),
             scenarioType: "fake_like_text",
             actionType,
-            selectedProductId: productId,
+            selectedProductId: product.id,
+            selectedProductTitle: product.title,
             checkedProductIds: [...checkedProductIds],
+            checkedProductTitles: [...checkedProductTitles],
             productsCheckedCount,
             reviewLength: reviewText.length,
             wordCount: reviewText.split(/\s+/).filter(Boolean).length,
             rating: ratingValue,
+            reviewType: MESSAGE_SOURCE,
             reviewText,
             result: "success"
         };

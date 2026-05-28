@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getReviewToxicityAnalyzedDateLabel } from "../utils/reviewDate.js";
 import ReviewToxicityBadge from "./ReviewToxicityBadge.jsx";
 import ReviewToxicityDetails from "./ReviewToxicityDetails.jsx";
 
@@ -15,10 +16,13 @@ const AllProductReviewCard = ({
     review,
     toxicityResult,
     toxicityError,
+    showToxicityDetails,
     analyzingToxicityId,
     handleAnalyzeToxicity
 }) => {
     const isChecking = analyzingToxicityId === review._id;
+
+    const toxicityDateLabel = getReviewToxicityAnalyzedDateLabel(toxicityResult);
 
     return (
         <article className={cardClass}>
@@ -47,7 +51,7 @@ const AllProductReviewCard = ({
                 RATING: {review.ratings}
             </p>
 
-            <p className="mb-4 text-sm leading-7">
+            <p className="mb-4 break-all text-sm leading-7">
                 {review.title}
             </p>
 
@@ -64,13 +68,23 @@ const AllProductReviewCard = ({
                 </button>
             </div>
 
+            {toxicityDateLabel ? (
+                <p className="mb-2 text-[10px]">
+                    {toxicityDateLabel}
+                </p>
+            ) : null}
+
             {toxicityError ? (
                 <p className={errorClass}>
                     {toxicityError}
                 </p>
             ) : null}
 
-            <ReviewToxicityDetails toxicityResult={toxicityResult} />
+
+            {showToxicityDetails ? (
+                <ReviewToxicityDetails toxicityResult={toxicityResult} />
+            ) : null}
+
         </article>
     );
 };

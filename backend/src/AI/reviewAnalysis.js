@@ -1,9 +1,39 @@
 const axios = require("axios");
 const CustomApiError = require("../utils/ApiError");
 const { Review, ReviewAnalysis } = require("../models/index");
+const { addBlackListLabel } = require("../services/blackList");
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || "http://127.0.0.1:8000";
 const AI_MODEL_NAME = process.env.AI_MODEL_NAME || "fake-review-distilbert-en";
+
+// @desc Get fakeScore from aiAnalysis
+const getFakeScore = (aiAnalysis) => {
+    const fakeScore = aiAnalysis.scores.find((score) => {
+        return score.label === "Fake";
+    });
+
+    if (fakeScore) {
+        return fakeScore.score;
+    }
+
+    return aiAnalysis.confidence;
+};
+
+const addBotLabelIfFakeReview = async (review, reviewData, aiAnalysis) => {
+    if (aiAnalysis.label !== "Fake") {
+        return null;
+    }
+
+    return addBlackListLabel({
+        userId: review.userId,
+        reviewId: review._id,
+        label: "Bot",
+        reason: "Fake review detected by AI",
+        aiScore: getFakeScore(aiAnalysis),
+        reviewTextSnapshot: reviewData.text
+    });
+};
+
 
 // @desc Count words from review text
 const getWordCount = (text) => {
@@ -101,9 +131,13 @@ const saveReviewAnalysis = async (review, reviewData, aiAnalysis) => {
             }
         },
         {
-            runValidators: true
+            runValidators: true,
+            timestamps: false
         }
     );
+
+    // AI Fake review detector === Fake --> label === Bot for blackListed users
+    await addBotLabelIfFakeReview(review, reviewData, aiAnalysis);
 
     return reviewAnalysis;
 };

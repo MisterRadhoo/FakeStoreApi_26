@@ -13,7 +13,8 @@
     "th": "playwright test src/tests/reviewHuman.spec.js --headed --workers=1",
     "tb": "playwright test src/tests/reviewBot.spec.js --headed --workers=1",
     "tb2": "playwright test src/tests/botTwo.spec.js --headed --workers=1",
-    "tr": "npm run th && npm run tb && npm run tb2"
+    "txb": "playwright test src/tests/toxicBot.spec.js --headed --workers=1",
+    "tr": "npm run th && npm run tb && npm run tb2 && npm run txb"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.4",

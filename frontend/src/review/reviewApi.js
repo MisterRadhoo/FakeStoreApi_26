@@ -45,3 +45,12 @@ export const getAllProductReviews = async () => {
 
     return response.data;
 };
+
+// @desc Update Review toxicity status
+export const updateReviewToxicityStatus = async (reviewId, toxicityStatus) => {
+    const response = await axiosClient.patch(`/reviews/${reviewId}/toxicity-status`,
+        toxicityStatus
+    );
+
+    return response.data;
+};

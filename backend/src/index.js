@@ -32,7 +32,8 @@ const {
     subCategoryRouter,
     brandRouter,
     couponRouter,
-    taxRateListRouter
+    taxRateListRouter,
+    blackListRouter
 } = require("./routers/index");
 const authRouter = require("./auth/authRouter");
 const cartRouter = require("./cart/cartRouter");
@@ -88,7 +89,7 @@ app.use("/api/wishlist", wishlistRouter);
 app.use("/api/addresses", addressRouter);
 app.use("/api/users", userRouter);
 app.use("/api/ai", reviewAnalysisRouter);
-
+app.use("/api/blacklist", blackListRouter);
 
 
 // Guard url

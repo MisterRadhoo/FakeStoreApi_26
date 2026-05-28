@@ -42,11 +42,14 @@ export async function saveMetrics(metrics) {
             "scenarioType",
             "actionType",
             "selectedProductId",
+            "selectedProductTitle",
             "checkedProductIds",
+            "checkedProductTitles",
             "productsCheckedCount",
             "reviewLength",
             "wordCount",
             "rating",
+            "reviewType",
             "reviewText",
             "result"
         ].join(",");
@@ -59,11 +62,14 @@ export async function saveMetrics(metrics) {
         csvEscape(metrics.scenarioType),
         csvEscape(metrics.actionType),
         csvEscape(metrics.selectedProductId),
+        csvEscape(metrics.selectedProductTitle),
         csvEscape((metrics.checkedProductIds || []).join("|")),
+        csvEscape((metrics.checkedProductTitles || []).join("|")),
         csvEscape(metrics.productsCheckedCount),
         csvEscape(metrics.reviewLength),
         csvEscape(metrics.wordCount),
         csvEscape(metrics.rating),
+        csvEscape(metrics.reviewType),
         csvEscape(metrics.reviewText),
         csvEscape(metrics.result)
     ].join(",");
@@ -85,6 +91,25 @@ export async function getProductIds(page) {
     const ids = result.data.map((product) => product._id);
 
     return shuffleArray(ids);
+}
+
+export async function getProductsForReview(page) {
+    const response = await page.request.get(
+        "http://localhost:7800/api/products?limit=50"
+    );
+
+    expect(response.ok()).toBeTruthy();
+
+    const result = await response.json();
+
+    expect(Array.isArray(result.data)).toBeTruthy();
+
+    const products = result.data.map((product) => ({
+        id: product._id,
+        title: product.title
+    }));
+
+    return shuffleArray(products);
 }
 
 export async function getReviewState(page) {

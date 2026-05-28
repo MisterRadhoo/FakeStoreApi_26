@@ -17,8 +17,8 @@ const zUpdateProductSchema = z.strictObject({
     sold: z.coerce.number().int().min(0, "Sold must be >= 0").optional(),
     ratingsAverage: z.coerce.number().min(1, "Expected number to be >= 1").max(5, "Expected number to be <= 5").transform((val) => Math.round(val * 100) / 100).optional(),
     ratingsQuantity: z.coerce.number().int().min(0, "Expected number to be >= 0").optional(),
-}).refine((data) => Object.keys(data).length >= 2, {
-    message: "At least 2 fields must be provided for update!",
+}).refine((data) => Object.keys(data).length >= 1, {
+    message: "At least 1 fields must be provided for update!",
     path: ["product"]
 });
 
