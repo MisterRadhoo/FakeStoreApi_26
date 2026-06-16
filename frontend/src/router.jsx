@@ -10,6 +10,7 @@ import cartRouter from "./cart/cartRouter.jsx";
 import checkoutRouter from "./checkout/checkoutRouter.jsx";
 import taxRatesRouter from "./taxRates/taxRatesRouter.jsx";
 import reviewsRouter from "./review/reviewRouter.jsx";
+import blackListRouter from "./blacklist/blackListRouter.jsx";
 import NotFound from "./components/NotFound.jsx";
 
 const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
             ...checkoutRouter,
             ...taxRatesRouter,
             ...reviewsRouter,
+            ...blackListRouter,
             {
                 path: "*",
                 element: <NotFound />

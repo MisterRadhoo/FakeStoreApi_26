@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 // create blackListSchema
 const blackListSchema = new mongoose.Schema(
     {
-
         userId: {
             type: mongoose.Schema.ObjectId,
             ref: "User",

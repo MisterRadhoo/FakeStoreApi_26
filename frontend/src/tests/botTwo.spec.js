@@ -14,10 +14,10 @@ import {
 test("fake-like text multiple reviews flow", async ({ page }) => {
     const BOT_EMAIL = "bot2@email.com";
     const BOT_PASSWORD = "forzarapid";
-    const MAX_PRODUCTS_TO_REVIEW = 12;
+    const MAX_PRODUCTS_TO_REVIEW = 10;
 
     // options: ....
-    const MESSAGE_SOURCE = "spammyAggressive";
+    const MESSAGE_SOURCE = "repetitiveTemplate";
 
     const selectedMessagePool =
         MESSAGE_SOURCE === "all"

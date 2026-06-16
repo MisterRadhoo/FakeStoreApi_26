@@ -1,25 +1,25 @@
 import { lazy, Suspense } from "react";
 import ProtectedRoutes from "../auth/ProtectedRoutes.jsx";
 
-const AllProductReviewsPage = lazy(() => import("./pages/AllProductReviewsPage.jsx"));
+const BlackListPage = lazy(() => import("./pages/BlackListPage.jsx"));
 
 const pageLoader = (
     <div className="pixel-font flex min-h-[50vh] items-center justify-center text-sm">
-        PLEASE WAIT TO LOAD REVIEWS...
+        PLEASE WAIT TO LOAD BLACKLIST...
     </div>
 );
 
-const reviewsRouter = [
+const blackListRouter = [
     {
-        path: "reviews",
+        path: "blacklist",
         element: (
             <ProtectedRoutes allowedTo={["admin"]}>
                 <Suspense fallback={pageLoader}>
-                    <AllProductReviewsPage />
+                    <BlackListPage />
                 </Suspense>
             </ProtectedRoutes>
         )
     }
 ];
 
-export default reviewsRouter;
+export default blackListRouter;

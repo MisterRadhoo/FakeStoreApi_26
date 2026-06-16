@@ -87,47 +87,63 @@ export const fakeLikeBotMessages = {
         }
     ],
 
-    // test...
+    // test....
     repetitiveTemplate: [
         {
-            rating: 4.5,
-            text: "Good quality, good fit, good value. Overall a good purchase."
-        },
-        {
-            rating: 4.7,
-            text: "Nice design, nice feel, nice performance. Overall a nice product."
-        },
-        {
+            //test...
             rating: 4.4,
-            text: "Simple to use, simple to handle, simple to like. Overall a simple good buy."
-        },
-        {
-            rating: 4.8,
-            text: "Great quality, great appearance, great value. Overall a great choice."
-        },
-        {
-            rating: 4.6,
-            text: "Solid build, solid performance, solid price. Overall a solid purchase."
+            text: "The packaging was fine, the product looked clean, and the first impression was good. I think it is a decent buy."
         },
         {
             rating: 4.5,
-            text: "Looks good, works well, feels reliable. Overall a good experience."
+            text: "The quality feels good and the product looks close to what I expected. It was a nice purchase overall."
         },
         {
             rating: 4.7,
-            text: "Easy setup, easy use, easy maintenance. Overall easy to recommend."
+            text: "I like the design and the material feels comfortable. After using it for a bit, I can say it works pretty well."
+        },
+        {
+            // test..
+            rating: 4.8,
+            text: "The product looks great and feels better than I expected. I am happy with the quality so far."
+        },
+        {
+            // test..
+            rating: 4.6,
+            text: "It feels solid and reliable, and the price is fair for what you get. Overall, I am satisfied with it."
+        },
+        {
+            //test..
+            rating: 4.5,
+            text: "The item looks good and works as described. I have not had any issues with it until now."
+        },
+        {
+            //test...
+            rating: 4.7,
+            text: "Setup was easy and I did not need much time to figure it out. It is practical and easy to recommend."
         },
         {
             rating: 4.4,
-            text: "Good packaging, good condition, good first impression. Overall a good item."
+            text: "The package arrived in good condition and the product made a good first impression. It seems worth the money."
         },
         {
-            rating: 4.8,
-            text: "Very practical, very convenient, very satisfying. Overall very pleased."
+            //test..
+            rating: 4.7,
+            text: "The build feels solid, the performance is good, and the price seems fair. Overall, I would recommend it."
         },
         {
             rating: 4.6,
-            text: "Strong quality, strong performance, strong value. Overall a strong buy."
+            text: "Good quality, good design, and pretty easy to use. It feels like a solid purchase so far."
+        },
+        {
+            //test...
+            rating: 4.8,
+            text: "Nice look, nice quality, and nice overall experience. I have used it a few times and I am happy with it."
+        },
+        {
+            //test..
+            rating: 4.6,
+            text: "The product looks good, feels awesome, and works very well for what I needed. Overall, I am satisfied with it."
         }
     ],
 
@@ -285,6 +301,12 @@ export const toxicBotReviews = [
         rating: 1.2,
         text: "This was a filthy scam. The product was trash, the support team were idiots, and the manager gave nothing but bullshit excuses."
     },
+    {
+        // 20.
+        type: "toxicity",
+        rating: 3.3,
+        text: "Despite the inflated price of the sneakers and limited quantity, the quality is purely crap. Not worth it!!! Damn, these sneakers look cool on the shelf."
+    },
 
     // insult
     {
@@ -374,6 +396,7 @@ export const allFakeLikeBotMessages = [
     ...fakeLikeBotMessages.overPositiveNoDetails,
     ...fakeLikeBotMessages.repetitiveTemplate,
     ...fakeLikeBotMessages.balancedTemplate,
+    ...fakeLikeBotMessages.dataSetTrained
 ];
 
 export const allToxicBotReviews = [

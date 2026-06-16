@@ -3,8 +3,13 @@ const CustomApiError = require("../utils/ApiError");
 const { Review, ReviewAnalysis } = require("../models/index");
 const { addBlackListLabel } = require("../services/blackList");
 
+// constants
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || "http://127.0.0.1:8000";
 const AI_MODEL_NAME = process.env.AI_MODEL_NAME || "fake-review-distilbert-en";
+const FAKE_REVIEW_BLACKLIST_THRESHOLD = Number(
+    process.env.FAKE_REVIEW_BLACKLIST_THRESHOLD
+) || 2;
+
 
 // @desc Get fakeScore from aiAnalysis
 const getFakeScore = (aiAnalysis) => {
@@ -19,8 +24,18 @@ const getFakeScore = (aiAnalysis) => {
     return aiAnalysis.confidence;
 };
 
+// @desc Add Bot label only after the user reaches the Fake review threshold (2)
 const addBotLabelIfFakeReview = async (review, reviewData, aiAnalysis) => {
     if (aiAnalysis.label !== "Fake") {
+        return null;
+    }
+
+    const fakeReviewCount = await ReviewAnalysis.countDocuments({
+        userId: review.userId,
+        "aiAnalysis.label": "Fake"
+    });
+
+    if (fakeReviewCount < FAKE_REVIEW_BLACKLIST_THRESHOLD) {
         return null;
     }
 
@@ -28,7 +43,7 @@ const addBotLabelIfFakeReview = async (review, reviewData, aiAnalysis) => {
         userId: review.userId,
         reviewId: review._id,
         label: "Bot",
-        reason: "Fake review detected by AI",
+        reason: `User has ${fakeReviewCount} reviews detected as fake by AI`,
         aiScore: getFakeScore(aiAnalysis),
         reviewTextSnapshot: reviewData.text
     });

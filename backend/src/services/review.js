@@ -111,7 +111,7 @@ const addToxicLabelToBlackList = async (review, toxicityStatus) => {
       userId: review.userId,
       reviewId: review._id,
       label: "Toxic",
-      reason: "Toxic content detected by AI",
+      reason: "AI toxicity score is greater than or equal to 0.75",
       aiScore: toxicityScore,
       reviewTextSnapshot: review.title
     },
@@ -150,7 +150,7 @@ const saveReviewToxicityStatus = async (reviewId, toxicityStatus) => {
 
   const reviewBlackList = await Review.findById(reviewId).select("title userId");
 
-  // // Add Toxic label in BlackList if toxicity rule is matched
+  // Add Toxic label in BlackList if toxicity rule is matched
   await addToxicLabelToBlackList(reviewBlackList, toxicityStatus);
 
   return Review.findById(reviewId)

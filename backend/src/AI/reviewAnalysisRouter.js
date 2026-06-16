@@ -16,7 +16,7 @@ const { requireLogIn, allowedTo } = require("../auth/authMiddleware");
 // @desc AI Review analysis 
 // @access Private/Admin
 router.post("/review-analysis",
-    [requireLogIn, allowedTo("user", "admin")],
+    [requireLogIn, allowedTo("admin")],
     zBodyValidator(reviewIdSchema),
     analyzeReview);
 

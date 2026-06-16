@@ -95,8 +95,8 @@ const ProductFilters = ({
                 >
                     <option value="-createdAt">NEWEST</option>
                     <option value="createdAt">OLDEST</option>
-                    <option value="price">PRICE LOW</option>
-                    <option value="-price">PRICE HIGH</option>
+                    <option value="price">LOW PRICE</option>
+                    <option value="-price">HIGH PRICE</option>
                     <option value="-ratingsAverage">RATING</option>
                     <option value="-sold">SOLD</option>
                 </select>

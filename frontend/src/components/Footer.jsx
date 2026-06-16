@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MessageSquareText, ReceiptText } from "lucide-react";
+import { MessageSquareText, ReceiptText, ShieldAlert } from "lucide-react";
 
 const Footer = () => {
     const footerLinkClass =
@@ -22,13 +22,20 @@ const Footer = () => {
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                         <Link to="/reviews" className={footerLinkClass}>
                             <MessageSquareText className="h-4 w-4 stroke-3" />
-                            ALL REVIEWS
+                            VIEW ALL REVIEWS
+                        </Link>
+
+                        <Link to="/blacklist" className={footerLinkClass}>
+                            <ShieldAlert className="h-4 w-4 stroke-3" />
+                            BLACKLISTED USERS
                         </Link>
 
                         <Link to="/taxrates" className={footerLinkClass}>
                             <ReceiptText className="h-4 w-4 stroke-3" />
                             TAX RATES LIST
                         </Link>
+
+
                     </div>
                 </div>
 

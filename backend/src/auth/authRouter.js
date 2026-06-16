@@ -16,7 +16,7 @@ router.post("/register", zBodyValidator(zAuthRegisterSchema), register);
 
 // @desc Authenticate current user
 // @access Public
-router.post("/login", setLimiter({ limit: 200 }), zBodyValidator(zAuthLoginSchema), login);
+router.post("/login", setLimiter({ limit: 299 }), zBodyValidator(zAuthLoginSchema), login);
 
 // @desc Logout User
 // @access Private/User

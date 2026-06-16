@@ -50,14 +50,14 @@ router.get("/",
 // @access Public
 router.get("/all-products",
     setLimiter({ limit: 199 }),
-    [requireLogIn, allowedTo("user", "admin")],
+    [requireLogIn, allowedTo("admin")],
     zQueryValidator(zPaginationSchema),
     getAllProductReviews);
 
 // @desc Get list of Reviews on specific Product
 // @access Public
 router.get("/list",
-    setLimiter({ limit: 199 }),
+    setLimiter({ limit: 299 }),
     zQueryValidator(zPaginationSchema),
     createFilterObj,
     getListReviews);

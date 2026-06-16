@@ -14,6 +14,7 @@ import { WishlistProvider } from "./wishlist/WishlistContext.jsx";
 import { ProductProvider } from "./products/ProductsContext.jsx";
 import { CartProvider } from "./cart/CartContext.jsx";
 import { ThemeProvider } from "./theme/ThemeContext.jsx";
+import { BlackListProvider } from "./blacklist/BlackListContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -22,8 +23,10 @@ createRoot(document.getElementById("root")).render(
         <WishlistProvider>
           <ProductProvider>
             <CartProvider>
-              <GlobalRequestHandler />
-              <RouterProvider router={router} />
+              <BlackListProvider>
+                <GlobalRequestHandler />
+                <RouterProvider router={router} />
+              </BlackListProvider>
             </CartProvider>
           </ProductProvider>
         </WishlistProvider>

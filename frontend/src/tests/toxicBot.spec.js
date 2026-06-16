@@ -12,7 +12,7 @@ import { allToxicBotReviews } from "./utils/botReviews.js";
 test("toxic text multiple reviews flow", async ({ page }) => {
     const BOT_EMAIL = "toxicbot@email.com";
     const BOT_PASSWORD = "forzarapid";
-    const MAX_PRODUCTS_TO_REVIEW = 20;
+    const MAX_PRODUCTS_TO_REVIEW = 15;
 
     const selectedMessagePool = allToxicBotReviews;
 

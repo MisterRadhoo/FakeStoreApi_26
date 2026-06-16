@@ -6,6 +6,7 @@ import {
 import { useAuth } from "../auth/AuthContext.jsx";
 import { useWishlist } from "../wishlist/WishlistContext.jsx";
 import { useCart } from "../cart/CartContext.jsx";
+import { useTheme } from "../theme/ThemeContext.jsx";
 
 const NavbarLinks = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const NavbarLinks = () => {
     const { isAuthenticated, logout } = useAuth();
     const { wishlistCount } = useWishlist();
     const { itemsCount } = useCart();
+    const { toggleTheme } = useTheme();
 
     const textButtonClass =
         "flex items-center gap-2 border-4 border-slate-950 bg-[#fff7d6] px-5 py-3 text-[10px] font-black uppercase tracking-widest text-slate-950 shadow-[4px_4px_0_0_#0f172a] transition-all hover:translate-x-1 hover:translate-y-1 hover:bg-yellow-300 hover:shadow-none dark:border-white dark:bg-slate-800 dark:text-white dark:shadow-[4px_4px_0_0_#ffffff] dark:hover:bg-slate-700";
@@ -28,9 +30,9 @@ const NavbarLinks = () => {
         navigate("/auth/login");
     };
 
-    const handleToggleTheme = () => {
-        document.documentElement.classList.toggle("dark");
-    };
+    // const handleToggleTheme = () => {
+    //     document.documentElement.classList.toggle("dark");
+    // };
 
     return (
         <>
@@ -78,7 +80,7 @@ const NavbarLinks = () => {
                     type="button"
                     title="Toggle theme"
                     aria-label="Toggle theme"
-                    onClick={handleToggleTheme}
+                    onClick={toggleTheme}
                     className={`${iconButtonClass} bg-[#8cc7ff] hover:bg-yellow-300 dark:bg-blue-700 dark:hover:bg-slate-700`}
                 >
                     <Moon className={iconClass} />
