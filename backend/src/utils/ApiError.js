@@ -7,7 +7,7 @@ class CustomApiError extends Error {
         this.isOperational = true;
         this.code = options.code;
         this.param = options.param;
-        //test for zodError details
+        //zodError details
         this.details = options.details;
         Error.captureStackTrace(this, this.constructor);
     }

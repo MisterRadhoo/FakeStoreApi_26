@@ -47,7 +47,12 @@ const getAllProductReviews = async (req, res) => {
         limit: response.limit,
         page: response.page,
         sort: response.sort,
-        count: response.reviews.length,
+        count: response.count,
+        totalReviews: response.totalReviews,
+        totalPages: response.totalPages,
+        hasNextPage: response.hasNextPage,
+        hasPrevPage: response.hasPrevPage,
+        //count: response.reviews.length,
         list: response.reviews
     });
 };

@@ -73,6 +73,8 @@ const findAllProductReviews = async (limit, page, sort) => {
   const skip = (pageNumber - 1) * limitPage;
   const sortBy = sort ? String(sort).split(",").join(" ") : "-createdAt";
 
+  const totalReviews = await Review.countDocuments({});
+
   const reviews = await Review
     .find({})
     .select("title ratings userId productId aiStatus toxicityStatus createdAt updatedAt")
@@ -82,10 +84,17 @@ const findAllProductReviews = async (limit, page, sort) => {
     .skip(skip)
     .limit(limitPage);
 
+  const totalPages = Math.ceil(totalReviews / limitPage);
+
   return {
     limit: limitPage,
     page: pageNumber,
     sort: sortBy,
+    count: reviews.length,
+    totalReviews,
+    totalPages,
+    hasNextPage: pageNumber < totalPages,
+    hasPrevPage: pageNumber > 1,
     reviews
   };
 };

@@ -35,11 +35,12 @@ export const analyzeReviewAi = async (reviewId) => {
 };
 
 // AI toxicity checker
-export const getAllProductReviews = async () => {
+export const getAllProductReviews = async ({ page = 1, limit = 4, sort = "-createdAt" }) => {
     const response = await axiosClient.get("/reviews/all-products", {
         params: {
-            page: 1,
-            limit: 120
+            page,
+            limit,
+            sort
         }
     });
 

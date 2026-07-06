@@ -6,5 +6,9 @@
     "search.exclude": {
         "**/node_modules": true
     },
+    "typescript.tsserver.excludeDirectories": [
+        "**/node_modules"
+    ],
+    "js/ts.validate.enabled": false,
     "workbench.browser.openLocalhostLinks": false
 }
