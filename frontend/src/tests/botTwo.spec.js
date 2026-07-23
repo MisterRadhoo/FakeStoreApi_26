@@ -14,7 +14,7 @@ import {
 test("fake-like text multiple reviews flow", async ({ page }) => {
     const BOT_EMAIL = "bot2@email.com";
     const BOT_PASSWORD = "forzarapid";
-    const MAX_PRODUCTS_TO_REVIEW = 10;
+    const MAX_PRODUCTS_TO_REVIEW = 11;
 
     // options: ....
     const MESSAGE_SOURCE = "repetitiveTemplate";

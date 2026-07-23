@@ -140,6 +140,7 @@ export const fakeLikeBotMessages = {
             rating: 4.8,
             text: "Nice look, nice quality, and nice overall experience. I have used it a few times and I am happy with it."
         },
+        ////
         {
             //test..
             rating: 4.6,
@@ -273,36 +274,67 @@ export const toxicBotReviews = [
     },
     {
         // 3.
+        type: "obscene",
+        rating: 1.4,
+        text: "Fuck that manager. He promised me a discount for a defective product, but he does not keep his word."
+    },
+    {
+        // 4.
         type: "toxicity",
         rating: 1.1,
         text: "This was the worst fucking purchase ever. Broken product, pathetic service, and no respect for customers at all."
     },
     {
-        // 4.
+        // 5.
+        type: "insult",
+        rating: 1.3,
+        text: "Mate, your store employees are pathetic, just pathetic fools. They refused to help me with a simple product issue."
+    },
+    {
+        // 6.
         type: "toxicity",
         rating: 1.0,
         text: "This store is fucking trash. The product is garbage, the support team is useless, and the entire experience was disgusting."
     },
     {
-        // 5.
+        // 7.
+        type: "insult",
+        rating: 1.3,
+        text: "Your customer service team are complete idiots. They lost my return request, lied about it, and acted too stupid to understand their own mistake."
+    },
+    {
+        // 8.
         type: "toxicity",
         rating: 1.3,
         text: "I wasted money on this piece of crap, and the store still acts like there is nothing wrong."
     },
     {
-        // 6.
+        // 9.
+        type: "obscene",
+        rating: 1.3,
+        text: "That manager is a fucking joke. He refused to replace my defective product and treated my complaint like it was nothing."
+    },
+    {
+        // 10.
         type: "toxicity",
         rating: 1.2,
         text: "This whole order was bullshit. I paid for a working product and received broken junk instead."
     },
     {
-        // 7.
+        // 11.
+        type: "insult",
+        rating: 1.3,
+        text: "The seller is a lying idiot, the product is complete garbage, and the whole store feels like a disgusting scam."
+    },
+    /////stop worker from posting reviews
+    {
+        // 12.
         type: "toxicity",
         rating: 1.2,
         text: "This was a filthy scam. The product was trash, the support team were idiots, and the manager gave nothing but bullshit excuses."
     },
     {
-        // 20.
+        // 13.
         type: "toxicity",
         rating: 3.3,
         text: "Despite the inflated price of the sneakers and limited quantity, the quality is purely crap. Not worth it!!! Damn, these sneakers look cool on the shelf."
@@ -310,85 +342,54 @@ export const toxicBotReviews = [
 
     // insult
     {
-        // 8.
+        // 14.
         type: "insult or toxicity",
         rating: 1.4,
         text: "This store delivered broken junk, ignored complaints, treated customers like idiots, and acted like complete trash."
     },
-    {
-        // 9.
-        type: "insult",
-        rating: 1.3,
-        text: "The seller is a lying idiot, the product is complete garbage, and the whole store feels like a disgusting scam."
-    },
-    {
-        // 10.
-        type: "insult or toxicity",
-        rating: 1.0,
-        text: "The seller is an idiot for sending a damaged product and pretending everything is fine."
-    },
-    {
-        // 11.
-        type: "insult or toxicity",
-        rating: 1.1,
-        text: "The support team is useless and incompetent. They could not solve a simple refund problem."
-    },
-    {
-        // 12.
-        type: "insult or toxicity",
-        rating: 1.2,
-        text: "Only a fool would think this broken product is acceptable for customers."
-    },
-    {
-        // 13.
-        type: "insult",
-        rating: 1.2,
-        text: "You should be fired. You are a moronic customer support agent who is too lazy to check a simple shipment status."
-    },
-    {
-        // 14.
-        type: "insult",
-        rating: 1.3,
-        text: "Mate, your store employees are pathetic, just pathetic fools. They refused to help me with a simple product issue."
-    },
-    {
-        // 15.
-        type: "insult",
-        rating: 1.3,
-        text: "Your customer service team are complete idiots. They lost my return request, lied about it, and acted too stupid to understand their own mistake."
-    },
-    {
-        // 16.
-        type: "insult",
-        rating: 1.2,
-        text: "Stupid wankers, they just sent me a fake product, nothing like the real product advertised online. Stupid management."
-    },
-
     // obscene
     {
-        // 17.
+        // 15.
         type: "obscene",
         rating: 1.0,
         text: "This product is fucking awful. It broke immediately, looked cheap, and the seller ignored my messages."
     },
     {
+        // 16.
+        type: "insult or toxicity",
+        rating: 1.0,
+        text: "The seller is an idiot for sending a damaged product and pretending everything is fine."
+    },
+    {
+        // 17.
+        type: "insult or toxicity",
+        rating: 1.1,
+        text: "The support team is useless and incompetent. They could not solve a simple refund problem."
+    },
+    {
         // 18.
+        type: "insult or toxicity",
+        rating: 1.2,
+        text: "Only a fool would think this broken product is acceptable for customers."
+    },
+    {
+        // 19.
+        type: "insult",
+        rating: 1.2,
+        text: "You should be fired. You are a moronic customer support agent who is too lazy to check a simple shipment status."
+    },
+    {
+        // 20.
+        type: "insult",
+        rating: 1.2,
+        text: "Stupid wankers, they just sent me a fake product, nothing like the real product advertised online. Stupid management."
+    },
+    {
+        // 21.
         type: "obscene or toxicity",
         rating: 1.1,
         text: "What a shit product. The build quality is horrible, the item arrived damaged, and it is completely useless."
     },
-    {
-        // 19.
-        type: "obscene",
-        rating: 1.4,
-        text: "Fuck that manager. He promised me a discount for a defective product, but he does not keep his word."
-    },
-    {
-        // 20.
-        type: "obscene",
-        rating: 1.3,
-        text: "That manager is a fucking joke. He refused to replace my defective product and treated my complaint like it was nothing."
-    }
 ];
 
 export const allFakeLikeBotMessages = [

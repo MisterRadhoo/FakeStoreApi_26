@@ -92,19 +92,23 @@ export const analyzeTextToxicity = async (text) => {
         };
     }
 
+    //load the model, if reviewText exists
     const model = await loadToxicityModel();
 
     // Run toxicity classification on the review text
     const predictions = await model.classify([reviewText]);
 
-    // Format and sort categories by toxicity score
+    // Create the category list and sort descending by toxicity score
     const categories = predictions
         .map(buildCategoryResult)
         .sort((firstCategory, secondCategory) => {
             return secondCategory.score - firstCategory.score;
         });
 
+    // Get detected toxic categories
     const matchedCategories = getMatchedCategories(categories);
+
+    // Get primary category as toxic
     const primaryCategory = getPrimaryCategory(matchedCategories, categories);
 
     // Return the final toxicity analysis

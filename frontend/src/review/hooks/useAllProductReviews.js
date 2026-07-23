@@ -4,7 +4,7 @@ import { getErrorMessage } from "../../utils/utils.js";
 
 const initialPagination = {
     page: 1,
-    limit: 3,
+    limit: 4,
     sort: "-createdAt",
     count: 0,
     totalReviews: 0,
