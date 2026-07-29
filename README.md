@@ -5,6 +5,6 @@
 
 # Bachelor's Thesis
 
-## A Scientific and Technological Approach to E-Commerce Implementation Using Microservices and Augmentative Artificial Intelligence
+** A Scientific and Technological Approach to E-Commerce Implementation Using Microservices and Augmentative Artificial Intelligence **
 
 ![Project Image](./images/project-image.png)
