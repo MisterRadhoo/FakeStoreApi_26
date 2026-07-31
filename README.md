@@ -12,4 +12,11 @@
 ![Project Image](./images/project2.png)
 
 ## Project Demo presentation
-[![Watch the project demo](https://img.youtube.com/vi/0id_0f059rE/hqdefault.jpg)](https://www.youtube.com/watch?v=0id_0f059rE)
+
+<a href="https://www.youtube.com/watch?v=0id_0f059rE">
+  <img
+    src="https://img.youtube.com/vi/0id_0f059rE/hqdefault.jpg"
+    alt="Watch the project demo"
+    width="800"
+  >
+</a>
