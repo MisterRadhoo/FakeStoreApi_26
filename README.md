@@ -12,7 +12,4 @@
 ![Project Image](./images/project2.png)
 
 ## Project Demo presentation
-```
-https://www.youtube.com/watch?v=0id_0f059rE
-
-```
+[![Watch the project demo](https://img.youtube.com/vi/0id_0f059rE/hqdefault.jpg)](https://www.youtube.com/watch?v=0id_0f059rE)
